@@ -31,6 +31,8 @@ Route::get('/gonglue', 'IndexController@gonglue');//升级攻略
 
 //前台登录——————用户中心
 Route::any('/login', 'IndexController@login');//登录
+Route::any('/logout', 'IndexController@logout');//退出登录
+Route::get('/register', 'IndexController@register');//注册
 Route::group(['middleware'=>['web','Index']],function() {
     Route::get('/share', 'IndexController@share');//邀请
     Route::post('/index/ajax/img', 'IndexController@ajaxImg');//邀请
@@ -55,6 +57,19 @@ Route::group(['middleware'=>['web','Admin']],function() {
     Route::get('/admin/sys/article/publisher/add', 'AdminController@publisher'); //发表文章
     Route::post('/admin/sys/articleAdd', 'AdminController@articleAdd'); //文章提交
 
+
+    //product
+    Route::get('/admin/sys/product/attr', 'ProductController@attr'); //属性管理
+    Route::post('/admin/sys/product/attr/add', 'ProductController@attrAdd'); //添加属性
+    Route::post('/admin/sys/product/attr/up', 'ProductController@attrUp');//修改属性提交
+    Route::post('/admin/sys/product/attr/edit/{id}', 'ProductController@attrEdit');//修改文章提交
+    Route::post('/admin/sys/product/model/add', 'ProductController@modelAdd'); //添加属性
+    Route::post('/admin/sys/product/model/edit/{id}', 'ProductController@modelEdit');//修改文章提交
+    Route::post('/admin/sys/product/model/up', 'ProductController@modelUp');//修改属性提交
+
+    Route::get('/admin/sys/product', 'ProductController@product'); //产品管理
+    Route::any('/admin/sys/product/add', 'ProductController@productAdd'); //产品管理
+    Route::any('/admin/sys/product/edit/{id}', 'ProductController@productEdit'); //产品管理
 
     Route::get('/admin/sys/test', 'AdminController@test'); //栏目管理
 });

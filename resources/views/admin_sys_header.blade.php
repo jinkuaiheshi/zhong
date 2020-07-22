@@ -30,6 +30,9 @@
     <link rel="stylesheet" href="{{asset('resources/assets/admin/vendor/morris/morris.css')}}">
     <link rel="stylesheet" href="{{asset('resources/assets/admin/vendor/jvectormap/jquery-jvectormap-2.0.3.css')}}">
 
+
+    <link rel="stylesheet" href="{{asset('resources/assets/admin/vendor/dropify/dist/css/dropify.min.css')}}">
+
     <!-- Neptune CSS -->
     <link rel="stylesheet" href="{{asset('resources/assets/admin/css/core.css')}}">
     <link href="{{asset('resources/assets/admin/user/css/datepicker.css')}}" rel="stylesheet" type="text/css" />
@@ -67,6 +70,11 @@
     <script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
     <link rel="stylesheet" href="{{asset('resources/assets/admin/vendor/summernote/summernote.css')}}">
     <script type="text/javascript" src="{{asset('resources/assets/admin/vendor/summernote/summernote.min.js')}}"></script>
+
+
+
+    <script type="text/javascript" src="{{asset('resources/assets/admin/vendor/dropify/dist/js/dropify.min.js')}}"></script>
+
 </head>
 <body class="large-sidebar fixed-sidebar fixed-header content-appear">
 <div class="wrapper">
@@ -102,6 +110,23 @@
                 </ul>
                 </li>
 
+                <li class="with-sub">
+                    <a href="#" class="waves-effect  waves-light">
+                        <span class="s-caret"><i class="fa fa-angle-down"></i></span>
+                        <span class="s-icon"><i class="ti-dashboard"></i></span>
+                        <span class="s-text">产品管理</span>
+                    </a>
+                    <ul>
+
+                        <li><a href="{{url('/admin/sys/product/attr')}}">产品属性</a></li>
+                        <li><a href="{{url('/admin/sys/product')}}">产品列表</a></li>
+                        {{--                <li><a href="{{url('/admin/sys/provider')}}">服务商管理</a></li>--}}
+                        {{--                <li><a href="{{url('/admin/sys/user/auth')}}">用户级别管理</a></li>--}}
+                        {{--                <li><a href="{{url('/admin/sys/province')}}">全国地区管理</a></li>--}}
+
+
+                    </ul>
+                </li>
 
                 {{--<li class="with-sub">--}}
                 {{--<a href="#" class="waves-effect  waves-light">--}}

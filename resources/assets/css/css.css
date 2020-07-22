@@ -534,7 +534,7 @@ body{
            outline: none;
            background-color: transparent;
 }
-.border_1{ border-bottom: 1px solid #999}
+.border_1{ border-bottom: 1px solid #f2f2f2}
 .sub_btn{
     border: none;
     background-color: transparent;
@@ -1209,9 +1209,49 @@ button, .aui-btn {
     margin-bottom: 5px;
     position: relative;
 }
-
-
-
+.agreement{
+    padding: 0 15px 0 52px;
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    font-size: 14px;
+    line-height: 28px;
+    position: relative;
+}
+.checkbox{
+    width: 22px;
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    margin-right: 5px;
+    padding: 5px;
+}
+.form-group{
+    margin-bottom: 20px;
+}
+.pull-xs-left{ float: left;}
+.custom-control{
+    position: relative;
+    display: inline;
+    padding-left: 30px;
+    cursor: pointer;
+}
+.custom-control-indicator{
+    width: 16px;
+    height: 16px;
+    line-height: 16px;border-radius: 2px;background-size: 70% 70%;border: 1px solid rgba(0, 0, 0, 0.125);user-select: none;
+    background-color: #ddd;
+    background-repeat: no-repeat;
+    background-position: center center;    pointer-events: none;position: absolute;
+    top:0px;
+    left: 30px;
+    display: block;
+}
+.custom-control-description{
+    font-size: 14px;font-weight: normal;
+}
 
 
 

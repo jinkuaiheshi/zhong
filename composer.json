@@ -6,9 +6,8 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
-        "laravel/framework": "5.3.1"
-
-
+        "laravel/framework": "5.3.*"
+    
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -22,6 +21,8 @@
             "database",
             "app/Libs/Geetest/lib/Geetestlib.php",
             "app/Libs/phpqrcode/phpqrcode.php"
+
+
         ],
         "psr-4": {
             "App\\": "app/"
@@ -30,6 +31,7 @@
     "autoload-dev": {
         "classmap": [
             "tests/TestCase.php"
+
         ]
     },
     "scripts": {
@@ -54,7 +56,7 @@
      "repositories": {
         "packagist": {
             "type": "composer",
-            "url": "https://packagist.phpcomposer.com"
+            "url": "https://mirrors.aliyun.com/composer/"
         }
     }
 }

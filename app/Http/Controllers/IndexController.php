@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Crypt;
 
+
 class IndexController extends CommomController
 {
     //
@@ -46,6 +47,15 @@ class IndexController extends CommomController
         }else{
 
             return view('login');
+        }
+    }
+    public function register(Request $request){
+        if ($request->isMethod('POST')) {
+
+
+        }else{
+
+            return view('register');
         }
     }
     public function news(){
