@@ -23,7 +23,7 @@ Route::get('/a/{cid}.html', 'IndexController@article');//首页
 
 
 
-
+Route::post('/admin/sys/send', 'IndexController@send'); //验证码
 Route::get('/geetest/apiVerif', 'CommomController@apiVerif');//极验验证提交地址
 
 
@@ -72,6 +72,6 @@ Route::group(['middleware'=>['web','Admin']],function() {
     Route::any('/admin/sys/product/edit/{id}', 'ProductController@productEdit'); //产品管理
 
     Route::get('/admin/sys/test', 'AdminController@test'); //栏目管理
-    Route::post('/admin/sys/send', 'IndexController@send'); //
+
 });
 

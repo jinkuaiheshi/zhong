@@ -61,6 +61,10 @@ class IndexController extends CommomController
     }
     public function register(Request $request){
         if ($request->isMethod('POST')) {
+            $user = User::where('tel',$request['tel'])->first();
+            if($user){
+                return redirect('register')->with('message', '账号已经存在')->with('type','danger')->withInput();
+            }
             $password = $request['password'];
             $repassword = $request['repassword'];
             if($password === $repassword){
