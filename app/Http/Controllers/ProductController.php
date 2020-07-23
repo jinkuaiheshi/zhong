@@ -165,7 +165,6 @@ class ProductController extends CommomController
             $data['computerPower'] = $product->computerPower;
             $data['stock'] = $product->stock;
             $data['src'] = '/storage/app/public/pic/'.$product->pic;
-
             $data['info'] = $product->info;
             return  $data;
         }

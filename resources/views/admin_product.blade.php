@@ -27,7 +27,7 @@
                         <td>{{$v->computerPower}}</td>
 
                         <td><a href="jacascript::void(0)" ><button type="button" class="btn btn-purple w-min-xs  waves-effect waves-light yulan"  data-toggle="modal" data-target="#yulan" data-action="{{$v->id}}" >预览</button></a>
-                           
+
 
 
                         </td>

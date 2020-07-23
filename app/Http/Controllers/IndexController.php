@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use Aliyun\Core\AcsRequest;
+use Aliyun\Core\AcsResponse;
 use App\Admin\Column;
+use App\Admin\Sms;
 use App\Admin\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Crypt;
+
+use Aliyun\Core\Config;
+use Aliyun\Core\Profile\DefaultProfile;
+use Aliyun\Core\DefaultAcsClient;
+use Aliyun\Api\Sms\Request\V20170525\SendSmsRequest;
+use Aliyun\Api\Sms\Request\V20170525\QuerySendDetailsRequest;
+use Aliyun\Core\Regions\EndpointConfig;
 
 
 class IndexController extends CommomController
@@ -51,7 +61,36 @@ class IndexController extends CommomController
     }
     public function register(Request $request){
         if ($request->isMethod('POST')) {
+            $password = $request['password'];
+            $repassword = $request['repassword'];
+            if($password === $repassword){
+                $tel = $request['tel'];
+                $code = $request['code'];
+                $sms = Sms::where('phone',$tel)->where('sms_code',$code)->where('time','>=',time()-1800)->first();
+                if($sms){
+                    $user = new User();
+                    $user->tel =$tel;
+                    $user->create_time = date('Y-m-d H:i:s', time());
+                    $user->username = $tel;
+                    $user->last_login_time = date('Y-m-d H:i:s', time());
+                    $user->suppwd =Crypt::encrypt($password);
+                    $user->auth = 3;
+                    $user->invite = $request['invite'];
+                    if($user->save()){
+                        session(['indexlogin' => $user]);
+                        return redirect('index');
+                    }else{
 
+                        return redirect('register')->with('message', '注册失败')->with('type','danger')->withInput();
+                    }
+                }else{
+
+                    return redirect('register')->with('message', '验证码失败或者已经失效')->with('type','danger')->withInput();
+                }
+            }else{
+
+                return redirect('register')->with('message', '两次密码输入不一样')->with('type','danger')->withInput();
+            }
 
         }else{
 
@@ -99,4 +138,80 @@ class IndexController extends CommomController
         $indexlogin = session('indexlogin');
         return view('personal')->with('user',$indexlogin);
     }
+    public function send(Request $request){
+        //header('Content-Type: text/plain; charset=utf-8');
+        $phone = $request['phone'];
+
+        $code = rand(0000,9999);
+        $request = new SendSmsRequest();
+        $request->setPhoneNumbers($phone);
+        $request->setSignName("中外矿业");
+        $request->setTemplateCode("SMS_197165041");
+        $request->setTemplateParam(json_encode(array(  // 短信模板中字段的值
+            "code"=>$code
+        ), JSON_UNESCAPED_UNICODE));
+
+        $acsResponse = static::getAcsClient()->getAcsResponse($request);
+
+        if($acsResponse->Code == 'OK' && $acsResponse->Message == 'OK'){
+
+            $sms = new Sms();
+            $sms->phone = $phone;
+            $sms->Message = $acsResponse->Message;
+            $sms->RequestId = $acsResponse->RequestId;
+            $sms->Code = $acsResponse->Code;
+            $sms->sms_code = $code;
+            $sms->time = time();
+            if($sms->save()){
+               // return redirect('register')->with('message', $acsResponse->Message)->with('type','success')->withInput();
+                $str = '';
+                $str .= '<div id='.'"toast-container"'.' class='.'"toast-top-right"'.' aria-live='.'"polite"'.' role='.'"alert"'.'><div class='.'"toast toast-success"'.' style='.'"display: block;"'.'><div class='.'"toast-message"'.'>'.$acsResponse->Message.'</div></div></div>';
+                return $str;
+            }
+        }else{
+            $str2 = '';
+            $str2 .= '<div id='.'"toast-container"'.' class='.'"toast-top-right"'.' aria-live='.'"polite"'.' role='.'"alert"'.'><div class='.'"toast toast-danger"'.' style='.'"display: block;"'.'><div class='.'"toast-message"'.'>'.$acsResponse->Message.'</div></div></div>';
+            return $str2;
+
+           // return redirect('register')->with('message', $acsResponse->Message)->with('type','danger')->withInput();
+        }
+
+
+    }
+    static $acsClient = null;
+    public static function getAcsClient() {
+        //产品名称:云通信短信服务API产品,开发者无需替换
+        $product = "Dysmsapi";
+
+        //产品域名,开发者无需替换
+        $domain = "dysmsapi.aliyuncs.com";
+
+        // TODO 此处需要替换成开发者自己的AK (https://ak-console.aliyun.com/)
+        $accessKeyId = "LTAI4G9xwK3K8vg53yyaxbQt"; // AccessKeyId
+
+        $accessKeySecret = "WA3pBI12zg9TtRK79EgWPsnAsy1f7v"; // AccessKeySecret
+
+        // 暂时不支持多Region
+        $region = "cn-hangzhou";
+
+        // 服务结点
+        $endPointName = "cn-hangzhou";
+
+
+        if(static::$acsClient == null) {
+
+            //初始化acsClient,暂不支持region化
+            $profile = DefaultProfile::getProfile($region, $accessKeyId, $accessKeySecret);
+
+            EndpointConfig::load();
+
+            // 增加服务结点
+            DefaultProfile::addEndpoint($endPointName, $region, $product, $domain);
+
+            // 初始化AcsClient用于发起请求
+            static::$acsClient = new DefaultAcsClient($profile);
+        }
+        return static::$acsClient;
+    }
+
 }

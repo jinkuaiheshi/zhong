@@ -32,7 +32,7 @@ Route::get('/gonglue', 'IndexController@gonglue');//升级攻略
 //前台登录——————用户中心
 Route::any('/login', 'IndexController@login');//登录
 Route::any('/logout', 'IndexController@logout');//退出登录
-Route::get('/register', 'IndexController@register');//注册
+Route::any('/register', 'IndexController@register');//注册
 Route::group(['middleware'=>['web','Index']],function() {
     Route::get('/share', 'IndexController@share');//邀请
     Route::post('/index/ajax/img', 'IndexController@ajaxImg');//邀请
@@ -72,5 +72,6 @@ Route::group(['middleware'=>['web','Admin']],function() {
     Route::any('/admin/sys/product/edit/{id}', 'ProductController@productEdit'); //产品管理
 
     Route::get('/admin/sys/test', 'AdminController@test'); //栏目管理
+    Route::post('/admin/sys/send', 'IndexController@send'); //
 });
 
