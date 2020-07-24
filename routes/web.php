@@ -72,6 +72,10 @@ Route::group(['middleware'=>['web','Admin']],function() {
     Route::any('/admin/sys/product/edit/{id}', 'ProductController@productEdit'); //整机模式
     Route::post('/admin/sys/product/Up', 'ProductController@productUp'); //整机模式
 
+    Route::get('/admin/sys/crowd', 'ProductController@crowd'); //众筹模式
+    Route::any('/admin/sys/crowd/add', 'ProductController@crowdAdd'); //众筹模式
+
+
     Route::get('/admin/sys/test', 'AdminController@test'); //栏目管理
 
 });

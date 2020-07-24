@@ -33,9 +33,10 @@ class IndexController extends CommomController
 
         //整机合约
         $zhengji = Product::where('model',1)->get();
+        //众筹模式
+        $zhongchou = Product::where('model',2)->get();
 
-
-        return view('index')->with('day',$arr)->with('zhengji',$zhengji);
+        return view('index')->with('day',$arr)->with('zhengji',$zhengji)->with('zhongchou',$zhongchou);
     }
 
     public function login(Request $request){

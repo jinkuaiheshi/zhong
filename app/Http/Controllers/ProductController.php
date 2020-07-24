@@ -113,6 +113,12 @@ class ProductController extends CommomController
         $data = Product::with('Attr','ProductModel')->where('model','1')->get();
         return view('admin_product')->with('attr',$attr)->with('productModel',$productModel)->with('data',$data);
     }
+    public function crowd(){
+        $attr = Attr::All();
+        $productModel = ProductModel::All();
+        $data = Product::with('Attr','ProductModel')->where('model','2')->get();
+        return view('admin_crowd')->with('attr',$attr)->with('productModel',$productModel)->with('data',$data);
+    }
     public function productAdd(Request $request){
         if ($request->isMethod('POST')) {
             $pic = $request->file('pic');
@@ -155,6 +161,51 @@ class ProductController extends CommomController
             $attr = Attr::All();
             $productModel = ProductModel::where('id',1)->first();
             return view('admin_product_add')->with('attr',$attr)->with('productModel',$productModel);
+        }
+
+    }
+    public function crowdAdd(Request $request){
+        if ($request->isMethod('POST')) {
+            $pic = $request->file('pic');
+            if ($pic->isValid()) {
+                $ext = $pic->getClientOriginalExtension();
+                $arr = array('jpg', 'png', 'gif', 'jpeg', 'bmp');
+                if (!in_array($ext, $arr)) {
+                    return redirect(url()->previous())->with('message', '上传文件不是图片类型')->with('type','danger')->withInput();
+                }
+                $path = $pic->getRealPath();
+                $pic_path = 'pic_' . time() . '.' . $ext;
+                Storage::disk('pic')->put($pic_path, file_get_contents($path));
+            }else{
+                return redirect(url()->previous())->with('message', '上传文件失败或者已经损坏')->with('type','danger')->withInput();
+            }
+            $name = $request['name'];
+            $product = Product::where('name',$name)->first();
+            if($product){
+                return redirect(url()->previous())->with('message', '产品名称已经存在')->with('type','danger')->withInput();
+            }
+            $product = new Product();
+            $product->name = $name;
+            $product->attr = $request['attr'];
+            $product->model = $request['model'];
+            $product->power = $request['power'];
+            $product->computerPower = $request['computerPower'];
+            $product->stock = $request['stock'];
+            $product->price = $request['price'];
+            $product->tagOne = $request['tagOne'];
+            $product->tagTwo = $request['tagTwo'];
+
+            $product->pic = $pic_path;
+            $product->info = $request['info'];
+            if($product->save()){
+                return redirect(url()->previous())->with('message', '产品名称添加成功')->with('type','success')->withInput();
+            }else{
+                return redirect(url()->previous())->with('message', '产品名称添加失败')->with('type','danger')->withInput();
+            }
+        }else{
+            $attr = Attr::All();
+            $productModel = ProductModel::where('id',2)->first();
+            return view('admin_crowd_add')->with('attr',$attr)->with('productModel',$productModel);
         }
 
     }

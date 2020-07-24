@@ -226,69 +226,34 @@
         </p>
 
     </div>
+    @foreach($zhongchou as $v)
     <div class="float_item">
         <div class="float-mark" style="width: 50px;text-indent: 5px;">
             <span >VIP版</span>
         </div>
         <div class="float_item_title" >
             <div class="float_item_title_left">
-                <p>S19Pro算力丰水版</p><span class="vag">3年期</span>
+                <p>{{$v->name}}</p><span class="vag" style="height: 20px;">{{$v->tagOne}}</span><span class="vag" style="height: 20px;margin-left: 5px;">{{$v->tagTwo}}</span>
             </div>
             <div class="float_item_title_right">
-                <p>预计年收益回报比</p>
+                <p>产出回报率</p>
             </div>
         </div>
         <div class="float_item_info">
             <div class="float_item_info_left">
-                <p>1000元起投 6月生效</p>
+                <p>{{$v->price}}元起投 6月生效</p>
             </div>
             <div class="float_item_info_right">
-                <p>30.35%</p><span>~66%</span>
+                <p> @if($v->attr == 1)18%=94.5元/份
+                    @elseif($v->attr == 2)21.6%=226.8元/份
+                    @elseif($v->attr == 3)24%=504元/份
+                    @endif</p>
             </div>
         </div>
     </div>
-    <div class="float_item">
-        <div class="float-mark" style="width: 50px;text-indent: 5px;">
-            <span >VIP版</span>
-        </div>
-        <div class="float_item_title" >
-            <div class="float_item_title_left">
-                <p>S19Pro算力丰水版</p><span class="vag">3年期</span>
-            </div>
-            <div class="float_item_title_right">
-                <p>预计年收益回报比</p>
-            </div>
-        </div>
-        <div class="float_item_info">
-            <div class="float_item_info_left">
-                <p>1000元起投 6月生效</p>
-            </div>
-            <div class="float_item_info_right">
-                <p>30.35%</p><span>~66%</span>
-            </div>
-        </div>
-    </div>
-    <div class="float_item">
-        <div class="float-mark" style="width: 50px;text-indent: 5px;">
-            <span >VIP版</span>
-        </div>
-        <div class="float_item_title" >
-            <div class="float_item_title_left">
-                <p>S19Pro算力丰水版</p><span class="vag">3年期</span>
-            </div>
-            <div class="float_item_title_right">
-                <p>预计年收益回报比</p>
-            </div>
-        </div>
-        <div class="float_item_info">
-            <div class="float_item_info_left">
-                <p>1000元起投 6月生效</p>
-            </div>
-            <div class="float_item_info_right">
-                <p>30.35%</p><span>~66%</span>
-            </div>
-        </div>
-    </div>
+    @endforeach
+
+
 </div>
 <div class="line"></div>
 <div class="container vip_container" style="padding-bottom: 15px" >
