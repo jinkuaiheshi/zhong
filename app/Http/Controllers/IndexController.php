@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Aliyun\Core\AcsRequest;
 use Aliyun\Core\AcsResponse;
 use App\Admin\Column;
+use App\Admin\Product;
 use App\Admin\Sms;
 use App\Admin\User;
 use Illuminate\Http\Request;
@@ -29,7 +30,12 @@ class IndexController extends CommomController
         $enddate = strtotime(date('Y-m-d'));
         $days= round(($enddate-$startdate)/3600/24) ;
         $arr = str_split($days);
-        return view('index')->with('day',$arr);
+
+        //整机合约
+        $zhengji = Product::where('model',1)->get();
+
+
+        return view('index')->with('day',$arr)->with('zhengji',$zhengji);
     }
 
     public function login(Request $request){

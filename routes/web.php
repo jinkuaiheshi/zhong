@@ -67,9 +67,10 @@ Route::group(['middleware'=>['web','Admin']],function() {
     Route::post('/admin/sys/product/model/edit/{id}', 'ProductController@modelEdit');//修改文章提交
     Route::post('/admin/sys/product/model/up', 'ProductController@modelUp');//修改属性提交
 
-    Route::get('/admin/sys/product', 'ProductController@product'); //产品管理
-    Route::any('/admin/sys/product/add', 'ProductController@productAdd'); //产品管理
-    Route::any('/admin/sys/product/edit/{id}', 'ProductController@productEdit'); //产品管理
+    Route::get('/admin/sys/product', 'ProductController@product'); //整机模式
+    Route::any('/admin/sys/product/add', 'ProductController@productAdd'); //整机模式
+    Route::any('/admin/sys/product/edit/{id}', 'ProductController@productEdit'); //整机模式
+    Route::post('/admin/sys/product/Up', 'ProductController@productUp'); //整机模式
 
     Route::get('/admin/sys/test', 'AdminController@test'); //栏目管理
 

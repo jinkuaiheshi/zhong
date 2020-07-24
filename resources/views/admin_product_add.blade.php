@@ -50,12 +50,12 @@
                             <label for="order" class=" col-form-label " >产品模式：</label>
                         </div>
                         <div class="col-md-3">
-                            <select class="form-control " name = 'model' required id="model" >
+                            <select class="form-control " name = 'model' required id="model" readonly>
 
-                                @foreach ($productModel as $v)
-                                    <option value="{{$v->id}}" style="text-align: center;"
-                                    >{{$v->name}}</option>
-                                @endforeach
+
+                                    <option value="{{$productModel->id}}" style="text-align: center;"
+                                    >{{$productModel->name}}</option>
+
 
                             </select>
                         </div>
@@ -94,8 +94,31 @@
                                 <input type="number" placeholder="" class="form-control" name="stock" required >
                             </div>
                         </div>
+                        <div class="col-md-1" style="text-align: right">
+                            <label for="order" class=" col-form-label " >价格：</label>
+                        </div>
+                        <div class="col-md-1">
+                            <div   class="form-group">
+                                <input type="number" placeholder="" class="form-control" name="price" readonly value="21000" >
+                            </div>
+                        </div>
                     </div>
+                    <div class="form-group h-a" style="text-align: center">
+                        <div class="col-md-3" style="text-align: right">
+                            <label for="order" class=" col-form-label " >特点：</label>
+                        </div>
+                        <div class="col-md-1">
+                            <div   class="form-group">
+                                <input type="text" placeholder="" class="form-control" name="tagOne" required >
+                            </div>
+                        </div>
 
+                        <div class="col-md-1">
+                            <div   class="form-group">
+                                <input type="text" placeholder="" class="form-control" name="tagTwo" required >
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="form-group h-a" style="text-align: center">
                         <div class="col-md-3" style="text-align: right">

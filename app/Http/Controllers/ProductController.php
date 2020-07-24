@@ -110,7 +110,7 @@ class ProductController extends CommomController
     public function product(){
         $attr = Attr::All();
         $productModel = ProductModel::All();
-        $data = Product::with('Attr','ProductModel')->get();
+        $data = Product::with('Attr','ProductModel')->where('model','1')->get();
         return view('admin_product')->with('attr',$attr)->with('productModel',$productModel)->with('data',$data);
     }
     public function productAdd(Request $request){
@@ -140,6 +140,10 @@ class ProductController extends CommomController
             $product->power = $request['power'];
             $product->computerPower = $request['computerPower'];
             $product->stock = $request['stock'];
+            $product->price = $request['price'];
+            $product->tagOne = $request['tagOne'];
+            $product->tagTwo = $request['tagTwo'];
+
             $product->pic = $pic_path;
             $product->info = $request['info'];
             if($product->save()){
@@ -149,7 +153,7 @@ class ProductController extends CommomController
             }
         }else{
             $attr = Attr::All();
-            $productModel = ProductModel::All();
+            $productModel = ProductModel::where('id',1)->first();
             return view('admin_product_add')->with('attr',$attr)->with('productModel',$productModel);
         }
 
@@ -161,12 +165,45 @@ class ProductController extends CommomController
             $data['name'] = $product->name;
             $data['attr'] = $product->Attr->name;
             $data['model'] = $product->ProductModel->name;
+            $data['modelId'] = $product->ProductModel->id;
             $data['power'] = $product->power;
             $data['computerPower'] = $product->computerPower;
             $data['stock'] = $product->stock;
             $data['src'] = '/storage/app/public/pic/'.$product->pic;
             $data['info'] = $product->info;
+            $data['price'] = $product->price;
+            $data['tagOne'] = $product->tagOne;
+            $data['tagTwo'] = $product->tagTwo;
+            $data['id'] = $product->id;
+
+
             return  $data;
+        }
+    }
+    public function productUp(Request $request){
+        if ($request->isMethod('POST')) {
+            $product = Product::where('id',$request['id'])->first();
+
+            if($product->name === $request['name']){
+                $product->power = $request['power'];
+                $product->computerPower = $request['computerPower'];
+                $product->stock = $request['stock'];
+                $product->price = $request['price'];
+                $product->tagOne = $request['tagOne'];
+                $product->tagTwo = $request['tagTwo'];
+                $product->info = $request['info'];
+                if($product->update()){
+                    return redirect(url()->previous())->with('message', '产品编辑成功')->with('type','success')->withInput();
+                }else{
+                    return redirect(url()->previous())->with('message', '产品编辑失败')->with('type','danger')->withInput();
+                }
+            }else{
+                $pro = Product::where('name',$request['name'])->first();
+                if($pro){
+                    return redirect(url()->previous())->with('message', '产品名称已经存在')->with('type','danger')->withInput();
+                }
+            }
+
         }
     }
 }

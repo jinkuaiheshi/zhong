@@ -181,54 +181,36 @@
             </p>
 
         </div>
+        @foreach($zhengji as $v)
         <div class="title_item">
             <div class="float-mark">
                 <span>实际合约</span>
             </div>
             <div class="title_item_title">
-                <p>ETH-8G-A卡</p><span class="vag" style="height: 20px;">难度稳定</span><span class="vag" style="height: 20px;margin-left: 5px;">低价屯币</span>
+                <p>{{$v->name}}</p><span class="vag" style="height: 20px;">{{$v->tagOne}}</span><span class="vag" style="height: 20px;margin-left: 5px;">{{$v->tagTwo}}</span>
             </div>
             <div class="title_item_info">
                 <div class="title_item_info_left">
-                    单台售价￥2501
+                    单台售价￥{{$v->price}}
                 </div>
                 <div class="title_item_info_right">
-                    单份日产币
+{{--                    单份日产币--}}
                 </div>
             </div>
             <div class="title_item_info">
                 <div class="title_item_info_left">
-                    单份日电费￥4.00
+                    产品回报率
                 </div>
                 <div class="title_item_info_right" style="font-size: 20px;font-weight: 700;color: #f96c02;">
-                    0.00596295ETH
+                    @if($v->attr == 1)24%=1260元/份
+                    @elseif($v->attr == 2)25.2%=2646元/份
+                    @elseif($v->attr == 3)26.4%=5544元/份
+                    @endif
                 </div>
             </div>
         </div>
-        <div class="title_item">
-            <div class="float-mark">
-                <span>实际合约</span>
-            </div>
-            <div class="title_item_title">
-                <p>ETH-8G-A卡</p><span class="vag" style="height: 20px;">难度稳定</span><span class="vag" style="height: 20px;margin-left: 5px;">低价屯币</span>
-            </div>
-            <div class="title_item_info">
-                <div class="title_item_info_left">
-                    单台售价￥2501
-                </div>
-                <div class="title_item_info_right">
-                    单份日产币
-                </div>
-            </div>
-            <div class="title_item_info">
-                <div class="title_item_info_left">
-                    单份日电费￥4.00
-                </div>
-                <div class="title_item_info_right" style="font-size: 20px;font-weight: 700;color: #f96c02;">
-                    0.00596295ETH
-                </div>
-            </div>
-        </div>
+        @endforeach
+
     </div>
 
     <div class="line"></div>
