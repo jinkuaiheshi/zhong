@@ -5,16 +5,16 @@
 
     <div class="row">
 
-            <div class="carousel slide" id="carousel-example-generic" data-ride="carousel" data-interval="1500">
+            <div class="carousel slide" id="carousel-example-caption" data-ride="carousel" data-interval="3500">
 
-                <div class="carousel-inner">
-                    <div class="item active">
+                <div class="carousel-inner" role="listbox">
+                    <div class="item  carousel-item active">
                         <img src="{{asset('resources/assets/images/slide.png')}}">
                     </div>
-                    <div class="item">
+                    <div class="item carousel-item">
                         <img src="{{asset('resources/assets/images/slide11.png')}}">
                     </div>
-                    <div class="item">
+                    <div class="item carousel-item ">
                         <img src="{{asset('resources/assets/images/slide22.png')}}">
                     </div>
 
@@ -23,6 +23,7 @@
             </div>
     </div>
 </div>
+
 <div class="container" >
     <div class="short_wrapper">
         <div class="item">
@@ -183,6 +184,7 @@
         </div>
         @foreach($zhengji as $v)
         <div class="title_item">
+            <a href="{{url('/product/info/').'/'.$v->id}}" style="display: inline-block; text-decoration: none;">
             <div class="float-mark">
                 <span>实际合约</span>
             </div>
@@ -208,6 +210,7 @@
                     @endif
                 </div>
             </div>
+            </a>
         </div>
         @endforeach
 
@@ -354,8 +357,5 @@
     </div>
 </div>
 
-<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
-<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
-<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+
 @stop
