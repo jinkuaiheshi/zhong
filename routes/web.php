@@ -33,6 +33,7 @@ Route::get('/gonglue', 'IndexController@gonglue');//升级攻略
 Route::any('/login', 'IndexController@login');//登录
 Route::any('/logout', 'IndexController@logout');//退出登录
 Route::any('/register', 'IndexController@register');//注册
+Route::any('/product/info/{id}', 'IndexController@info');//登录
 Route::group(['middleware'=>['web','Index']],function() {
     Route::get('/share', 'IndexController@share');//邀请
     Route::post('/index/ajax/img', 'IndexController@ajaxImg');//邀请

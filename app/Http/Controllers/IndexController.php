@@ -121,6 +121,10 @@ class IndexController extends CommomController
     public function gonglue(){
         return view('gonglue');
     }
+    public function info($id){
+        $product = Product::where('id',$id)->first();
+        return view('info')->with('product',$product);
+    }
     public function share(Request $request){
 
         $indexlogin = session('indexlogin');

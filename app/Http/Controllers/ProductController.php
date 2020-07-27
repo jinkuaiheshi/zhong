@@ -235,24 +235,24 @@ class ProductController extends CommomController
         if ($request->isMethod('POST')) {
             $product = Product::where('id',$request['id'])->first();
 
-            if($product->name === $request['name']){
-                $product->power = $request['power'];
-                $product->computerPower = $request['computerPower'];
-                $product->stock = $request['stock'];
-                $product->price = $request['price'];
-                $product->tagOne = $request['tagOne'];
-                $product->tagTwo = $request['tagTwo'];
-                $product->info = $request['info'];
-                if($product->update()){
-                    return redirect(url()->previous())->with('message', '产品编辑成功')->with('type','success')->withInput();
-                }else{
-                    return redirect(url()->previous())->with('message', '产品编辑失败')->with('type','danger')->withInput();
-                }
-            }else{
+            if($product->name != $request['name']){
                 $pro = Product::where('name',$request['name'])->first();
                 if($pro){
                     return redirect(url()->previous())->with('message', '产品名称已经存在')->with('type','danger')->withInput();
                 }
+                $product->name = $request['name'];
+            }
+            $product->power = $request['power'];
+            $product->computerPower = $request['computerPower'];
+            $product->stock = $request['stock'];
+            $product->price = $request['price'];
+            $product->tagOne = $request['tagOne'];
+            $product->tagTwo = $request['tagTwo'];
+            $product->info = $request['info'];
+            if($product->update()){
+                return redirect(url()->previous())->with('message', '产品编辑成功')->with('type','success')->withInput();
+            }else{
+                return redirect(url()->previous())->with('message', '产品编辑失败')->with('type','danger')->withInput();
             }
 
         }
