@@ -19,4 +19,8 @@ class Product extends Model
     {
         return $this->hasOne('App\Admin\ProductModel','id','model');
     }
+    public function Cloud()
+    {
+        return $this->hasOne('App\Admin\Cloud','id','cloud');
+    }
 }

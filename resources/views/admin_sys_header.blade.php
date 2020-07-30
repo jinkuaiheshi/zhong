@@ -121,6 +121,8 @@
                         <li><a href="{{url('/admin/sys/product/attr')}}">产品属性</a></li>
                         <li><a href="{{url('/admin/sys/product')}}">整机模式</a></li>
                         <li><a href="{{url('/admin/sys/crowd')}}">众筹模式</a></li>
+                        <li><a href="{{url('/admin/sys/cloudPower')}}">云算力模式</a></li>
+                        <li><a href="{{url('/admin/sys/depository')}}">托管模式</a></li>
                         {{--                <li><a href="{{url('/admin/sys/provider')}}">服务商管理</a></li>--}}
                         {{--                <li><a href="{{url('/admin/sys/user/auth')}}">用户级别管理</a></li>--}}
                         {{--                <li><a href="{{url('/admin/sys/province')}}">全国地区管理</a></li>--}}
@@ -128,7 +130,23 @@
 
                     </ul>
                 </li>
+                <li class="with-sub">
+                    <a href="#" class="waves-effect  waves-light">
+                        <span class="s-caret"><i class="fa fa-angle-down"></i></span>
+                        <span class="s-icon"><i class="ti-dashboard"></i></span>
+                        <span class="s-text">订单管理</span>
+                    </a>
+                    <ul>
 
+                        <li><a href="{{url('/admin/sys/order')}}">订单管理</a></li>
+
+                        {{--                <li><a href="{{url('/admin/sys/provider')}}">服务商管理</a></li>--}}
+                        {{--                <li><a href="{{url('/admin/sys/user/auth')}}">用户级别管理</a></li>--}}
+                        {{--                <li><a href="{{url('/admin/sys/province')}}">全国地区管理</a></li>--}}
+
+
+                    </ul>
+                </li>
                 {{--<li class="with-sub">--}}
                 {{--<a href="#" class="waves-effect  waves-light">--}}
                 {{--<span class="s-caret"><i class="fa fa-angle-down"></i></span>--}}

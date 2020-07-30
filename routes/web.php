@@ -26,6 +26,7 @@ Route::get('/a/{cid}.html', 'IndexController@article');//首页
 Route::post('/admin/sys/send', 'IndexController@send'); //验证码
 Route::get('/geetest/apiVerif', 'CommomController@apiVerif');//极验验证提交地址
 
+Route::post('/product/order/info/{id}', 'ProductController@item'); //验证码
 
 Route::get('/gonglue', 'IndexController@gonglue');//升级攻略
 
@@ -40,6 +41,9 @@ Route::group(['middleware'=>['web','Index']],function() {
     Route::get('/invite', 'IndexController@invite');//邀请
     Route::get('/gonglue', 'IndexController@gonglue');//升级攻略
     Route::get('/personal', 'IndexController@personal');//个人中心
+    Route::get('/order/{id}', 'ProductController@order');
+    Route::post('/order/up', 'ProductController@orderUP');
+    Route::get('/pay', 'ProductController@pay');
 
 });
 
@@ -67,6 +71,9 @@ Route::group(['middleware'=>['web','Admin']],function() {
     Route::post('/admin/sys/product/model/add', 'ProductController@modelAdd'); //添加属性
     Route::post('/admin/sys/product/model/edit/{id}', 'ProductController@modelEdit');//修改文章提交
     Route::post('/admin/sys/product/model/up', 'ProductController@modelUp');//修改属性提交
+    Route::post('/admin/sys/product/cloud/add', 'ProductController@cloudAdd'); //添加属性
+    Route::post('/admin/sys/product/cloud/edit/{id}', 'ProductController@cloudEdit');
+    Route::post('/admin/sys/product/cloud/up', 'ProductController@cloudUp');//修改属性提交
 
     Route::get('/admin/sys/product', 'ProductController@product'); //整机模式
     Route::any('/admin/sys/product/add', 'ProductController@productAdd'); //整机模式
@@ -76,6 +83,14 @@ Route::group(['middleware'=>['web','Admin']],function() {
     Route::get('/admin/sys/crowd', 'ProductController@crowd'); //众筹模式
     Route::any('/admin/sys/crowd/add', 'ProductController@crowdAdd'); //众筹模式
 
+    Route::get('/admin/sys/cloudPower ', 'ProductController@cloudPower'); //云算力模式
+    Route::any('/admin/sys/cloudPower/add ', 'ProductController@cloudPowerAdd'); //云算力模式
+
+    Route::get('/admin/sys/depository ', 'ProductController@depository'); //托管模式
+    Route::any('/admin/sys/depository/add ', 'ProductController@depositoryAdd'); //托管模式
+
+    Route::get('/admin/sys/order', 'ProductController@sysOrder'); //订单管理
+    Route::get('/order/complete/{id}', 'ProductController@complete'); //完成支付
 
     Route::get('/admin/sys/test', 'AdminController@test'); //栏目管理
 

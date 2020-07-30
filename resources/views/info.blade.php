@@ -26,6 +26,10 @@
         <div class="info_title">
             {{$product->name}}
         </div>
+        <input type="hidden" class="productID" value="{{$product->id}}">
+        @if(Session::get('indexlogin'))
+        <input type="hidden" class="uid" value="{{Session::get('indexlogin')->id}}">
+        @endif
         <div class="form-group margin_10"  style="height: auto; overflow: hidden">
             <div class="col-xs-3 padding_0 " >
                 <label for="order" class=" info_stit" >功耗：</label>
@@ -79,13 +83,13 @@
             </div>
         </div>
         <div class="form-group margin_10"  style="height: auto; overflow: hidden">
-            
+
             <div class="col-xs-6 padding_0 price" id="total">
                 {{$product->price}}
             </div>
         </div>
 
-        <div >
+        <div style="margin-bottom: 80px;">
             {!! $product->info !!}
         </div>
 
@@ -121,5 +125,26 @@
 
         })
     </script>
+    <footer class="footer-fixed">
+        <a href="{{url('order').'/'.$product->id}}" class="btm_wapper_btn pay">立即购买</a>
+    </footer>
 
+    <script>
+        //会为符合条件的现有标签和未来标签都绑定事件（将未来标签写道on方法里）
+
+        $(function () {
+            $("body").delegate('.pay', //会为符合条件的现有标签和未来标签都绑定事件
+                'click', function () {
+
+                    $.post("{{ url('/product/order/info') }}/"+ $('.productID').val(),
+                        {'_token': '{{ csrf_token() }}',
+                            'car':$('.price_p').html()
+                        }, function(data) {
+
+                        });
+
+                });
+        })
+
+    </script>
 @stop

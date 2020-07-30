@@ -66,6 +66,15 @@ class IndexController extends CommomController
             return view('login');
         }
     }
+    public function logout(){
+        $islogin = session('indexlogin');
+        if($islogin){
+            session()->forget('indexlogin');
+            return redirect('login')->with('message', '成功退出')->with('type','success')->withInput();
+        }else{
+            return redirect('login')->with('message', '您没有登入，无需退出')->with('type','danger');
+        }
+    }
     public function register(Request $request){
         if ($request->isMethod('POST')) {
             $user = User::where('tel',$request['tel'])->first();

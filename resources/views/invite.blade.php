@@ -1,4 +1,4 @@
-@extends('header')
+@extends('pay')
 
 @section('content')
     <div class="container">
@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <div class="aui_content">
+    <div class="aui_content" >
         <div class="aui-tab nav_tab" id="tab">
             <div class="aui_item" data-toggle="tab" href="#tab1">
                 <img src="{{asset('resources/assets/images/inv1.png')}}" />
