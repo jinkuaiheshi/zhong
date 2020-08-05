@@ -5,17 +5,17 @@
 
     <div class="row">
 
-            <div class="carousel slide" id="carousel-example-caption" data-ride="carousel" data-interval="3500">
+            <div class="swiper-container">
 
-                <div class="carousel-inner" role="listbox">
-                    <div class="item  carousel-item active">
-                        <img src="{{asset('resources/assets/images/slide.png')}}">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="{{asset('resources/assets/images/slide.png')}}" class="wid100">
                     </div>
-                    <div class="item carousel-item">
-                        <img src="{{asset('resources/assets/images/slide11.png')}}">
+                    <div class="swiper-slide">
+                        <img src="{{asset('resources/assets/images/slide11.png')}}" class="wid100">
                     </div>
-                    <div class="item carousel-item ">
-                        <img src="{{asset('resources/assets/images/slide22.png')}}">
+                    <div class="swiper-slide ">
+                        <img src="{{asset('resources/assets/images/slide22.png')}}" class="wid100">
                     </div>
 
                 </div>
@@ -23,7 +23,17 @@
             </div>
     </div>
 </div>
-
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script>
+    var mySwiper = new Swiper('.swiper-container', {
+        autoplay:true,//等同于以下设置
+        /*autoplay: {
+          delay: 3000,
+          stopOnLastSlide: false,
+          disableOnInteraction: true,
+          },*/
+    });
+</script>
 <div class="container" >
     <div class="short_wrapper">
         <div class="item">

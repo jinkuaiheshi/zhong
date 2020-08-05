@@ -19,7 +19,8 @@ Route::get('/', function () {
 Route::get('/index', 'IndexController@index');//首页
 Route::get('/news', 'IndexController@news');//首页
 
-Route::get('/a/{cid}.html', 'IndexController@article');//首页
+Route::get('/news/a/{cid}', 'IndexController@article');//首页
+Route::get('/kuaixun/more', 'IndexController@kuaixunMore');//首页
 
 
 

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Aliyun\Core\AcsRequest;
 use Aliyun\Core\AcsResponse;
+use App\Admin\Article;
 use App\Admin\Column;
+use App\Admin\Kuaixun;
 use App\Admin\Product;
 use App\Admin\Sms;
 use App\Admin\User;
@@ -119,10 +121,146 @@ class IndexController extends CommomController
     }
     public function news(){
         $column = Column::All();
-        return view('news')->with('column',$column);
+        $data = Article::take(5)->get();
+        $imgs = array();
+
+        foreach ($data as $v){
+
+            preg_match_all("/<img.*\>/isU",$v->body,$ereg);
+            $img=$ereg[0][0];
+            $p="#src=('|\")(.*)('|\")#isU";
+            preg_match_all ($p, $img, $img1);
+            $img_path =$img1[2][0];
+            $arr = array();
+            $arr['title'] = $v->title;
+            $arr['id'] = $v->id;
+            if(str_contains($img_path, 'http://')){
+                $arr['src'] = $img_path;
+            }else{
+                $arr['src'] ='http://www.zhongwaikuangye.com/'.$img_path;
+            }
+            $imgs[] = $arr;
+
+        }
+        $toutiao = Article::where('cid',1)->get();
+        $toutiaos = array();
+        foreach ($toutiao as $v){
+
+            preg_match_all("/<img.*\>/isU",$v->body,$ereg);
+            $img=$ereg[0][0];
+            $p="#src=('|\")(.*)('|\")#isU";
+            preg_match_all ($p, $img, $img1);
+            $img_path =$img1[2][0];
+            $arr = array();
+            $arr['title'] = $v->title;
+            $arr['hot'] = $v->hot;
+            $arr['created_time'] = $v->created_time;
+            if(str_contains($img_path, 'http://')){
+                $arr['src'] = $img_path;
+            }else{
+                $arr['src'] ='http://www.zhongwaikuangye.com/'.$img_path;
+            }
+            $toutiaos[] = $arr;
+        }
+        $artive2 = Article::where('cid',2)->get();
+        $artive2s = array();
+        foreach ($artive2 as $v){
+
+            preg_match_all("/<img.*\>/isU",$v->body,$ereg);
+            $img=$ereg[0][0];
+            $p="#src=('|\")(.*)('|\")#isU";
+            preg_match_all ($p, $img, $img1);
+            $img_path =$img1[2][0];
+            $arr = array();
+            $arr['title'] = $v->title;
+            $arr['hot'] = $v->hot;
+            $arr['created_time'] = $v->created_time;
+            if(str_contains($img_path, 'http://')){
+                $arr['src'] = $img_path;
+            }else{
+                $arr['src'] ='http://www.zhongwaikuangye.com/'.$img_path;
+            }
+            $artive2s[] = $arr;
+        }
+        $artive3 = Article::where('cid',3)->get();
+        $artive3s = array();
+        foreach ($artive3 as $v){
+
+            preg_match_all("/<img.*\>/isU",$v->body,$ereg);
+            $img=$ereg[0][0];
+            $p="#src=('|\")(.*)('|\")#isU";
+            preg_match_all ($p, $img, $img1);
+            $img_path =$img1[2][0];
+            $arr = array();
+            $arr['title'] = $v->title;
+            $arr['hot'] = $v->hot;
+            $arr['created_time'] = $v->created_time;
+            if(str_contains($img_path, 'http://')){
+                $arr['src'] = $img_path;
+            }else{
+                $arr['src'] ='http://www.zhongwaikuangye.com/'.$img_path;
+            }
+            $artive3s[] = $arr;
+        }
+        $kuaixun = Kuaixun::orderBy('id', 'DESC')->first();
+        if(time() - $kuaixun->time >= 1800 ){
+            $data = file_get_contents('https://www.528btc.com/bkuaixun/');
+
+            preg_match('/id=\"showajaxnews\">([\s\S]*)class=\"MoreNews\"/Uis',$data,$body);
+
+            preg_match_all('/target=\"_blank\">([\s\S]*)<\/a><\/span>/Uis', $body[0], $strArrk);
+            preg_match_all('/<p>([\s\S]*)<\/p>\\r\\n/Uis', $body[0], $strbody);
+
+            for ($i=1;$i<=10;$i++){
+                $kuaixun = new  Kuaixun();
+                $kuaixun->title = $strArrk[1][$i];
+                $kuaixun->info = $strbody[1][$i];
+                $kuaixun->time = time();
+                $kuaixun->save();
+            }
+            $kuaixun = Kuaixun::orderBy('id', 'DESC')->take(5)->get();
+        }else{
+            $kuaixun = Kuaixun::orderBy('id', 'DESC')->take(5)->get();
+        }
+
+
+
+
+        return view('news')->with('column',$column)->with('img',$imgs)->with('toutiao',$toutiaos)->with('artive2',$artive2s)->with('artive3',$artive3s)->with('kuaixun',$kuaixun);
     }
-    public function article(){
-        return view('article');
+    public function kuaixunMore(){
+        $data = Kuaixun::paginate(20);
+        return view('more',compact('data'));
+    }
+    public function article($id){
+        $article = Article::where('id',$id)->first();
+        $last = Article::where('id', '<', $article->id)->latest('id')->first();
+        $next = Article::where('id', '>', $article->id)->orderBy('id', 'asc')->first();
+        $paihang = Article::orderBy('hot', 'DESC')->take(5)->get();
+
+
+        $paihangs = array();
+        foreach ($paihang as $v){
+
+            preg_match_all("/<img.*\>/isU",$v->body,$ereg);
+            $img=$ereg[0][0];
+            $p="#src=('|\")(.*)('|\")#isU";
+            preg_match_all ($p, $img, $img1);
+            $img_path =$img1[2][0];
+            $arr = array();
+            $arr['title'] = $v->title;
+            $arr['hot'] = $v->hot;
+            $arr['created_time'] = $v->created_time;
+            if(str_contains($img_path, 'http://')){
+                $arr['src'] = $img_path;
+            }else{
+                $arr['src'] ='http://www.zhongwaikuangye.com/'.$img_path;
+            }
+            $paihangs[] = $arr;
+
+
+        }
+        return view('article')->with('data',$article)->with('last',$last)->with('next',$next)->with('paihang',$paihangs);
     }
     public function invite(){
         return view('invite');

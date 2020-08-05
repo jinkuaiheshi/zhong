@@ -451,7 +451,16 @@ class ProductController extends CommomController
         if ($order){
             $order->status = 2;
             if($order->update()){
-                return redirect(url()->previous())->with('message', '操作成功')->with('type','success')->withInput();
+                $product = Product::where('id',$order->pid)->first();
+                if($product->stock - $order->num >= 0){
+                    $product->stock = $product->stock - $order->num;
+                    if($product->update()){
+                        return redirect(url()->previous())->with('message', '操作成功')->with('type','success')->withInput();
+                    }
+                }else{
+                    return redirect(url()->previous())->with('message', '库存不足')->with('type','danger')->withInput();
+                }
+
             }else{
                 return redirect(url()->previous())->with('message', '操作失败')->with('type','danger')->withInput();
             }
