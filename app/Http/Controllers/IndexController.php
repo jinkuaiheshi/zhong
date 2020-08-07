@@ -37,8 +37,15 @@ class IndexController extends CommomController
         $zhengji = Product::where('model',1)->get();
         //众筹模式
         $zhongchou = Product::where('model',2)->get();
+        //算力模式
+        $suanli = Product::where('model',3)->get();
 
-        return view('index')->with('day',$arr)->with('zhengji',$zhengji)->with('zhongchou',$zhongchou);
+        //矿机托管
+        $tuoguan = Product::where('model',4)->get();
+
+        $xinren = Product::where('model',5)->first();
+        $special = Product::where('model',6)->first();
+        return view('index')->with('day',$arr)->with('zhengji',$zhengji)->with('zhongchou',$zhongchou)->with('suanli',$suanli)->with('tuoguan',$tuoguan)->with('xinren',$xinren)->with('special',$special);
     }
 
     public function login(Request $request){
@@ -154,6 +161,7 @@ class IndexController extends CommomController
             $arr = array();
             $arr['title'] = $v->title;
             $arr['hot'] = $v->hot;
+            $arr['id'] = $v->id;
             $arr['created_time'] = $v->created_time;
             if(str_contains($img_path, 'http://')){
                 $arr['src'] = $img_path;
@@ -174,6 +182,7 @@ class IndexController extends CommomController
             $arr = array();
             $arr['title'] = $v->title;
             $arr['hot'] = $v->hot;
+            $arr['id'] = $v->id;
             $arr['created_time'] = $v->created_time;
             if(str_contains($img_path, 'http://')){
                 $arr['src'] = $img_path;
@@ -194,6 +203,7 @@ class IndexController extends CommomController
             $arr = array();
             $arr['title'] = $v->title;
             $arr['hot'] = $v->hot;
+            $arr['id'] = $v->id;
             $arr['created_time'] = $v->created_time;
             if(str_contains($img_path, 'http://')){
                 $arr['src'] = $img_path;
@@ -250,6 +260,7 @@ class IndexController extends CommomController
             $arr = array();
             $arr['title'] = $v->title;
             $arr['hot'] = $v->hot;
+            $arr['id'] = $v->id;
             $arr['created_time'] = $v->created_time;
             if(str_contains($img_path, 'http://')){
                 $arr['src'] = $img_path;

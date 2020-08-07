@@ -67,6 +67,7 @@
 
                 </div>
                 @foreach($paihang as $v)
+                    <a href="{{url('news/a/').'/'.$v['id']}}" style="display: inline-block; width: 100%;">
                     <div class="tab_content">
                         <div class="line_nav_body_left">
                             <p>
@@ -88,6 +89,7 @@
                             <img src={{$v['src']}} />
                         </div>
                     </div>
+                    </a>
                 @endforeach
 
 

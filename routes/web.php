@@ -46,6 +46,12 @@ Route::group(['middleware'=>['web','Index']],function() {
     Route::post('/order/up', 'ProductController@orderUP');
     Route::get('/pay', 'ProductController@pay');
 
+
+    Route::get('/order', 'ProductController@userOrder');
+    Route::get('/power', 'ProductController@userPower');
+
+
+
 });
 
 //总后台系统
@@ -89,6 +95,12 @@ Route::group(['middleware'=>['web','Admin']],function() {
 
     Route::get('/admin/sys/depository ', 'ProductController@depository'); //托管模式
     Route::any('/admin/sys/depository/add ', 'ProductController@depositoryAdd'); //托管模式
+
+    Route::get('/admin/sys/xinren ', 'ProductController@xinren'); //新人专属
+    Route::any('/admin/sys/xinren/add ', 'ProductController@xinrenAdd'); //新人专属
+
+    Route::get('/admin/sys/special ', 'ProductController@special'); //新人专属
+    Route::any('/admin/sys/special/add ', 'ProductController@specialAdd'); //新人专属
 
     Route::get('/admin/sys/order', 'ProductController@sysOrder'); //订单管理
     Route::get('/order/complete/{id}', 'ProductController@complete'); //完成支付

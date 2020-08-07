@@ -123,6 +123,8 @@
                         <li><a href="{{url('/admin/sys/crowd')}}">众筹模式</a></li>
                         <li><a href="{{url('/admin/sys/cloudPower')}}">云算力模式</a></li>
                         <li><a href="{{url('/admin/sys/depository')}}">托管模式</a></li>
+                        <li><a href="{{url('/admin/sys/xinren')}}">新人专属产品</a></li>
+                        <li><a href="{{url('/admin/sys/special')}}">特别优惠活动</a></li>
                         {{--                <li><a href="{{url('/admin/sys/provider')}}">服务商管理</a></li>--}}
                         {{--                <li><a href="{{url('/admin/sys/user/auth')}}">用户级别管理</a></li>--}}
                         {{--                <li><a href="{{url('/admin/sys/province')}}">全国地区管理</a></li>--}}

@@ -9,13 +9,13 @@
 
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <img src="{{asset('resources/assets/images/slide.png')}}" class="wid100">
+                        <img src="{{asset('resources/assets/images/slide.jpg')}}" class="wid100">
                     </div>
                     <div class="swiper-slide">
-                        <img src="{{asset('resources/assets/images/slide11.png')}}" class="wid100">
+                        <img src="{{asset('resources/assets/images/slide11.jpg')}}" class="wid100">
                     </div>
                     <div class="swiper-slide ">
-                        <img src="{{asset('resources/assets/images/slide22.png')}}" class="wid100">
+                        <img src="{{asset('resources/assets/images/slide22.jpg')}}" class="wid100">
                     </div>
 
                 </div>
@@ -85,32 +85,30 @@
         <h2>
                 <i class="glyphicon glyphicon-star"></i>&nbsp;新人专享-每人限购一次
         </h2>
-        <p>
-            <a href="{{url('index')}}" class="none" style="display: inline-block"> <span style="color: rgb(255, 59, 48);">新人五重礼</span>
-            <i class="glyphicon glyphicon-chevron-right color999"></i>
-            </a>
-        </p>
+
 
     </div>
+
     <div class="vip_item">
         <div class="title">
-            <h2>S17Pro算力丰水版<span>3年期</span></h2>
-            <p>预计年收益回报比</p>
+            <h2>{{$xinren->name}}<span>{{$xinren->tagOne}}</span><span>{{$xinren->tagTwo}}</span></h2>
+            <p>每月享受矿机分红</p>
         </div>
         <div class="info">
           <div class="top">
-            <p>25.21%<span>~78%</span></p>
+            <p>100元</p>
           </div>
             <div class="btm">
                 <span class="vag">新手专享福利</span>
-                <span class="vag" style="margin-left: 5px;" >10元可投</span>
+                <span class="vag" style="margin-left: 5px;" >5000元可投</span>
                 <span class="vag" style="margin-left: 5px;">限购一次</span>
             </div>
         </div>
         <div classs="btm_wapper">
-            <button class="btm_wapper_btn">10元尝鲜</button>
+            <button class="btm_wapper_btn">{{$xinren->price}}元尝鲜</button>
         </div>
     </div>
+
 </div>
 <div class="line"></div>
 <div class="container vip_container" >
@@ -120,6 +118,7 @@
             <i class="glyphicon glyphicon-star"></i>&nbsp;全网首发，抢File头框红利
         </h2>
     </div>
+
     <div class="info_item">
         <div class="info_item_top">
             <div class="float-mark">
@@ -129,19 +128,19 @@
                 <img src="{{asset('resources/assets/images/pdu.png')}}" />
             </div>
             <div class="info_item_top_info">
-                <p>熊猫IPFS基金头矿一号</p>
+                <p>{{$special->name}}</p>
                 <div class="info_item_top_info_attr">
-                    <span class="vag">限量1000T</span>
-                    <span class="vag" style="margin-left: 5px;" >单T起购</span>
+                    <span class="vag">{{$special->tagOne}}</span>
+                    <span class="vag" style="margin-left: 5px;" >{{$special->tagTwo}}</span>
                 </div>
                 <div class="info_item_top_info_des">
                     <p>
-                        参与400万FIL
+                        四川绵阳三天两夜
                     </p>
                 </div>
                 <div class="info_item_top_info_des">
                     <p>
-                        测试奖励
+                        总部考察
                     </p>
                 </div>
             </div>
@@ -179,6 +178,7 @@
             <button class="btm_wapper_btn">立即购买</button>
         </div>
     </div>
+
 </div>
 <div class="line"></div>
     <div class="container vip_container" >
@@ -254,7 +254,7 @@
         </div>
         <div class="float_item_info">
             <div class="float_item_info_left">
-                <p>{{$v->price}}元起投 6月生效</p>
+                <p>{{$v->price}}元起投</p>
             </div>
             <div class="float_item_info_right">
                 <p> @if($v->attr == 1)18%=94.5元/份
@@ -277,24 +277,18 @@
         </h2>
     </div>
     <div class="new_item">
+        @foreach($suanli as $v)
         <div class="new_item_pro">
-            <p>BTC保本合约-02</p>
+            <p>{{$v->name}}</p>
             <div class="float-mark" style="width: 50px;text-indent: 5px;">
                 <span >升级版</span>
             </div>
-            <p><span class="vag" style="margin-right: 4px;">2年期</span>可返90%本金</p>
+            <p><span class="vag" style="margin-right: 4px;">{{$v->tagOne}}</span><span class="vag" style="margin-right: 4px;">{{$v->tagTwo}}</span></p>
             <p>最高收益回报比</p>
             <p>220%</p>
         </div>
-        <div class="new_item_pro">
-            <p>BTC保本合约-02</p>
-            <div class="float-mark" style="width: 50px;text-indent: 5px;">
-                <span >升级版</span>
-            </div>
-            <p><span class="vag" style="margin-right: 4px;">2年期</span>可返90%本金</p>
-            <p>最高收益回报比</p>
-            <p>220%</p>
-        </div>
+        @endforeach
+
     </div>
 </div>
 <div class="line"></div>
@@ -302,15 +296,16 @@
     <div class="title-wrapper">
 
         <h2>
-            <i class="glyphicon glyphicon-star"></i>&nbsp;矿场投资
+            <i class="glyphicon glyphicon-star"></i>矿机托管
         </h2>
     </div>
-    <div class="invest_item">
+    @foreach($tuoguan as $v)
+    <div class="invest_item" style="margin-bottom: 20px">
         <div class="float-mark" style="width: 70px;text-indent: 5px;">
-            <span >准东矿场</span>
+            <span >顶级显卡</span>
         </div>
         <div class="invest_item_title" style="margin-top: 10px;">
-            <p>准东矿场机位投资<span class="vag" style="font-weight: normal;margin-left: 5px;">3年期</span><span class="vag" style="font-weight: normal;margin-left: 5px;">最高年化25%</span></p>
+            <p>{{$v->name}}<span class="vag" style="font-weight: normal;margin-left: 5px;">{{$v->tagOne}}</span><span class="vag" style="font-weight: normal;margin-left: 5px;">{{$v->tagTwo}}</span></p>
         </div>
         <div class="invest_item_info">
             <div class="invest_item_info_left">
@@ -330,6 +325,8 @@
             </div>
         </div>
     </div>
+    @endforeach
+
 </div>
 <div class="line"></div>
 <div class="container" style="margin-bottom: 70px">

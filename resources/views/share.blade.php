@@ -1,4 +1,4 @@
-@extends('header')
+@extends('pay')
 
 @section('content')
     <div class="row">

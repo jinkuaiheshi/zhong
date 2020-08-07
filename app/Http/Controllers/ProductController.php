@@ -181,6 +181,22 @@ class ProductController extends CommomController
 
         return view('admin_depository')->with('attr',$attr)->with('productModel',$productModel)->with('data',$data)->with('cloud',$cloud);
     }
+    public function xinren(){
+        $attr = Attr::All();
+        $productModel = ProductModel::All();
+        $cloud= Cloud::All();
+        $data = Product::with('Cloud','ProductModel')->where('model','5')->get();
+
+        return view('admin_xinren')->with('attr',$attr)->with('productModel',$productModel)->with('data',$data)->with('cloud',$cloud);
+    }
+    public function special(){
+        $attr = Attr::All();
+        $productModel = ProductModel::All();
+        $cloud= Cloud::All();
+        $data = Product::with('Cloud','ProductModel')->where('model','6')->get();
+
+        return view('admin_special')->with('attr',$attr)->with('productModel',$productModel)->with('data',$data)->with('cloud',$cloud);
+    }
     public function productAdd(Request $request){
         if ($request->isMethod('POST')) {
             $pic = $request->file('pic');
@@ -360,6 +376,94 @@ class ProductController extends CommomController
             return view('admin_depository_add')->with('attr',$attr)->with('productModel',$productModel);
         }
     }
+    public function xinrenAdd(Request $request){
+        if ($request->isMethod('POST')) {
+            $pic = $request->file('pic');
+            if ($pic->isValid()) {
+                $ext = $pic->getClientOriginalExtension();
+                $arr = array('jpg', 'png', 'gif', 'jpeg', 'bmp');
+                if (!in_array($ext, $arr)) {
+                    return redirect(url()->previous())->with('message', '上传文件不是图片类型')->with('type','danger')->withInput();
+                }
+                $path = $pic->getRealPath();
+                $pic_path = 'pic_' . time() . '.' . $ext;
+                Storage::disk('pic')->put($pic_path, file_get_contents($path));
+            }else{
+                return redirect(url()->previous())->with('message', '上传文件失败或者已经损坏')->with('type','danger')->withInput();
+            }
+            $name = $request['name'];
+            $product = Product::where('name',$name)->first();
+            if($product){
+                return redirect(url()->previous())->with('message', '产品名称已经存在')->with('type','danger')->withInput();
+            }
+            $product = new Product();
+            $product->name = $name;
+            $product->attr = $request['attr'];
+            $product->model = $request['model'];
+            $product->power = $request['power'];
+            $product->computerPower = $request['computerPower'];
+            $product->stock = $request['stock'];
+            $product->price = $request['price'];
+            $product->tagOne = $request['tagOne'];
+            $product->tagTwo = $request['tagTwo'];
+
+            $product->pic = $pic_path;
+            $product->info = $request['info'];
+            if($product->save()){
+                return redirect(url()->previous())->with('message', '产品添加成功')->with('type','success')->withInput();
+            }else{
+                return redirect(url()->previous())->with('message', '产品添加失败')->with('type','danger')->withInput();
+            }
+        }else{
+            $attr = Attr::All();
+            $productModel = ProductModel::where('id',5)->first();
+            return view('admin_depository_add')->with('attr',$attr)->with('productModel',$productModel);
+        }
+    }
+    public function specialAdd(Request $request){
+        if ($request->isMethod('POST')) {
+            $pic = $request->file('pic');
+            if ($pic->isValid()) {
+                $ext = $pic->getClientOriginalExtension();
+                $arr = array('jpg', 'png', 'gif', 'jpeg', 'bmp');
+                if (!in_array($ext, $arr)) {
+                    return redirect(url()->previous())->with('message', '上传文件不是图片类型')->with('type','danger')->withInput();
+                }
+                $path = $pic->getRealPath();
+                $pic_path = 'pic_' . time() . '.' . $ext;
+                Storage::disk('pic')->put($pic_path, file_get_contents($path));
+            }else{
+                return redirect(url()->previous())->with('message', '上传文件失败或者已经损坏')->with('type','danger')->withInput();
+            }
+            $name = $request['name'];
+            $product = Product::where('name',$name)->first();
+            if($product){
+                return redirect(url()->previous())->with('message', '产品名称已经存在')->with('type','danger')->withInput();
+            }
+            $product = new Product();
+            $product->name = $name;
+            $product->attr = $request['attr'];
+            $product->model = $request['model'];
+            $product->power = $request['power'];
+            $product->computerPower = $request['computerPower'];
+            $product->stock = $request['stock'];
+            $product->price = $request['price'];
+            $product->tagOne = $request['tagOne'];
+            $product->tagTwo = $request['tagTwo'];
+
+            $product->pic = $pic_path;
+            $product->info = $request['info'];
+            if($product->save()){
+                return redirect(url()->previous())->with('message', '产品添加成功')->with('type','success')->withInput();
+            }else{
+                return redirect(url()->previous())->with('message', '产品添加失败')->with('type','danger')->withInput();
+            }
+        }else{
+            $attr = Attr::All();
+            $productModel = ProductModel::where('id',6)->first();
+            return view('admin_depository_add')->with('attr',$attr)->with('productModel',$productModel);
+        }
+    }
     public function productEdit($id){
         if($id){
             $product = Product::with('Attr','ProductModel','Cloud')->where('id',$id)->first();
@@ -428,6 +532,7 @@ class ProductController extends CommomController
             $order->code = $request['code'];
             $pid = Product::where('id',$request['id'])->first();
             $order->pid = $pid->id;
+            $order->uid = session('indexlogin')->id;
             $order->created_time = date('Y-m-d H:i:s',time());
             $order->num = $request['num'];
             $order->UnitPrice = $request['UnitPrice'];
@@ -450,6 +555,7 @@ class ProductController extends CommomController
         $order = Order::where('id',$id)->first();
         if ($order){
             $order->status = 2;
+            $order->force_time = date('Y-m-d h:i:s');
             if($order->update()){
                 $product = Product::where('id',$order->pid)->first();
                 if($product->stock - $order->num >= 0){
@@ -465,5 +571,24 @@ class ProductController extends CommomController
                 return redirect(url()->previous())->with('message', '操作失败')->with('type','danger')->withInput();
             }
         }
+    }
+    public function userOrder(){
+        $user = session('indexlogin');
+        $order = Order::where('uid',$user->id)->orderby('id','DESC')->get();
+
+        return view('orderList')->with('data',$order);
+    }
+    public function userPower(){
+        $user = session('indexlogin');
+        $order = Order::with('Product')->where('uid',$user->id)->orderby('id','DESC')->where('status',2)->get();
+        $suan = 0;
+        foreach ($order as $v){
+            //$suan+=$v
+            if($v->Product->model == 1 || $v->Product->model == 2){
+                $suan += strstr($v->Product->computerPower,'TH/s',true) * $v->num;
+            }
+
+        }
+        return view('power')->with('data',$order)->with('suan',$suan);
     }
 }

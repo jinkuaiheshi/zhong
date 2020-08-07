@@ -150,32 +150,35 @@
     <div class="tab-content" style="margin-bottom: 80px;">
                     <div class="tab-pane fade in active " id="column_1" >
                         @foreach($toutiao as $v)
+                                                        <a href="{{url('news/a/').'/'.$v['id']}}" style="display: inline-block; width: 100%;">
                         <div class="tab_content">
-                            <div class="line_nav_body_left">
-                                    <p>
-                                        {{$v['title']}}
-                                    </p>
-                                <div class="line_nav_body_redu">
-                                    <div class="redu_item" style="padding-left: 0px;">
-                                        <i class="glyphicon glyphicon-repeat"></i>
-                                        <span>&nbsp;{{date('Y-m-d',strtotime($v['created_time']))}}</span>
-                                    </div>
-                                    <div class="redu_item" >
-                                        <i class="glyphicon glyphicon-fire"></i>
-                                        <span>&nbsp;{{$v['hot']}}</span>
+
+                                <div class="line_nav_body_left">
+                                        <span>{{$v['title']}}</span>
+                                    <div class="line_nav_body_redu">
+                                        <div class="redu_item" style="padding-left: 0px;">
+                                            <i class="glyphicon glyphicon-repeat"></i>
+                                            <span>&nbsp;{{date('Y-m-d',strtotime($v['created_time']))}}</span>
+                                        </div>
+                                        <div class="redu_item" >
+                                            <i class="glyphicon glyphicon-fire"></i>
+                                            <span>&nbsp;{{$v['hot']}}</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="line_nav_body_right">
-                             <img src={{$v['src']}} />
-                            </div>
+                                <div class="line_nav_body_right">
+                                 <img src={{$v['src']}} />
+                                </div>
+
                         </div>
+                                                        </a>
                         @endforeach
 
                     </div>
         <div class="tab-pane fade in tab_content" id="column_2">
             @foreach($artive2 as $v)
+                <a href="{{url('news/a/').'/'.$v['id']}}" style="display: inline-block; width: 100%;">
                 <div class="tab_content">
                     <div class="line_nav_body_left">
                         <p>
@@ -197,10 +200,12 @@
                         <img src={{$v['src']}} />
                     </div>
                 </div>
+                </a>
             @endforeach
         </div>
         <div class="tab-pane fade in tab_content" id="column_3">
             @foreach($artive3 as $v)
+                <a href="{{url('news/a/').'/'.$v['id']}}" style="display: inline-block; width: 100%;">
                 <div class="tab_content">
                     <div class="line_nav_body_left">
                         <p>
@@ -222,6 +227,7 @@
                         <img src={{$v['src']}} />
                     </div>
                 </div>
+                </a>
             @endforeach
         </div>
     </div>
