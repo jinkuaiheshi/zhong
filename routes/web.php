@@ -49,6 +49,7 @@ Route::group(['middleware'=>['web','Index']],function() {
 
     Route::get('/order', 'ProductController@userOrder');
     Route::get('/power', 'ProductController@userPower');
+    Route::get('/income', 'ProductController@userIncome');
 
 
 

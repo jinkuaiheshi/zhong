@@ -591,4 +591,10 @@ class ProductController extends CommomController
         }
         return view('power')->with('data',$order)->with('suan',$suan);
     }
+    public function userIncome(){
+        $user = session('indexlogin');
+        $order = Order::with('Product')->where('uid',$user->id)->orderby('id','DESC')->where('status',2)->get();
+
+        return view('income')->with('data',$order);
+    }
 }
