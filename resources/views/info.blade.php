@@ -117,7 +117,7 @@
                 var s=0;
                 $("#price_num ").each(function(){
 
-                    s+=21000*parseFloat($(this).find('.price_p').text());
+                    s+={{$product->price}}*parseFloat($(this).find('.price_p').text());
                 });
                 $("#total").html(s.toFixed(2));
             }

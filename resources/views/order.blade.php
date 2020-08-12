@@ -54,6 +54,7 @@
                 <input type="text" value="{{Session::get('car')}}" class="order_inp" readonly size="20" name="num">
             </div>
         </div>
+            @if($data->model != 3)
         <div class="order_line">
             <div class="order_left">
                 算力总量
@@ -62,6 +63,7 @@
                 <input type="text" value="{{strstr($data->computerPower,'TH/s',true)*Session::get('car').'TH/s'}}" class="order_inp" readonly size="20">
             </div>
         </div>
+            @endif
         <div class="order_line">
             <div class="order_left">
                 套餐单价
@@ -83,10 +85,11 @@
                 电费
             </div>
             <div class="order_right">
-                <input type="text" value="@if($data->model==1)免费
-@endif" class="order_inp red" readonly size="20">
+                <input type="text" value="@if($data->model!=4)免费
+@else{{$data->power}}@endif" class="order_inp red" readonly size="20">
             </div>
         </div>
+            @if($data->model != 3)
         <div class="order_line">
             <div class="order_left">
                 产出回报
@@ -95,6 +98,7 @@
                 <input type="text" value="@if($data->attr == 1){{'1260'*Session::get('car')}}@elseif($data->attr == 2){{'2646'*Session::get('car')}}@elseif($data->attr == 3){{'5544'*Session::get('car')}}@endif" class="order_inp red" readonly size="20">
             </div>
         </div>
+            @endif
             <footer class="footer-fixed">
                 <input type="submit" class="btm_wapper_btn pay" value="提交订单">
             </footer>

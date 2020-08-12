@@ -28,7 +28,7 @@ class IndexController extends CommomController
     //
     public function index(){
 
-        $startdate = strtotime("2013-3-15");
+        $startdate = strtotime("2018-7-15");
         $enddate = strtotime(date('Y-m-d'));
         $days= round(($enddate-$startdate)/3600/24) ;
         $arr = str_split($days);

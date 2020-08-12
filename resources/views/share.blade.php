@@ -7,14 +7,16 @@
 
             <div class="carousel-inner">
                 <div class="item active" style="position: relative">
-                    <img src="{{asset('resources/assets/images/imgg.png')}}">
-                        <p style="width: 200px; height: 200px; position: absolute;left: 125px; bottom: 30px; background: #0b0b0b" class="img_p">
-                            <img src="{{$png}}" />
+                    <img src="{{asset('resources/assets/images/yaoqing.jpg')}}">
+                        <p style="width: 50%; position: absolute;left: 25%; bottom: 20px; background: #0b0b0b" class="img_p">
+                            <img src="{{$png}}"  class="wid100"/>
                         </p>
                 </div>
                 <div class="item" style="position: relative">
-                    <img src="{{asset('resources/assets/images/imggg.png')}}">
-                    <p style="width: 200px; height: 200px; position: absolute;left: 125px; bottom: 30px;background: #0b0b0b"></p>
+                    <img src="{{asset('resources/assets/images/yaoqing2.jpg')}}">
+                    <p style="width: 50%; position: absolute;left: 25%; bottom: 20px; background: #0b0b0b" class="img_p">
+                        <img src="{{$png}}"  class="wid100"/>
+                    </p>
                 </div>
 
 
@@ -27,11 +29,9 @@
     <script>
         $(function () {
 
-
             $.post("{{ url('/index/ajax/img') }}",
                 {'_token': '{{ csrf_token() }}'}, function(data) {
-
-                    conlose.log(data);
+                    
                 });
         })
     </script>

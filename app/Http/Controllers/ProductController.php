@@ -545,7 +545,7 @@ class ProductController extends CommomController
         }
     }
     public function pay(){
-        dd('订单创建完成开始支付');
+        return view('payNow');
     }
     public function sysOrder(){
         $order = Order::All();

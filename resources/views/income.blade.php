@@ -76,11 +76,6 @@
                         </div>
                     @endfor
                     @endif
-
-
-
-
-
             </div>
 
         @endforeach
