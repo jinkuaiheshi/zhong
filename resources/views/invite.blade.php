@@ -20,20 +20,20 @@
     <div class="aui_content" >
         <div class="aui-tab nav_tab" id="tab">
             <div class="aui_item" data-toggle="tab" href="#tab1">
-                <img src="{{asset('resources/assets/images/inv1.png')}}" />
-                <p>普通小兵</p>
+                <img src="{{asset('resources/assets/images/qing.png')}}" />
+                <p>青铜达人</p>
             </div>
             <div class="aui_item" data-toggle="tab" href="#tab2">
-                <img src="{{asset('resources/assets/images/inv1.png')}}" />
-                <p>优秀班长</p>
+                <img src="{{asset('resources/assets/images/bo.png')}}" />
+                <p>华贵铂金</p>
             </div>
             <div class="aui_item" data-toggle="tab" href="#tab3">
-                <img src="{{asset('resources/assets/images/inv1.png')}}" />
-                <p>优秀排长</p>
+                <img src="{{asset('resources/assets/images/zuan.png')}}" />
+                <p>璀璨钻石</p>
             </div>
             <div class="aui_item" data-toggle="tab" href="#tab4">
-                <img src="{{asset('resources/assets/images/inv1.png')}}" />
-                <p>优秀团长</p>
+                <img src="{{asset('resources/assets/images/wang.png')}}" />
+                <p>最强王者</p>
             </div>
         </div>
         <div class="tab-content">
@@ -41,11 +41,11 @@
                 <div class="dialog_box">
                     <div class="aui-row">
                         <div class="aui-col-xs-2">
-                            <img src="{{asset('resources/assets/images/inv1.png')}}" style="width: 50px
+                            <img src="{{asset('resources/assets/images/qing.png')}}" style="width: 50px
     ">
                         </div>
                         <div class="aui-col-xs-7 aui-padded-l-5">
-                            <p class="aui-font-size-18 aui-text-default f_w">lv1<span class="aui-padded-l-5">普通小兵</span></p>
+                            <p class="aui-font-size-18 aui-text-default f_w">lv1<span class="aui-padded-l-5">青铜达人</span></p>
                             <p class="aui-font-size-14">无返佣权益</p>
                         </div>
                         <div class="aui-col-xs-3  aui-label">
@@ -53,8 +53,8 @@
                         </div>
                     </div>
                     <div class="aui-text-center">
-                        <p class="aui-text-default">当前等级【普通小兵】</p>
-                        <p class="aui-padded-5">距离升级优秀班长不远啦，多多推广吧</p>
+                        <p class="aui-text-default">当前等级【青铜达人】</p>
+                        <p class="aui-padded-5">距离升级华贵铂金不远啦，多多推广吧</p>
                         <p><a href="{{url('gonglue')}}" class="aui-text-info">查看升级攻略</a></p>
                     </div>
                     <div class="progress_box">
@@ -156,20 +156,20 @@
                 <div class="dialog_box">
                     <div class="aui-row">
                         <div class="aui-col-xs-2">
-                            <img src="{{asset('resources/assets/images/inv1.png')}}" style="width: 50px
+                            <img src="{{asset('resources/assets/images/bo.png')}}" style="width: 50px
     ">
                         </div>
                         <div class="aui-col-xs-7 aui-padded-l-5">
-                            <p class="aui-font-size-18 aui-text-default f_w">lv1<span class="aui-padded-l-5">普通小兵</span></p>
-                            <p class="aui-font-size-14">无返佣权益</p>
+                            <p class="aui-font-size-18 aui-text-default f_w">lv1<span class="aui-padded-l-5">华贵铂金</span></p>
+                            <p class="aui-font-size-14">10.00元/T</p>
                         </div>
                         <div class="aui-col-xs-3  aui-label">
                             当前等级
                         </div>
                     </div>
                     <div class="aui-text-center">
-                        <p class="aui-text-default">当前等级【优秀班长】</p>
-                        <p class="aui-padded-5">距离升级优秀班长不远啦，多多推广吧</p>
+                        <p class="aui-text-default">当前等级【华贵铂金】</p>
+                        <p class="aui-padded-5">距离升级璀璨钻石不远啦，多多推广吧</p>
                         <p><a href="{{url('gonglue')}}" class="aui-text-info">查看升级攻略</a></p>
                     </div>
                     <div class="progress_box">
@@ -275,16 +275,16 @@
     ">
                         </div>
                         <div class="aui-col-xs-7 aui-padded-l-5">
-                            <p class="aui-font-size-18 aui-text-default f_w">lv1<span class="aui-padded-l-5">普通小兵</span></p>
-                            <p class="aui-font-size-14">无返佣权益</p>
+                            <p class="aui-font-size-18 aui-text-default f_w">lv1<span class="aui-padded-l-5">璀璨钻石</span></p>
+                            <p class="aui-font-size-14">20.00元/T</p>
                         </div>
                         <div class="aui-col-xs-3  aui-label">
                             当前等级
                         </div>
                     </div>
                     <div class="aui-text-center">
-                        <p class="aui-text-default">当前等级【普通小兵】</p>
-                        <p class="aui-padded-5">距离升级优秀班长不远啦，多多推广吧</p>
+                        <p class="aui-text-default">当前等级【璀璨钻石】</p>
+                        <p class="aui-padded-5">距离升级最强王者不远啦，多多推广吧</p>
                         <p><a href="{{url('gonglue')}}" class="aui-text-info">查看升级攻略</a></p>
                     </div>
                     <div class="progress_box">
@@ -390,16 +390,16 @@
     ">
                         </div>
                         <div class="aui-col-xs-7 aui-padded-l-5">
-                            <p class="aui-font-size-18 aui-text-default f_w">lv1<span class="aui-padded-l-5">普通小兵</span></p>
-                            <p class="aui-font-size-14">无返佣权益</p>
+                            <p class="aui-font-size-18 aui-text-default f_w">lv1<span class="aui-padded-l-5">最强王者</span></p>
+                            <p class="aui-font-size-14">30.00元/T</p>
                         </div>
                         <div class="aui-col-xs-3  aui-label">
                             当前等级
                         </div>
                     </div>
                     <div class="aui-text-center">
-                        <p class="aui-text-default">当前等级【普通小兵】</p>
-                        <p class="aui-padded-5">距离升级优秀班长不远啦，多多推广吧</p>
+                        <p class="aui-text-default">当前等级【最强王者】</p>
+                        <p class="aui-padded-5"></p>
                         <p><a href="{{url('gonglue')}}" class="aui-text-info">查看升级攻略</a></p>
                     </div>
                     <div class="progress_box">

@@ -31,7 +31,7 @@
 
             $.post("{{ url('/index/ajax/img') }}",
                 {'_token': '{{ csrf_token() }}'}, function(data) {
-                    
+
                 });
         })
     </script>
