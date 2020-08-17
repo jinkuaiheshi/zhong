@@ -434,6 +434,12 @@ class IndexController extends CommomController
             return view('cash')->with('data',$cash);
         }
     }
+    public function zhinan(){
+        return view('zhinan');
+    }
+    public function shipin(){
+        return view('shipin');
+    }
     public function send(Request $request){
         //header('Content-Type: text/plain; charset=utf-8');
         $phone = $request['phone'];

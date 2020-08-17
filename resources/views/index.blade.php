@@ -37,16 +37,21 @@
 <div class="container" >
     <div class="short_wrapper">
         <div class="item">
-            <img src="{{asset('resources/assets/images/index1.png')}}" alt="">
-            <p>新手指南</p>
+            <a href="{{url('zhinan')}}" style="width: 100%;text-align: center">
+                <img src="{{asset('resources/assets/images/index1.png')}}" alt="">
+                <p>新手指南</p>
+            </a>
+
         </div>
         <div class="item">
             <img src="{{asset('resources/assets/images/index2.png')}}" alt="">
             <p>新人专享</p>
         </div>
         <div class="item">
-            <img src="{{asset('resources/assets/images/index3.png')}}" alt="">
-            <p>矿场视频</p>
+            <a href="{{url('shipin')}}" style="width: 100%;text-align: center">
+                <img src="{{asset('resources/assets/images/index3.png')}}" alt="">
+                <p>矿场视频</p>
+            </a>
         </div>
         <div class="item">
             <img src="{{asset('resources/assets/images/index4.png')}}" alt="">
@@ -58,6 +63,12 @@
         </div>
     </div>
 </div>
+<div class="container" style="margin-bottom: 10px;" >
+    <a href="{{url('invite')}}" style="width: 100%;text-align: center">
+    <img src="{{asset('resources/assets/images/yaoqing.png')}}" class="wid100"/>
+    </a>
+</div>
+
 <div class="line"></div>
 <div class="container vip_container" >
     <div class="title-wrapper">

@@ -34,6 +34,8 @@ Route::get('/geetest/apiVerif', 'CommomController@apiVerif');//极验验证提�
 Route::post('/product/order/info/{id}', 'ProductController@item'); //验证码
 
 Route::get('/gonglue', 'IndexController@gonglue');//升级攻略
+Route::get('/zhinan', 'IndexController@zhinan');//新人指南
+Route::get('/shipin', 'IndexController@shipin');//视频中心
 
 //前台登录——————用户中心
 Route::any('/login', 'IndexController@login');//登录
