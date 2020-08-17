@@ -23,6 +23,10 @@ Route::get('/news/a/{cid}', 'IndexController@article');//首页
 Route::get('/kuaixun/more', 'IndexController@kuaixunMore');//首页
 
 
+Route::any('/forget', 'IndexController@forget');//忘记密码
+Route::get('/forget/up/{id}', 'IndexController@forgetUP');//忘记密码
+Route::post('/forget/up', 'IndexController@forgetPwd');//忘记密码
+
 
 Route::post('/admin/sys/send', 'IndexController@send'); //验证码
 Route::get('/geetest/apiVerif', 'CommomController@apiVerif');//极验验证提交地址
@@ -50,6 +54,11 @@ Route::group(['middleware'=>['web','Index']],function() {
     Route::get('/order', 'ProductController@userOrder');
     Route::get('/power', 'ProductController@userPower');
     Route::get('/income', 'ProductController@userIncome');
+    Route::get('/profile', 'IndexController@profile');
+    Route::any('/shiming', 'IndexController@shiming');
+    Route::any('/passwordEdit', 'IndexController@passwordEdit');
+    Route::any('/cash', 'IndexController@cash');
+
 
 
 

@@ -37,24 +37,24 @@
 <div class="container" >
     <div class="short_wrapper">
         <div class="item">
-            <img src="{{asset('resources/assets/images/libao.png')}}" alt="">
-            <p>新手礼包</p>
+            <img src="{{asset('resources/assets/images/index1.png')}}" alt="">
+            <p>新手指南</p>
         </div>
         <div class="item">
-            <img src="{{asset('resources/assets/images/libao.png')}}" alt="">
-            <p>新手礼包</p>
+            <img src="{{asset('resources/assets/images/index2.png')}}" alt="">
+            <p>新人专享</p>
         </div>
         <div class="item">
-            <img src="{{asset('resources/assets/images/libao.png')}}" alt="">
-            <p>新手礼包</p>
+            <img src="{{asset('resources/assets/images/index3.png')}}" alt="">
+            <p>矿场视频</p>
         </div>
         <div class="item">
-            <img src="{{asset('resources/assets/images/libao.png')}}" alt="">
-            <p>新手礼包</p>
+            <img src="{{asset('resources/assets/images/index4.png')}}" alt="">
+            <p>帮助中心</p>
         </div>
         <div class="item">
-            <img src="{{asset('resources/assets/images/libao.png')}}" alt="">
-            <p>新手礼包</p>
+            <img src="{{asset('resources/assets/images/index5.png')}}" alt="">
+            <p>客服中心</p>
         </div>
     </div>
 </div>
@@ -65,8 +65,6 @@
         <h2>
                 <i class="glyphicon glyphicon-star"></i>&nbsp;新人专享-每人限购一次
         </h2>
-
-
     </div>
 
     <div class="vip_item">
@@ -167,9 +165,7 @@
             <h2>
                 <i class="glyphicon glyphicon-star"></i>&nbsp;整机购买
             </h2>
-            <p>
-                 <span style="font-size: 16px;">ETH</span>
-            </p>
+
 
         </div>
         @foreach($zhengji as $v)
@@ -214,16 +210,14 @@
         <h2>
             <i class="glyphicon glyphicon-star"></i>&nbsp;众筹购机
         </h2>
-        <p>
-            <span style="font-size: 16px;">BTC</span>
-        </p>
+
 
     </div>
     @foreach($zhongchou as $v)
     <div class="float_item">
         <a href="{{url('product/info/').'/'.$v->id}}">
-            <div class="float-mark" style="width: 50px;text-indent: 5px;">
-                <span >VIP版</span>
+            <div class="float-mark" >
+                <span >实际合约</span>
             </div>
             <div class="float_item_title" >
                 <div class="float_item_title_left">

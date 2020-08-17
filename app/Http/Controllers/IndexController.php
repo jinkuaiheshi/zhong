@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Aliyun\Core\AcsRequest;
 use Aliyun\Core\AcsResponse;
 use App\Admin\Article;
+use App\Admin\Cash;
 use App\Admin\Column;
 use App\Admin\Kuaixun;
 use App\Admin\Product;
+use App\Admin\Realname;
 use App\Admin\Sms;
 use App\Admin\User;
 use Illuminate\Http\Request;
@@ -82,6 +84,49 @@ class IndexController extends CommomController
             return redirect('login')->with('message', '成功退出')->with('type','success')->withInput();
         }else{
             return redirect('login')->with('message', '您没有登入，无需退出')->with('type','danger');
+        }
+    }
+    public function forget(Request $request){
+        if ($request->isMethod('POST')) {
+            $user = User::where('tel',$request['tel'])->first();
+            if($user){
+                $tel = $request['tel'];
+                $code = $request['code'];
+                $sms = Sms::where('phone',$tel)->where('sms_code',$code)->where('time','>=',time()-1800)->first();
+                if($sms){
+                    return redirect('forget/up'.'/'.$user->id);
+                }
+            }else{
+                return redirect('register')->with('message', '账号不存在')->with('type','danger')->withInput();
+            }
+        }else{
+            return view('forget');
+        }
+
+    }
+    public function forgetUP($id){
+        $user = User::where('id',$id)->first();
+        return view('forgetPwd')->with('data',$user);
+    }
+    public  function forgetPwd( Request $request){
+        if ($request->isMethod('POST')) {
+            $user = User::where('id',$request['id'])->first();
+            if($user){
+                $password = $request['password'];
+                $repassword = $request['repassword'];
+                if($password === $repassword){
+                    $user->suppwd =Crypt::encrypt($password);
+                    if($user->update()){
+                        session(['indexlogin' => $user]);
+                        return redirect('index');
+                    }else{
+
+                        return redirect(url()->previous())->with('message', '重置失败')->with('type','danger')->withInput();
+                    }
+                }else{
+                    return redirect(url()->previous())->with('message', '两次密码输入不一样')->with('type','danger')->withInput();
+                }
+            }
         }
     }
     public function register(Request $request){
@@ -276,6 +321,7 @@ class IndexController extends CommomController
     public function invite(){
         return view('invite');
     }
+
     public function gonglue(){
         return view('gonglue');
     }
@@ -310,6 +356,83 @@ class IndexController extends CommomController
     public function personal(){
         $indexlogin = session('indexlogin');
         return view('personal')->with('user',$indexlogin);
+    }
+    public function profile(){
+        $indexlogin = session('indexlogin');
+        return view('profile')->with('user',$indexlogin);
+    }
+    public function shiming(Request $request){
+        if ($request->isMethod('POST')) {
+                $name = $request['name'];
+                $code= $request['code'];
+                $indexlogin = session('indexlogin');
+                $real = Realname::where('uid',$indexlogin->id)->first();
+                if($real){
+                    $real->name = $name;
+                    $real->code = $code;
+                   $real->update();
+                }else{
+                    $real = new Realname();
+                    $real->name = $name;
+                    $real->code = $code;
+                    $real->uid = $indexlogin->id;
+                    $real->created_time = date('Y-m-d H:i:s');
+                    if($real->save()){
+                        return redirect(url()->previous())->with('message', '操作成功')->with('type','success')->withInput();
+                    };
+                }
+        }else{
+            $indexlogin = session('indexlogin');
+            $real = Realname::where('uid',$indexlogin->id)->first();
+            return view('shiming')->with('data',$real);
+        }
+    }
+    public function passwordEdit(Request $request){
+        if ($request->isMethod('POST')) {
+            $indexlogin = session('indexlogin');
+            if($request['suppwd'] == Crypt::decrypt($indexlogin->suppwd)){
+                if($request['password'] == $request['repassword']){
+                    $user = User::where('id',$indexlogin->id)->first();
+                    $user->suppwd =Crypt::encrypt($request['password']);
+                    if($user->update()){
+                        return redirect(url('profile'))->with('message', '更改成功')->with('type','success')->withInput();
+                    }
+                }else{
+                    return redirect(url()->previous())->with('message', '新密码俩次不一致')->with('type','danger')->withInput();
+                }
+            }else{
+                return redirect(url()->previous())->with('message', '原始密码错误')->with('type','danger')->withInput();
+            }
+        }else{
+            return view('passwordEdit');
+        }
+    }
+    public function cash(Request $request){
+        if ($request->isMethod('POST')) {
+            $username = $request['username'];
+            $userZHIFUBAO= $request['userZHIFUBAO'];
+            $indexlogin = session('indexlogin');
+            $cash = Cash::where('uid',$indexlogin->id)->first();
+            if($cash){
+                $cash->username = $username;
+                $cash->userZHIFUBAO = $userZHIFUBAO;
+                $cash->update();
+
+            }else{
+                $cash = new Cash();
+                $cash->username = $username;
+                $cash->userZHIFUBAO = $userZHIFUBAO;
+                $cash->uid = $indexlogin->id;
+
+                if($cash->save()){
+                    return redirect(url('person'))->with('message', '操作成功')->with('type','success')->withInput();
+                };
+            }
+        }else{
+            $indexlogin = session('indexlogin');
+            $cash = Cash::where('uid',$indexlogin->id)->first();
+            return view('cash')->with('data',$cash);
+        }
     }
     public function send(Request $request){
         //header('Content-Type: text/plain; charset=utf-8');
