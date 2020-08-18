@@ -1,7 +1,7 @@
 @extends('pay')
 
 @section('content')
-    <div class="row">
+    <div class="row" >
 
         <div class="carousel slide" id="carousel-example-generic" data-ride="carousel" data-interval="15000" >
 

@@ -2,10 +2,12 @@
 
 @section('content')
     <div class="container" >
-        <div class="new_top">
-            <div class="new_top_logo">
-                <a href="{{url('index')}}" style="display: inline-block;width: 100%"> <img src="{{asset('resources/assets/images/loggo.png')}}" style="margin-top: 10px;" /></a>
+        <div class="row">
+            <div class="new_top">
+                <div class="new_top_logo">
+                    <a href="{{url('index')}}" style="display: inline-block;width: 100%"> <img src="{{asset('resources/assets/images/logo.jpg')}}" class="wid100" style="margin-bottom: 10px;"/></a>
 
+                </div>
             </div>
         </div>
 

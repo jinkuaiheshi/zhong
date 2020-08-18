@@ -48,6 +48,17 @@
         </div>
         <div class="form-group margin_10"  style="height: auto; overflow: hidden">
             <div class="col-xs-3 padding_0 " >
+                <label for="order" class=" info_stit" >产品期限：</label>
+            </div>
+            <div class="col-xs-6 padding_0">
+                @if($product->attr == 1)三个月
+                @elseif($product->attr == 2)六个月
+                @elseif($product->attr == 3)十二个月
+                    @endif
+            </div>
+        </div>
+        <div class="form-group margin_10"  style="height: auto; overflow: hidden">
+            <div class="col-xs-3 padding_0 " >
                 <label for="order" class=" info_stit" >算力：</label>
             </div>
             <div class="col-xs-6 padding_0">
@@ -59,9 +70,10 @@
                 <label for="order" class=" info_stit" >产品回报率：</label>
             </div>
             <div class="col-xs-6 padding_0">
-                @if($product->attr == 1)24%=1260元/份
+                @if($product->attr == 1&&$product->model == 5)100CNY/月
                 @elseif($product->attr == 2)25.2%=2646元/份
                 @elseif($product->attr == 3)26.4%=5544元/份
+                @elseif($product->attr == 1 ||$product->model == 5)24%=1260元/份
                 @endif
             </div>
         </div>

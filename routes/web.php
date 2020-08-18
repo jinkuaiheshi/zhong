@@ -119,5 +119,9 @@ Route::group(['middleware'=>['web','Admin']],function() {
 
     Route::get('/admin/sys/test', 'AdminController@test'); //栏目管理
 
+
+    //product
+    Route::get('/admin/sys/user', 'UserController@index');
+    Route::get('/admin/sys/user/{id}', 'UserController@distribution');
 });
 

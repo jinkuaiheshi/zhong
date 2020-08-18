@@ -2,14 +2,14 @@
 
 @section('content')
 <div class="container">
-    <div class="new_top">
-        <div class="new_top_logo">
-           <a href="{{url('index')}}" style="display: inline-block;width: 100%"> <img src="{{asset('resources/assets/images/loggo.png')}}" style="margin-top: 10px;" /></a>
+    <div class="row">
+        <div class="new_top">
+            <div class="new_top_logo">
+               <a href="{{url('index')}}" style="display: inline-block;width: 100%"> <img src="{{asset('resources/assets/images/logo.jpg')}}" class="wid100" style="margin-bottom: 10px;"/></a>
 
+            </div>
         </div>
     </div>
-
-
         <div class="swiper-container swiper1">
 
             <div class="swiper-wrapper">
@@ -41,54 +41,56 @@
 {{--              },*/--}}
 {{--        });--}}
 {{--    </script>--}}
-        <div class="nav_wrapper">
-            <div class="vav_wrapper_item">
-                <a>
-                    <div class="vav_wrapper_item_ico">
-                        <img src="{{asset('resources/assets/images/libao.png')}} " />
-                    </div>
-                    <div class="vav_wrapper_item_name">
-快讯
-                    </div>
+{{--        <div class="nav_wrapper">--}}
+{{--            <div class="vav_wrapper_item">--}}
+{{--                <a>--}}
+{{--                    <div class="vav_wrapper_item_ico">--}}
+{{--                        <img src="{{asset('resources/assets/images/libao.png')}} " />--}}
+{{--                    </div>--}}
+{{--                    <div class="vav_wrapper_item_name">--}}
+{{--快讯--}}
+{{--                    </div>--}}
 
-                </a>
-            </div>
-            <div class="vav_wrapper_item">
-                <a>
-                    <div class="vav_wrapper_item_ico">
-                        <img src="{{asset('resources/assets/images/libao.png')}} " />
-                    </div>
-                    <div class="vav_wrapper_item_name">
-                        快讯
-                    </div>
+{{--                </a>--}}
+{{--            </div>--}}
+{{--            <div class="vav_wrapper_item">--}}
+{{--                <a>--}}
+{{--                    <div class="vav_wrapper_item_ico">--}}
+{{--                        <img src="{{asset('resources/assets/images/libao.png')}} " />--}}
+{{--                    </div>--}}
+{{--                    <div class="vav_wrapper_item_name">--}}
+{{--                        快讯--}}
+{{--                    </div>--}}
 
-                </a>
-            </div>
-            <div class="vav_wrapper_item">
-                <a>
-                    <div class="vav_wrapper_item_ico">
-                        <img src="{{asset('resources/assets/images/libao.png')}} " />
-                    </div>
-                    <div class="vav_wrapper_item_name">
-                        快讯
-                    </div>
+{{--                </a>--}}
+{{--            </div>--}}
+{{--            <div class="vav_wrapper_item">--}}
+{{--                <a>--}}
+{{--                    <div class="vav_wrapper_item_ico">--}}
+{{--                        <img src="{{asset('resources/assets/images/libao.png')}} " />--}}
+{{--                    </div>--}}
+{{--                    <div class="vav_wrapper_item_name">--}}
+{{--                        快讯--}}
+{{--                    </div>--}}
 
-                </a>
-            </div>
-            <div class="vav_wrapper_item">
-                <a>
-                    <div class="vav_wrapper_item_ico">
-                        <img src="{{asset('resources/assets/images/libao.png')}} " />
-                    </div>
-                    <div class="vav_wrapper_item_name">
-                        快讯
-                    </div>
+{{--                </a>--}}
+{{--            </div>--}}
+{{--            <div class="vav_wrapper_item">--}}
+{{--                <a>--}}
+{{--                    <div class="vav_wrapper_item_ico">--}}
+{{--                        <img src="{{asset('resources/assets/images/libao.png')}} " />--}}
+{{--                    </div>--}}
+{{--                    <div class="vav_wrapper_item_name">--}}
+{{--                        快讯--}}
+{{--                    </div>--}}
 
-                </a>
-            </div>
+{{--                </a>--}}
+{{--            </div>--}}
 
+{{--        </div>--}}
+        <div class="row" style="margin: 15px 0px;">
+            <img src="{{asset('resources/assets/images/qukuai.jpg')}}" class="wid100" />
         </div>
-
         <div class="box_wrapper">
             <div class="box_wrapper_title">
                 <div class="box_wrapper_title_left">
@@ -109,8 +111,6 @@
                                 </p>
                             </div>
                             @endforeach
-
-
                         </div>
 
 

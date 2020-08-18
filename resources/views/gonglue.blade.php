@@ -34,10 +34,10 @@
             <div class="aui-media-list-item-inner">
                 <div class="aui-list-item-inner">
                     <div class="aui-list-item-text aui-padded-b-5">
-                        <div class="aui-list-item-title">LV1普通小兵:</div>
+                        <div class="aui-list-item-title">LV1青铜达人:</div>
                     </div>
                     <div class="aui-list-item-text" style="color: #A4A4A4;">
-                        未达到优秀班长等级的即为普通小兵，无任何返佣权益
+                        未达到华贵铂金等级的即为青铜达人，无任何返佣权益
                     </div>
                 </div>
             </div>
@@ -46,10 +46,10 @@
             <div class="aui-media-list-item-inner">
                 <div class="aui-list-item-inner">
                     <div class="aui-list-item-text aui-padded-b-5">
-                        <div class="aui-list-item-title">LV2优秀班长:</div>
+                        <div class="aui-list-item-title">LV2华贵铂金:</div>
                     </div>
                     <div class="aui-list-item-text" style="color: #A4A4A4;">
-                        升级条件:同时满足自购量≥50T、直接推荐算力总量≥50T、直接推荐实名注册用户≥5人、直接推荐下级产生购买数≥2人即可升级为优秀班长
+                        升级条件:同时满足自购量≥50T、直接推荐算力总量≥50T、直接推荐实名注册用户≥5人、直接推荐下级产生购买数≥2人即可升级为华贵铂金
                     </div>
                 </div>
             </div>
@@ -62,10 +62,10 @@
             <div class="aui-media-list-item-inner">
                 <div class="aui-list-item-inner">
                     <div class="aui-list-item-text aui-padded-b-5">
-                        <div class="aui-list-item-title">LV3优秀排长:</div>
+                        <div class="aui-list-item-title">LV3璀璨钻石:</div>
                     </div>
                     <div class="aui-list-item-text" style="color: #A4A4A4;">
-                        升级条件:同时满足自购量≥100T、直接推荐算力总量≥100T、直接推荐实名注册用户≥20人、直接推荐下级产生购买数≥10人次即可升级为优秀排长。
+                        升级条件:同时满足自购量≥100T、直接推荐算力总量≥100T、直接推荐实名注册用户≥20人、直接推荐下级产生购买数≥10人即可升级为璀璨钻石
                     </div>
                 </div>
             </div>
@@ -77,11 +77,10 @@
             <div class="aui-media-list-item-inner">
                 <div class="aui-list-item-inner">
                     <div class="aui-list-item-text aui-padded-b-5">
-                        <div class="aui-list-item-title">LV4优秀团长:</div>
+                        <div class="aui-list-item-title">LV4最强王者:</div>
                     </div>
                     <div class="aui-list-item-text" style="color: #A4A4A4;">
-                        升级条件:同时满足自购量≥200T、直接推荐算力总量≥200T、直接推荐实名注册用户≥50人、直
-                        接推荐下级产生购买数≥30人即可升级为优秀团长。
+                        升级条件:同时满足自购量≥200T、直接推荐算力总量≥200T、直接推荐实名注册用户≥50人、直接推荐下级产生购买数≥30人即可升级为最强王者。
                     </div>
                 </div>
             </div>
@@ -103,9 +102,8 @@
                     <div class="aui-list-item-inner">
 
                         <div class="aui-list-item-text" style="color: #A4A4A4;">
-                            一、直接下级用户购买的返佣权益:优秀班长10元/T、优秀排长20元/T、优秀团长30元/T。<br>
-                            二、间接下级用户购买的返佣权益:
-                            (示例: A推荐B，B推荐C)<br>
+                            一、直接下级用户购买的返佣权益：华贵铂金10元/T、璀璨钻石20元/T、最强王者30元/T。<br>
+                           二、间接下级用户购买的返佣权益：（示例：A推荐B，B推荐C）<br>
 
 
                         </div>
@@ -114,7 +112,7 @@
             </li>
 
 
-            <li class="aui-list-item">
+            <li class="aui-list-item" style="margin-bottom: 60px;">
                 <div class="aui-media-list-item-inner">
                     <div class="aui-list-item-inner">
 

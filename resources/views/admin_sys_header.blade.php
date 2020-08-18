@@ -95,7 +95,7 @@
                 <li class="with-sub">
                     <a href="#" class="waves-effect  waves-light">
                     <span class="s-caret"><i class="fa fa-angle-down"></i></span>
-                    <span class="s-icon"><i class="ti-dashboard"></i></span>
+                    <span class="s-icon"><i class="ti-pencil-alt "></i></span>
                     <span class="s-text">文章管理</span>
                     </a>
                 <ul>
@@ -113,7 +113,7 @@
                 <li class="with-sub">
                     <a href="#" class="waves-effect  waves-light">
                         <span class="s-caret"><i class="fa fa-angle-down"></i></span>
-                        <span class="s-icon"><i class="ti-dashboard"></i></span>
+                        <span class="s-icon"><i class="ti-wand"></i></span>
                         <span class="s-text">产品管理</span>
                     </a>
                     <ul>
@@ -135,16 +135,29 @@
                 <li class="with-sub">
                     <a href="#" class="waves-effect  waves-light">
                         <span class="s-caret"><i class="fa fa-angle-down"></i></span>
-                        <span class="s-icon"><i class="ti-dashboard"></i></span>
+                        <span class="s-icon"><i class="ti-pencil "></i></span>
                         <span class="s-text">订单管理</span>
                     </a>
                     <ul>
 
                         <li><a href="{{url('/admin/sys/order')}}">订单管理</a></li>
 
-                        {{--                <li><a href="{{url('/admin/sys/provider')}}">服务商管理</a></li>--}}
-                        {{--                <li><a href="{{url('/admin/sys/user/auth')}}">用户级别管理</a></li>--}}
-                        {{--                <li><a href="{{url('/admin/sys/province')}}">全国地区管理</a></li>--}}
+
+
+
+                    </ul>
+                </li>
+                <li class="with-sub">
+                    <a href="#" class="waves-effect  waves-light">
+                        <span class="s-caret"><i class="fa fa-angle-down"></i></span>
+                        <span class="s-icon"><i class=" ti-user "></i></span>
+                        <span class="s-text">用户管理</span>
+                    </a>
+                    <ul>
+
+                        <li><a href="{{url('/admin/sys/user')}}">用户管理</a></li>
+
+
 
 
                     </ul>

@@ -16,6 +16,10 @@
     <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
     <![endif]-->
+
+    <!--Bootstrap video player-->
+    <link href="{{asset('resources/assets/css/bootstrap.min.css')}}" rel="stylesheet">
+
 </head>
 <body>
 @yield('content')

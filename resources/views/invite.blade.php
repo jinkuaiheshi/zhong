@@ -160,7 +160,7 @@
     ">
                         </div>
                         <div class="aui-col-xs-7 aui-padded-l-5">
-                            <p class="aui-font-size-18 aui-text-default f_w">lv1<span class="aui-padded-l-5">华贵铂金</span></p>
+                            <p class="aui-font-size-18 aui-text-default f_w">lv2<span class="aui-padded-l-5">华贵铂金</span></p>
                             <p class="aui-font-size-14">10.00元/T</p>
                         </div>
                         <div class="aui-col-xs-3  aui-label">
@@ -192,7 +192,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">自购算力</p>
-                                <p class="aui-text-default">0T<span class="color_9">(目标：≥0T)</span></p>
+                                <p class="aui-text-default">0T<span class="color_9">(目标：≥50T)</span></p>
                             </div>
                         </div>
 
@@ -215,7 +215,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">推销算力</p>
-                                <p class="aui-text-default">0T<span class="color_9">(目标：≥0T)</span></p>
+                                <p class="aui-text-default">0T<span class="color_9">(目标：≥50T)</span></p>
                             </div>
                         </div>
 
@@ -238,7 +238,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">推荐实名注册用户</p>
-                                <p class="aui-text-default">0T<span class="color_9">(目标：≥0T)</span></p>
+                                <p class="aui-text-default">0人<span class="color_9">(目标：≥5人)</span></p>
                             </div>
                         </div>
 
@@ -261,7 +261,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">下级产生购买人数</p>
-                                <p class="aui-text-default">0T<span class="color_9">(目标：≥0T)</span></p>
+                                <p class="aui-text-default">0人<span class="color_9">(目标：≥2人)</span></p>
                             </div>
                         </div>
                     </div>
@@ -271,11 +271,11 @@
                 <div class="dialog_box">
                     <div class="aui-row">
                         <div class="aui-col-xs-2">
-                            <img src="{{asset('resources/assets/images/inv1.png')}}" style="width: 50px
+                            <img src="{{asset('resources/assets/images/zuan.png')}}" style="width: 50px
     ">
                         </div>
                         <div class="aui-col-xs-7 aui-padded-l-5">
-                            <p class="aui-font-size-18 aui-text-default f_w">lv1<span class="aui-padded-l-5">璀璨钻石</span></p>
+                            <p class="aui-font-size-18 aui-text-default f_w">lv3<span class="aui-padded-l-5">璀璨钻石</span></p>
                             <p class="aui-font-size-14">20.00元/T</p>
                         </div>
                         <div class="aui-col-xs-3  aui-label">
@@ -307,7 +307,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">自购算力</p>
-                                <p class="aui-text-default">0T<span class="color_9">(目标：≥0T)</span></p>
+                                <p class="aui-text-default">0T<span class="color_9">(目标：≥100T)</span></p>
                             </div>
                         </div>
 
@@ -330,7 +330,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">推销算力</p>
-                                <p class="aui-text-default">0T<span class="color_9">(目标：≥0T)</span></p>
+                                <p class="aui-text-default">0T<span class="color_9">(目标：≥100T)</span></p>
                             </div>
                         </div>
 
@@ -353,7 +353,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">推荐实名注册用户</p>
-                                <p class="aui-text-default">0T<span class="color_9">(目标：≥0T)</span></p>
+                                <p class="aui-text-default">0人<span class="color_9">(目标：≥20人)</span></p>
                             </div>
                         </div>
 
@@ -376,7 +376,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">下级产生购买人数</p>
-                                <p class="aui-text-default">0T<span class="color_9">(目标：≥0T)</span></p>
+                                <p class="aui-text-default">0人<span class="color_9">(目标：≥10人)</span></p>
                             </div>
                         </div>
                     </div>
@@ -386,11 +386,11 @@
                 <div class="dialog_box">
                     <div class="aui-row">
                         <div class="aui-col-xs-2">
-                            <img src="{{asset('resources/assets/images/inv1.png')}}" style="width: 50px
+                            <img src="{{asset('resources/assets/images/wang.png')}}" style="width: 50px
     ">
                         </div>
                         <div class="aui-col-xs-7 aui-padded-l-5">
-                            <p class="aui-font-size-18 aui-text-default f_w">lv1<span class="aui-padded-l-5">最强王者</span></p>
+                            <p class="aui-font-size-18 aui-text-default f_w">lv4<span class="aui-padded-l-5">最强王者</span></p>
                             <p class="aui-font-size-14">30.00元/T</p>
                         </div>
                         <div class="aui-col-xs-3  aui-label">
@@ -422,7 +422,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">自购算力</p>
-                                <p class="aui-text-default">0T<span class="color_9">(目标：≥0T)</span></p>
+                                <p class="aui-text-default">0T<span class="color_9">(目标：≥200T)</span></p>
                             </div>
                         </div>
 
@@ -445,7 +445,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">推销算力</p>
-                                <p class="aui-text-default">0T<span class="color_9">(目标：≥0T)</span></p>
+                                <p class="aui-text-default">0T<span class="color_9">(目标：≥200T)</span></p>
                             </div>
                         </div>
 
@@ -468,7 +468,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">推荐实名注册用户</p>
-                                <p class="aui-text-default">0T<span class="color_9">(目标：≥0T)</span></p>
+                                <p class="aui-text-default">人<span class="color_9">(目标：≥50人)</span></p>
                             </div>
                         </div>
 
@@ -491,7 +491,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">下级产生购买人数</p>
-                                <p class="aui-text-default">0T<span class="color_9">(目标：≥0T)</span></p>
+                                <p class="aui-text-default">人<span class="color_9">(目标：≥30人)</span></p>
                             </div>
                         </div>
                     </div>
@@ -499,7 +499,7 @@
             </div>
         </div>
     </div>
-    <footer class="aui-bar aui-bar-tab">
+    <footer class="aui-bar aui-bar-tab"  style=" position: fixed;">
         <div class="aui-card-list aui-margin-b-0">
             <div class="aui-card-list-footer">
                 <a class="aui-btn aui-btn-info aui-pull-left" href="{{url('share')}}" style="color: #333">

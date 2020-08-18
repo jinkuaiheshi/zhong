@@ -47,7 +47,9 @@ class IndexController extends CommomController
 
         $xinren = Product::where('model',5)->first();
         $special = Product::where('model',6)->first();
-        return view('index')->with('day',$arr)->with('zhengji',$zhengji)->with('zhongchou',$zhongchou)->with('suanli',$suanli)->with('tuoguan',$tuoguan)->with('xinren',$xinren)->with('special',$special);
+        $btc = 580.62;
+        $btc += sprintf("%.2f", 1 + mt_rand() / mt_getrandmax() * (5 - 1));
+        return view('index')->with('day',$arr)->with('zhengji',$zhengji)->with('zhongchou',$zhongchou)->with('suanli',$suanli)->with('tuoguan',$tuoguan)->with('xinren',$xinren)->with('special',$special)->with('btc',$btc);
     }
 
     public function login(Request $request){
@@ -130,8 +132,10 @@ class IndexController extends CommomController
         }
     }
     public function register(Request $request){
+
         if ($request->isMethod('POST')) {
             $user = User::where('tel',$request['tel'])->first();
+
             if($user){
                 return redirect('register')->with('message', '账号已经存在')->with('type','danger')->withInput();
             }
@@ -150,25 +154,33 @@ class IndexController extends CommomController
                     $user->suppwd =Crypt::encrypt($password);
                     $user->auth = 3;
                     $user->invite = $request['invite'];
+                    $user->top = $request['top'];
+
                     if($user->save()){
                         session(['indexlogin' => $user]);
                         return redirect('index');
                     }else{
 
-                        return redirect('register')->with('message', '注册失败')->with('type','danger')->withInput();
+                        return redirect(url()->previous())->with('message', '注册失败')->with('type','danger')->withInput();
                     }
                 }else{
 
-                    return redirect('register')->with('message', '验证码失败或者已经失效')->with('type','danger')->withInput();
+                    return redirect(url()->previous())->with('message', '验证码失败或者已经失效')->with('type','danger')->withInput();
                 }
             }else{
 
-                return redirect('register')->with('message', '两次密码输入不一样')->with('type','danger')->withInput();
+                return redirect(url()->previous())->with('message', '两次密码输入不一样')->with('type','danger')->withInput();
             }
 
         }else{
-
-            return view('register');
+            if($request->input('uid')){
+                $uid = Crypt::decrypt($request->input('uid'));
+                $user = User::where('tel',$uid)->first();
+                $data = $user->id;
+            }else{
+                $data = -1;
+            }
+            return view('register')->with('data',$data);
         }
     }
     public function news(){

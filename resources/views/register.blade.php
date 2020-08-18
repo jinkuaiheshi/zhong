@@ -38,7 +38,7 @@
                 <div class="login_wrapper_inp border_1">
                     <input type="password"  placeholder="请确认登录密码" class="wrapper_input" name="repassword" required />
                 </div>
-
+                <input type="hidden" value="{{$data}}" name="top">
                 <div class="login_wrapper_inp border_1">
                     <input type="text"  placeholder="请输入邀请码(选填)" class="wrapper_input" name="invite"  />
                 </div>
