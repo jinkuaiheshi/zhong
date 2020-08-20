@@ -180,7 +180,7 @@
                                         <!--大于180，则class=clip-auto circle，否则：circle-->
                                         <div class="clip-auto circle ">
                                             <!--度数为：当前进度*3.6-->
-                                            <div class="percent left" style="-webkit-transform:rotate(360deg);"></div>
+                                            <div class="percent left" style="-webkit-transform:rotate(0deg);"></div>
                                             <!--大于180，则class=percent right，否则为percent right wth0-->
                                             <div class=" percent right"></div>
                                         </div>
@@ -499,7 +499,7 @@
             </div>
         </div>
     </div>
-    <footer class="aui-bar aui-bar-tab"  style=" position: fixed;">
+    <footer class="aui-bar aui-bar-tab"  style="position: fixed;">
         <div class="aui-card-list aui-margin-b-0">
             <div class="aui-card-list-footer">
                 <a class="aui-btn aui-btn-info aui-pull-left" href="{{url('share')}}" style="color: #333">

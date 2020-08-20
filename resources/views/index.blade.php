@@ -291,14 +291,14 @@
     <div class="title-wrapper">
 
         <h2>
-            <i class="glyphicon glyphicon-star"></i>比特币矿机
+            <i class="glyphicon glyphicon-star"></i>矿机托管
         </h2>
     </div>
     @foreach($tuoguan as $v)
     <div class="invest_item" style="margin-bottom: 20px">
         <a href="{{url('product/info/').'/'.$v->id}}">
             <div class="float-mark" style="width: 70px;text-indent: 5px;">
-                <span > @if($v->id ==18) BTC矿机 @else 顶级矿机 @endif</span>
+                <span > @if($v->id ==18) BTC矿机 @else ETH矿机 @endif</span>
             </div>
             <div class="invest_item_title" style="margin-top: 10px;">
                 <p>{{$v->name}}<span class="vag" style="font-weight: normal;margin-left: 5px;">{{$v->tagOne}}</span><span class="vag" style="font-weight: normal;margin-left: 5px;">{{$v->tagTwo}}</span></p>
@@ -354,7 +354,7 @@
         <div class="reduce_item">
             <div class="lit_item">
                 <p>累计发放收益</p>
-                <p>{{$btc}}BTC</p>
+                <p>{{Session::get('btc')}}BTC</p>
             </div>
             <div class="lit_item"><p>累计累计注册用户</p>
                 <p>28976</p></div>

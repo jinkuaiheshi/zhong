@@ -47,9 +47,18 @@ class IndexController extends CommomController
 
         $xinren = Product::where('model',5)->first();
         $special = Product::where('model',6)->first();
-        $btc = 580.62;
-        $btc += sprintf("%.2f", 1 + mt_rand() / mt_getrandmax() * (5 - 1));
-        return view('index')->with('day',$arr)->with('zhengji',$zhengji)->with('zhongchou',$zhongchou)->with('suanli',$suanli)->with('tuoguan',$tuoguan)->with('xinren',$xinren)->with('special',$special)->with('btc',$btc);
+
+        if(session('btc')){
+            $btc = session('btc') + sprintf("%.2f", 0.01 + mt_rand() / mt_getrandmax() * (0.05 - 0.01));
+            session(['btc' => $btc]);
+        }else{
+            $btc = 580.62;
+            $btc += sprintf("%.2f", 0.01 + mt_rand() / mt_getrandmax() * (0.05 - 0.01));
+            session(['btc' => $btc]);
+        }
+
+
+        return view('index')->with('day',$arr)->with('zhengji',$zhengji)->with('zhongchou',$zhongchou)->with('suanli',$suanli)->with('tuoguan',$tuoguan)->with('xinren',$xinren)->with('special',$special);
     }
 
     public function login(Request $request){
@@ -153,7 +162,7 @@ class IndexController extends CommomController
                     $user->last_login_time = date('Y-m-d H:i:s', time());
                     $user->suppwd =Crypt::encrypt($password);
                     $user->auth = 3;
-                    $user->invite = $request['invite'];
+
                     $user->top = $request['top'];
 
                     if($user->save()){
@@ -337,6 +346,13 @@ class IndexController extends CommomController
     public function gonglue(){
         return view('gonglue');
     }
+    public function pingtai(){
+        return view('pingtai');
+    }
+    public function contact(){
+        return view('contact');
+    }
+
     public function info($id){
         $product = Product::where('id',$id)->first();
         return view('info')->with('product',$product);

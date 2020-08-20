@@ -417,7 +417,7 @@ class ProductController extends CommomController
         }else{
             $attr = Attr::All();
             $productModel = ProductModel::where('id',5)->first();
-            return view('admin_depository_add')->with('attr',$attr)->with('productModel',$productModel);
+            return view('admin_xinren_add')->with('attr',$attr)->with('productModel',$productModel);
         }
     }
     public function specialAdd(Request $request){
@@ -461,7 +461,7 @@ class ProductController extends CommomController
         }else{
             $attr = Attr::All();
             $productModel = ProductModel::where('id',6)->first();
-            return view('admin_depository_add')->with('attr',$attr)->with('productModel',$productModel);
+            return view('admin_special_add')->with('attr',$attr)->with('productModel',$productModel);
         }
     }
     public function productEdit($id){

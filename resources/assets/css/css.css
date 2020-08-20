@@ -555,9 +555,14 @@ p{ margin: 0px;}
 .forget_left a ,.forget_right a {
     color: #f96c02;text-decoration: none;
 }
+.pingtai-title p{ color: #f96c02; height: 20px; line-height: 20px; font-size: 14px;}
+.pingtai-info{ color: #999; font-size: 14px; text-indent: 2em;}
 .new_top{
     box-sizing: border-box; height: 125px; margin-bottom: 15px;width: 100%;
 }
+.contact{ padding: 15px; background: #fff; margin-top: 25px; margin-bottom: 25px; border-radius: 20px;}
+.contact-title{ text-align: center;  color: #f96c02; font-size: 22px; line-height: 48px;}
+.contact-info{ text-align: center;  color: #000; font-size: 16px; line-height: 32px;}
 .new_top_logo{
     display: flex;align-items: center;
 }

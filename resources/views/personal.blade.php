@@ -16,7 +16,7 @@
     <div class="aui-card-list-content-padded">
         <div class="account aui-text-center">
             <p class="aui-margin-b-5">账户总估值(元)</p>
-            <b class="aui-font-size-20">48.199</b>
+            <b class="aui-font-size-20">00.00</b>
         </div>
     </div>
 
@@ -27,8 +27,8 @@
                 <b>0.00</b>
             </div>
             <div class="aui-col-xs-6 aui-text-right">
-                <a class="aui-btn aui-btn-outlined aui-btn-warning w_4 " href="/mobile/user/withdraw.html">提现</a>
-                <a class="aui-btn aui-btn-warning w_4 color_21" href="/mobile/user/recharge.html">充值</a>
+                <a class="aui-btn aui-btn-outlined aui-btn-warning w_4 " href="javascript:void(0)">提现</a>
+                <a class="aui-btn aui-btn-warning w_4 color_21" href="javascript:void(0)">充值</a>
             </div>
         </div>
     </div>
@@ -86,14 +86,19 @@
         <div class="per-list" style="background: #f5f5f5; height: auto; overflow: hidden;">
             <div class="per-list-list">
                 <div class="per-list-list-left">
-                    <img src="{{asset('resources/assets/images/username.png')}}" style="width: 32px; height: 32px;    vertical-align: middle;" />
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-layout-text-sidebar-reverse" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color: #f96c02; font-size: 30px;" >
+                        <path fill-rule="evenodd" d="M2 1h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zm12-1a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"/>
+                        <path fill-rule="evenodd" d="M5 15V1H4v14h1zm8-11.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm0 3a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm0 3a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm0 3a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5z"/>
+                    </svg>
                 </div>
+                <a href="{{url('pingtai')}}"  style="width: 100%;min-height: 44px;line-height: 44px;">
                 <div class="per-list-list-mid">
                     平台公告
                     <div class="per-list-list-right">
                         <i class="glyphicon glyphicon-chevron-right color999"></i>
                     </div>
                 </div>
+                </a>
             </div>
             <div class="per-list-list">
                 <div class="per-list-list-left">
@@ -112,17 +117,7 @@
                 </a>
             </div>
 
-            <div class="per-list-list">
-                <div class="per-list-list-left">
-                    <img src="{{asset('resources/assets/images/username.png')}}" style="width: 32px; height: 32px;    vertical-align: middle;" />
-                </div>
-                <div class="per-list-list-mid">
-                    可购买电费包
-                    <div class="per-list-list-right">
-                        <i class="glyphicon glyphicon-chevron-right color999"></i>
-                    </div>
-                </div>
-            </div>
+
 
             <div class="per-list-list">
 
@@ -145,7 +140,9 @@
 
             <div class="per-list-list">
                 <div class="per-list-list-left">
-                    <img src="{{asset('resources/assets/images/username.png')}}" style="width: 32px; height: 32px;    vertical-align: middle;" />
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-star-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color: #f96c02; font-size: 30px;">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
                 </div>
                 <div class="per-list-list-mid">
                     我的佣金
@@ -157,7 +154,9 @@
 
             <div class="per-list-list">
                 <div class="per-list-list-left">
-                    <img src="{{asset('resources/assets/images/username.png')}}" style="width: 32px; height: 32px;    vertical-align: middle;" />
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-people-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color: #f96c02; font-size: 30px;" >
+                        <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                    </svg>
                 </div>
                 <div class="per-list-list-mid">
                     我的团队
@@ -183,7 +182,10 @@
 
             <div class="per-list-list">
                 <div class="per-list-list-left">
-                    <img src="{{asset('resources/assets/images/username.png')}}" style="width: 32px; height: 32px;    vertical-align: middle;" />
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-exclamation-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color: #f96c02; font-size: 30px;">
+                        <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                    </svg>
                 </div>
                 <div class="per-list-list-mid">
                     常见问题
@@ -195,26 +197,34 @@
 
             <div class="per-list-list">
                 <div class="per-list-list-left">
-                    <img src="{{asset('resources/assets/images/username.png')}}" style="width: 32px; height: 32px;    vertical-align: middle;" />
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chat-dots-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color: #f96c02; font-size: 30px;">
+                        <path fill-rule="evenodd" d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                    </svg>
                 </div>
-                <div class="per-list-list-mid">
-                    联系我们
-                    <div class="per-list-list-right">
-                        <i class="glyphicon glyphicon-chevron-right color999"></i>
+                <a href="{{url('contact')}}"  style="width: 100%;min-height: 44px;line-height: 44px;">
+                    <div class="per-list-list-mid">
+                        联系我们
+                        <div class="per-list-list-right">
+                            <i class="glyphicon glyphicon-chevron-right color999"></i>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
 
             <div class="per-list-list">
                 <div class="per-list-list-left">
-                    <img src="{{asset('resources/assets/images/username.png')}}" style="width: 32px; height: 32px;    vertical-align: middle;" />
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-text-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="color: #f96c02; font-size: 30px;">
+                        <path fill-rule="evenodd" d="M2 3a2 2 0 0 1 2-2h5.293a1 1 0 0 1 .707.293L13.707 5a1 1 0 0 1 .293.707V13a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3zm7 2V2l4 4h-3a1 1 0 0 1-1-1zM4.5 8a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zM4 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
                 </div>
+                <a href="{{asset('resources/assets/images/pdf.pdf')}}" target="_blank"  style="width: 100%;min-height: 44px;line-height: 44px;">
                 <div class="per-list-list-mid">
                     关于我们
                     <div class="per-list-list-right">
                         <i class="glyphicon glyphicon-chevron-right color999"></i>
                     </div>
                 </div>
+                </a>
             </div>
             <div class="per-out" style="margin-bottom: 40px;">
                 <a href="{{url('logout')}}">安全退出</a>

@@ -65,7 +65,7 @@
 
                     <div class="form-group h-a" style="text-align: center">
                         <div class="col-md-3" style="text-align: right">
-                            <label for="order" class=" col-form-label " >电费：</label>
+                            <label for="order" class=" col-form-label " >功耗：</label>
                         </div>
                         <div class="col-md-3">
                             <div   class="form-group">
