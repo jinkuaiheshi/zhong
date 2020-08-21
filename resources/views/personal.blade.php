@@ -217,7 +217,7 @@
                         <path fill-rule="evenodd" d="M2 3a2 2 0 0 1 2-2h5.293a1 1 0 0 1 .707.293L13.707 5a1 1 0 0 1 .293.707V13a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3zm7 2V2l4 4h-3a1 1 0 0 1-1-1zM4.5 8a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zM4 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
                     </svg>
                 </div>
-                <a href="{{asset('resources/assets/images/pdf.pdf')}}" target="_blank"  style="width: 100%;min-height: 44px;line-height: 44px;">
+                <a href="{{url('guanyu')}}" target="_blank"  style="width: 100%;min-height: 44px;line-height: 44px;">
                 <div class="per-list-list-mid">
                     关于我们
                     <div class="per-list-list-right">

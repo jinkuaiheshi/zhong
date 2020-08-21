@@ -30,14 +30,16 @@
         @if(Session::get('indexlogin'))
         <input type="hidden" class="uid" value="{{Session::get('indexlogin')->id}}">
         @endif
+        @if($product->model != 3)
         <div class="form-group margin_10"  style="height: auto; overflow: hidden">
             <div class="col-xs-3 padding_0 " >
-                <label for="order" class=" info_stit" >功耗：</label>
+                <label for="order" class=" info_stit" >@if($product->model== 4) 电费： @else 功耗：@endif</label>
             </div>
             <div class="col-xs-6 padding_0">
                     {{$product->power}}
             </div>
         </div>
+        @endif
         <div class="form-group margin_10"  style="height: auto; overflow: hidden">
             <div class="col-xs-3 padding_0 " >
                 <label for="order" class=" info_stit" >本批剩余：</label>
@@ -54,6 +56,7 @@
                 @if($product->attr == 1)三个月
                 @elseif($product->attr == 2)六个月
                 @elseif($product->attr == 3)十二个月
+                @elseif($product->attr == 4)30天
                     @endif
             </div>
         </div>
@@ -65,18 +68,37 @@
                 {{$product->computerPower}}
             </div>
         </div>
+        @if($product->model != 3)
         <div class="form-group margin_10"  style="height: auto; overflow: hidden">
             <div class="col-xs-3 padding_0 " >
                 <label for="order" class=" info_stit" >产品回报率：</label>
             </div>
             <div class="col-xs-6 padding_0">
-                @if($product->attr == 1&&$product->model == 5)100CNY/月
-                @elseif($product->attr == 2)25.2%=2646元/份
-                @elseif($product->attr == 3)26.4%=5544元/份
-                @elseif($product->attr == 1 ||$product->model == 5)24%=1260元/份
+                @if($product->attr == 1)
+                @if($product->attr == 1&&$product->model == 5)100CNY/月@elseif($product->attr == 1 &&$product->model == 2)24%=126元/份@else 24%=1260元/份@endif
                 @endif
+                    @if($product->attr == 2)
+                @if($product->attr == 2&&$product->model == 2)25.2%=264.6元/份 @else 25.2%=2646元/份@endif
+                    @endif
+                    @if($product->attr == 3)
+                        @if($product->model == 4 &&$product->id ==18 )12%-181% @elseif($product->model == 4 &&$product->id ==19)39%-231% @endif
+                    @if($product->attr == 3&&$product->model == 2)26.4%=554.4元/份 @elseif($product->id !=18&&$product->id !=19) 26.4%=5544元/份 @endif
+                    @endif
+
             </div>
         </div>
+        @endif
+        @if($product->model == 3)
+            <div class="form-group margin_10"  style="height: auto; overflow: hidden">
+                <div class="col-xs-3 padding_0 " >
+                    <label for="order" class=" info_stit" >产品回报率：</label>
+                </div>
+                <div class="col-xs-6 padding_0">
+                    {{$product->power}}
+
+                </div>
+            </div>
+        @endif
         <div class="form-group margin_10"  style="height: auto; overflow: hidden">
             <div class="col-xs-3 padding_0 " >
                 <label for="order" class=" info_stit" >数量：</label>

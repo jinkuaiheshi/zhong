@@ -8,9 +8,7 @@
             <div class="swiper-container">
 
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="{{asset('resources/assets/images/slide.jpg')}}" class="wid100">
-                    </div>
+
                     <div class="swiper-slide">
                         <img src="{{asset('resources/assets/images/slide11.jpg')}}" class="wid100">
                     </div>
@@ -65,7 +63,7 @@
 </div>
 <div class="container" style="margin-bottom: 10px;" >
     <a href="{{url('invite')}}" style="width: 100%;text-align: center">
-    <img src="{{asset('resources/assets/images/yaoqing.png')}}" class="wid100"/>
+    <img src="{{asset('resources/assets/images/yq.jpg')}}" class="wid100"/>
     </a>
 </div>
 
@@ -181,7 +179,7 @@
         </div>
         @foreach($zhengji as $v)
         <div class="title_item">
-            <a href="{{url('/product/info/').'/'.$v->id}}" style="display: inline-block; text-decoration: none;">
+            <a href="{{url('/product/info/').'/'.$v->id}}" style="display: inline-block; text-decoration: none; width: 100%">
             <div class="float-mark">
                 <span>实际合约</span>
             </div>
@@ -192,10 +190,10 @@
                 <div class="title_item_info_left">
                     单台售价￥{{$v->price}}
                 </div>
-                <div class="title_item_info_right">
-{{--                    单份日产币--}}
-                </div>
+
             </div>
+
+
             <div class="title_item_info">
                 <div class="title_item_info_left">
                     回报率

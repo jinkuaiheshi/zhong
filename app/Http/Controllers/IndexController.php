@@ -352,7 +352,9 @@ class IndexController extends CommomController
     public function contact(){
         return view('contact');
     }
-
+    public function guanyu(){
+        return view('guanyu');
+    }
     public function info($id){
         $product = Product::where('id',$id)->first();
         return view('info')->with('product',$product);

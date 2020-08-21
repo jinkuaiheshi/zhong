@@ -61,6 +61,7 @@ Route::group(['middleware'=>['web','Index']],function() {
     Route::any('/passwordEdit', 'IndexController@passwordEdit');
     Route::any('/pingtai', 'IndexController@pingtai');
     Route::get('/contact', 'IndexController@contact');
+    Route::get('/guanyu', 'IndexController@guanyu');
 
 
 
