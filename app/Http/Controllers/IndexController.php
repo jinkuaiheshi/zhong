@@ -11,6 +11,7 @@ use App\Admin\Kuaixun;
 use App\Admin\Product;
 use App\Admin\Realname;
 use App\Admin\Sms;
+use App\Admin\Upload;
 use App\Admin\User;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,7 @@ use Aliyun\Core\DefaultAcsClient;
 use Aliyun\Api\Sms\Request\V20170525\SendSmsRequest;
 use Aliyun\Api\Sms\Request\V20170525\QuerySendDetailsRequest;
 use Aliyun\Core\Regions\EndpointConfig;
-
+use Storage;
 
 class IndexController extends CommomController
 {
@@ -455,7 +456,7 @@ class IndexController extends CommomController
                 $cash->uid = $indexlogin->id;
 
                 if($cash->save()){
-                    return redirect(url('person'))->with('message', '操作成功')->with('type','success')->withInput();
+                    return redirect(url()->previous())->with('message', '操作成功')->with('type','success')->withInput();
                 };
             }
         }else{
@@ -469,6 +470,51 @@ class IndexController extends CommomController
     }
     public function shipin(){
         return view('shipin');
+    }
+    public function weixinPay(){
+        return view('weixinPay');
+    }
+    //AliPay
+    public function AliPay(){
+        return view('AliPay');
+    }
+
+    public function YinlianPay(){
+        return view('YinlianPay');
+    }
+    public function succ(){
+        return view('succ');
+    }
+    public function upload(Request $request){
+        if ($request->isMethod('POST')) {
+            $pic = $request->file('pic');
+            if ($pic->isValid()) {
+                $ext = $pic->getClientOriginalExtension();
+                $arr = array('jpg', 'png', 'gif', 'jpeg', 'bmp');
+                if (!in_array($ext, $arr)) {
+                    return redirect(url()->previous())->with('message', '上传文件不是图片类型')->with('type','danger')->withInput();
+                }
+                $path = $pic->getRealPath();
+                $pic_path = 'pic_' . time() . '.' . $ext;
+                Storage::disk('pic')->put($pic_path, file_get_contents($path));
+                $indexlogin = session('indexlogin');
+
+                $upload = new Upload();
+                $upload -> created_time = date('Y-m-d H:i:s',time());
+                $upload -> pic = $pic_path;
+                $upload -> uid = $indexlogin->id;
+
+                if($upload->save()){
+                    return redirect(url('succ'))->with('message', '上传凭证成功')->with('type','success')->withInput();
+                }else{
+                    return redirect(url()->previous())->with('message', '上传凭证失败')->with('type','danger')->withInput();
+                }
+            }else{
+                return redirect(url()->previous())->with('message', '上传文件失败或者已经损坏')->with('type','danger')->withInput();
+            }
+        }else{
+            return view('upload');
+        }
     }
     public function send(Request $request){
         //header('Content-Type: text/plain; charset=utf-8');

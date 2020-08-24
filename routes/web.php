@@ -62,6 +62,12 @@ Route::group(['middleware'=>['web','Index']],function() {
     Route::any('/pingtai', 'IndexController@pingtai');
     Route::get('/contact', 'IndexController@contact');
     Route::get('/guanyu', 'IndexController@guanyu');
+    Route::any('/cash', 'IndexController@cash');
+    Route::get('/weixinPay', 'IndexController@weixinPay');
+    Route::get('/AliPay', 'IndexController@AliPay');
+    Route::get('/YinlianPay', 'IndexController@YinlianPay');
+    Route::any('/upload', 'IndexController@upload');
+    Route::get('/succ', 'IndexController@succ');
 
 
 
