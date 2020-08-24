@@ -17,6 +17,16 @@
             </div>
         </div>
     </div>
+    @if(Session::has('message'))
+        <div id="toast-container" class="toast-top-right" aria-live="polite" role="alert"><div class="toast
+@if(Session::get('type')=='danger')
+                    toast-error
+@elseif(Session::get('type')=='success')
+                    toast-success
+@endif " style="display: block;"><div class="toast-message">
+                    {{Session::get('message')}}
+                </div></div></div>
+    @endif
 
     <div class="container" style="background:#f9f9f9; height:auto;overflow: hidden; margin-bottom: 50px;">
         <div class="row">
@@ -52,7 +62,14 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
-
+    <script>
+        $(function () {
+            var toast = $('#toast-container');
+            setTimeout(function () {
+                toast.fadeOut(1000);
+            },3000);
+        })
+    </script>
 @stop
 
 

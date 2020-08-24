@@ -28,7 +28,7 @@
             </div>
             <div class="aui-col-xs-6 aui-text-right">
                 <a class="aui-btn aui-btn-outlined aui-btn-warning w_4 " href="javascript:void(0)">提现</a>
-                <a class="aui-btn aui-btn-warning w_4 color_21" href="javascript:void(0)">充值</a>
+{{--                <a class="aui-btn aui-btn-warning w_4 color_21" href="javascript:void(0)">充值</a>--}}
             </div>
         </div>
     </div>

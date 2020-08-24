@@ -354,7 +354,7 @@
                 <p>累计发放收益</p>
                 <p>{{Session::get('btc')}}BTC</p>
             </div>
-            <div class="lit_item"><p>累计累计注册用户</p>
+            <div class="lit_item"><p>累计注册用户</p>
                 <p>28976</p></div>
 
         </div>
