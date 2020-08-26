@@ -27,14 +27,10 @@
     <div class="container" style="margin-bottom: 60px;">
         <div class="videoUiWrapper thumbnail">
             <video width="100%" height="214" id="demo1">
-                <source src="{{asset('resources/assets/images/shipin1.mp4')}}" type="video/mp4">
+                <source src="{{asset('resources/assets/images/shipin7.mp4')}}" type="video/mp4">
             </video>
         </div>
-        <div class="videoUiWrapper thumbnail">
-            <video width="100%" height="214" id="demo2">
-                <source src="{{asset('resources/assets/images/shipin2.mp4')}}" type="video/mp4">
-            </video>
-        </div>
+
         <div class="videoUiWrapper thumbnail">
             <video width="100%" height="214" id="demo3">
                 <source src="{{asset('resources/assets/images/shipin3.mp4')}}" type="video/mp4">
@@ -43,11 +39,6 @@
         <div class="videoUiWrapper thumbnail">
             <video width="100%" height="214" id="demo4">
                 <source src="{{asset('resources/assets/images/shipin4.mp4')}}" type="video/mp4">
-            </video>
-        </div>
-        <div class="videoUiWrapper thumbnail">
-            <video width="100%" height="214" id="demo5">
-                <source src="{{asset('resources/assets/images/shipin5.mp4')}}" type="video/mp4">
             </video>
         </div>
         <div class="videoUiWrapper thumbnail" >

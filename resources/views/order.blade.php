@@ -60,7 +60,7 @@
                 算力总量
             </div>
             <div class="order_right">
-                <input type="text" value="{{strstr($data->computerPower,'TH/s',true)*Session::get('car').'TH/s'}}" class="order_inp" readonly size="20">
+                <input type="text" value="@if($data->id ==18){{strstr($data->computerPower,'TH/s',true)*Session::get('car').'TH/s'}}@elseif($data->id ==19){{strstr($data->computerPower,'MH/s',true)*Session::get('car').'MH/s'}}@endif" class="order_inp" readonly size="20">
             </div>
         </div>
             @endif
@@ -85,17 +85,18 @@
                 电费
             </div>
             <div class="order_right">
-                <input type="text" value="@if($data->model!=4)免费
-@else{{$data->power}}@endif" class="order_inp red" readonly size="20">
+                <input type="text" value="@if($data->model!=4 &&  $data->id !=16 && $data->id !=17)免费
+@elseif($data->model == 3 && $data->id ==16 ) 0.27元/天 @elseif($data->model == 3 && $data->id ==17 )0.55元/天 @else{{$data->power}}@endif" class="order_inp red" readonly size="20">
             </div>
         </div>
-            @if($data->model != 3)
+            @if($data->model != 3 && $data->model != 4)
         <div class="order_line">
             <div class="order_left">
                 产出回报
             </div>
             <div class="order_right">
-                <input type="text" value="@if($data->attr == 1){{'1260'*Session::get('car')}}@elseif($data->attr == 2){{'2646'*Session::get('car')}}@elseif($data->attr == 3){{'5544'*Session::get('car')}}@endif" class="order_inp red" readonly size="20">
+                <input type="text" value="@if($data->attr == 1 && $data->model == 2){{'126'*Session::get('car')}}@elseif($data->attr == 1 && $data->model != 2){{'1260'*Session::get('car')}}@elseif($data->attr == 2 && $data->model == 2){{'264.6'*Session::get('car')}}@elseif($data->attr == 2 && $data->model != 2){{'2646'*Session::get('car')}}@elseif($data->attr == 3 && $data->model == 2){{'554.4'*Session::get('car')}}@elseif($data->attr == 3 && $data->model != 2){{'5544'*Session::get('car')}}@endif"
+                         class="order_inp red" readonly size="20">
             </div>
         </div>
             @endif

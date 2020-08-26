@@ -48,6 +48,7 @@
                 {{$product->stock}}
             </div>
         </div>
+        @if($product->model != 4)
         <div class="form-group margin_10"  style="height: auto; overflow: hidden">
             <div class="col-xs-3 padding_0 " >
                 <label for="order" class=" info_stit" >产品期限：</label>
@@ -60,6 +61,7 @@
                     @endif
             </div>
         </div>
+        @endif
         <div class="form-group margin_10"  style="height: auto; overflow: hidden">
             <div class="col-xs-3 padding_0 " >
                 <label for="order" class=" info_stit" >算力：</label>

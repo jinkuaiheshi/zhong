@@ -33,6 +33,14 @@
 
     <link rel="stylesheet" href="{{asset('resources/assets/admin/vendor/dropify/dist/css/dropify.min.css')}}">
 
+
+
+
+    <link rel="stylesheet" href="{{asset('resources/assets/admin/vendor/select2/dist/css/select2.min.css')}}">
+
+
+
+
     <!-- Neptune CSS -->
     <link rel="stylesheet" href="{{asset('resources/assets/admin/css/core.css')}}">
     <link href="{{asset('resources/assets/admin/user/css/datepicker.css')}}" rel="stylesheet" type="text/css" />
@@ -65,6 +73,7 @@
     <script type="text/javascript" src="{{asset('resources/assets/admin/vendor/toastr/toastr.min.js')}}"></script>
 
 
+
     <script type="text/javascript" src="{{asset('resources/assets/admin/user/js/forms-pickers.js')}}"></script>
 
     <script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
@@ -75,6 +84,9 @@
 
     <script type="text/javascript" src="{{asset('resources/assets/admin/vendor/dropify/dist/js/dropify.min.js')}}"></script>
 
+    <!-- 加载 Select2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
 </head>
 <body class="large-sidebar fixed-sidebar fixed-header content-appear">
 <div class="wrapper">

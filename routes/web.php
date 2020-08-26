@@ -129,7 +129,13 @@ Route::group(['middleware'=>['web','Admin']],function() {
 
 
     //product
-    Route::get('/admin/sys/user', 'UserController@index');
+    Route::any('/admin/sys/user', 'UserController@index');
     Route::get('/admin/sys/user/{id}', 'UserController@distribution');
+    Route::post('/admin/sys/user/info/{id}', 'UserController@info');
+    Route::post('/admin/sys/user/superior', 'UserController@superior');
+    Route::get('/admin/sys/user/lower/{id}', 'UserController@lower');
+    Route::post('/admin/sys/user/chakan/{id}', 'UserController@chakan');
+    Route::post('/admin/sys/user/bank/{id}', 'UserController@bank');
+    Route::post('/admin/sys/user/cash', 'UserController@cash');
 });
 
