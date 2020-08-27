@@ -86,7 +86,7 @@
             </div>
             <div class="order_right">
                 <input type="text" value="@if($data->model!=4 &&  $data->id !=16 && $data->id !=17)免费
-@elseif($data->model == 3 && $data->id ==16 ) 0.27元/天 @elseif($data->model == 3 && $data->id ==17 )0.55元/天 @else{{$data->power}}@endif" class="order_inp red" readonly size="20">
+@elseif($data->model == 3 && $data->id ==16 ) {{15*Session::get('car')}} @elseif($data->model == 3 && $data->id ==17 ){{39*Session::get('car')}} @elseif($data->id==18){{352.2*Session::get('car')}} @elseif($data->id==19) {{399*Session::get('car')}}@endif" class="order_inp red" readonly size="20">
             </div>
         </div>
             @if($data->model != 3 && $data->model != 4)

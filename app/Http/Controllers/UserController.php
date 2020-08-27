@@ -122,6 +122,7 @@ class UserController extends CommomController
 
 
     }
+
     public function cash(Request $request){
         if ($request->isMethod('POST')) {
             $cash = Cash::where('uid',$request['uid'])->first();
