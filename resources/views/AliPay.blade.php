@@ -16,6 +16,11 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="alert alert-success alert-dismissible fade in" role="alert" style="height: 50px;text-align: center;">
+            订单金额 <span class="red"> {{$data->TotalPrice}} </span>元
+        </div>
+    </div>
     <div class="container">
 
 

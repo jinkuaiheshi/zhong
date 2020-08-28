@@ -27,7 +27,14 @@ class AdminController extends CommomController
 
                     if($user->update()){
                         session(['islogin' => $user]);
-                        return redirect('/admin/sys/index');
+                        if($user->auth == 7 ||$user->auth ==8||$user->auth ==9){
+                            return redirect('/admin/agent/user');
+                        }elseif($user->auth == 1){
+                            return redirect('/admin/sys/index');
+                        }else{
+                            return redirect('/admin/sys/login')->with('message', '没有登录权限')->withInput();
+                        }
+
                     }
                 } else {
                     return redirect('/admin/sys/login')->with('message', '密码错误，请重新输入!')->withInput();

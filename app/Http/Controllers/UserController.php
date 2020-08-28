@@ -91,34 +91,11 @@ class UserController extends CommomController
     public  function lower($id){
         $lower = User::where('top',$id)->get();
         $data = array();
-        $datas = array();
         if($lower){
-            foreach ($lower as $v){
-                $data['id'] = $v->id;
-                $data['username'] = $v->username;
-                $data['last_login_time'] = $v->last_login_time;
-                $data['create_time'] = $v->create_time;
-                $data['auth'] = $v->auth;
-                $data['tel'] = $v->tel;
-                $data['level'] = $v->level;
-                $datas[] = $data;
-                $lowlower = User::where('top',$v->id)->get();
-                if($lowlower){
-                    foreach ($lowlower as $vv){
-                        $data['id'] = $vv->id;
-                        $data['username'] = $vv->username;
-                        $data['last_login_time'] = $vv->last_login_time;
-                        $data['create_time'] = $vv->create_time;
-                        $data['auth'] = $vv->auth;
-                        $data['tel'] = $vv->tel;
-                        $data['level'] = $vv->level;
-                        $datas[] = $data;
-                    }
-                }
+           $data =  $this->getAgent($lower);
 
-            }
         }
-        return view('admin_user_lower')->with('data', $datas);
+        return view('admin_user_lower')->with('data',$data);
 
 
     }

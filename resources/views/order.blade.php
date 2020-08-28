@@ -60,7 +60,7 @@
                 算力总量
             </div>
             <div class="order_right">
-                <input type="text" value="@if($data->id ==18){{strstr($data->computerPower,'TH/s',true)*Session::get('car').'TH/s'}}@elseif($data->id ==19){{strstr($data->computerPower,'MH/s',true)*Session::get('car').'MH/s'}}@endif" class="order_inp" readonly size="20">
+                <input type="text" value="@if($data->id ==18){{strstr($data->computerPower,'TH/s',true)*Session::get('car').'TH/s'}}@elseif($data->id ==19){{strstr($data->computerPower,'MH/s',true)*Session::get('car').'MH/s'}}@else{{strstr($data->computerPower,'TH/s',true)*Session::get('car').'TH/s'}}@endif" class="order_inp" readonly size="20">
             </div>
         </div>
             @endif
@@ -72,30 +72,40 @@
                 <input type="text" value="{{$data->price}}" class="order_inp red" readonly size="20" name="UnitPrice">
             </div>
         </div>
-        <div class="order_line">
-            <div class="order_left">
-                套餐总价
-            </div>
-            <div class="order_right">
-                <input type="text" value="{{$data->price*Session::get('car')}}" class="order_inp red" readonly size="20" name="TotalPrice">
-            </div>
-        </div>
-        <div class="order_line">
-            <div class="order_left">
-                电费
-            </div>
-            <div class="order_right">
-                <input type="text" value="@if($data->model!=4 &&  $data->id !=16 && $data->id !=17)免费
+            <div class="order_line">
+                <div class="order_left">
+                    电费
+                </div>
+                <div class="order_right">
+                    <input type="text" value="@if($data->model!=4 &&  $data->id !=16 && $data->id !=17)免费
 @elseif($data->model == 3 && $data->id ==16 ) {{15*Session::get('car')}} @elseif($data->model == 3 && $data->id ==17 ){{39*Session::get('car')}} @elseif($data->id==18){{352.2*Session::get('car')}} @elseif($data->id==19) {{399*Session::get('car')}}@endif" class="order_inp red" readonly size="20">
+                </div>
             </div>
-        </div>
+{{--        <div class="order_line">--}}
+{{--            <div class="order_left">--}}
+{{--                套餐总价--}}
+{{--            </div>--}}
+{{--            <div class="order_right">--}}
+{{--                <input type="text" value="{{$data->price*Session::get('car')}}" class="order_inp red" readonly size="20" name="TotalPrice">--}}
+{{--            </div>--}}
+{{--        </div>--}}
+
+                    <div class="order_line">
+                        <div class="order_left">
+                            套餐总价
+                        </div>
+                        <div class="order_right">
+                            <input type="text" value="@if($data->model == 3 && $data->id ==16 ){{$data->price*Session::get('car')+15*Session::get('car')}}@elseif($data->model == 3 && $data->id ==17 ){{$data->price*Session::get('car')+39*Session::get('car')}}@elseif($data->id==18){{$data->price*Session::get('car')+352.2*Session::get('car')}} @elseif($data->id==19) {{$data->price*Session::get('car')+399*Session::get('car')}}@else{{$data->price*Session::get('car')}}@endif " class="order_inp red" readonly size="20" name="TotalPrice">
+                        </div>
+                    </div>
+
             @if($data->model != 3 && $data->model != 4)
         <div class="order_line">
             <div class="order_left">
                 产出回报
             </div>
             <div class="order_right">
-                <input type="text" value="@if($data->attr == 1 && $data->model == 2){{'126'*Session::get('car')}}@elseif($data->attr == 1 && $data->model != 2){{'1260'*Session::get('car')}}@elseif($data->attr == 2 && $data->model == 2){{'264.6'*Session::get('car')}}@elseif($data->attr == 2 && $data->model != 2){{'2646'*Session::get('car')}}@elseif($data->attr == 3 && $data->model == 2){{'554.4'*Session::get('car')}}@elseif($data->attr == 3 && $data->model != 2){{'5544'*Session::get('car')}}@endif"
+                <input type="text" value="@if($data->attr == 1 && $data->model == 2){{'126'*Session::get('car')}}@elseif($data->attr == 1 && $data->model != 2 &&$data->model != 5){{'1260'*Session::get('car')}}@elseif($data->attr == 1 && $data->model == 5){{'300'}}@elseif($data->attr == 2 && $data->model == 2){{'264.6'*Session::get('car')}}@elseif($data->attr == 2 && $data->model != 2){{'2646'*Session::get('car')}}@elseif($data->attr == 3 && $data->model == 2){{'554.4'*Session::get('car')}}@elseif($data->attr == 3 && $data->model != 2){{'5544'*Session::get('car')}}@endif"
                          class="order_inp red" readonly size="20">
             </div>
         </div>

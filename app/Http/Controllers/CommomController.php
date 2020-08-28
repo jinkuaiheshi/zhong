@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Admin\User;
 use Illuminate\Http\Request;
 use Geetestlib;
 use App\Http\Requests;
@@ -9,6 +10,7 @@ use App\Http\Requests;
 class CommomController extends Controller
 {
     //
+
     public function apiVerif(Request $request){
         // 极验类的库，传入CAPTCHA_ID 和 PRIVATE_KEY
         // 在极验后台有，写到配置文件中去
@@ -26,6 +28,30 @@ class CommomController extends Controller
         session(['user_id' => $data['user_id']]);// 用户id存入session中
         echo $GtSdk->get_response_str(); // 传到前台 供initGeetest使用 data.gt, data.challenge, data.success
 
+
+    }
+
+        //递归无限级查询下属
+    private  $datas;
+    public function getAgent($lower){
+
+            foreach ($lower as $vv){
+
+                $data['id'] = $vv->id;
+                $data['username'] = $vv->username;
+                $data['last_login_time'] = $vv->last_login_time;
+                $data['create_time'] = $vv->create_time;
+                $data['auth'] = $vv->auth;
+                $data['tel'] = $vv->tel;
+                $data['level'] = $vv->level;
+
+                $this->datas[] = $data;
+                $lowers = User::where('top',$vv->id)->get();
+                if($lowers){
+                    $this->getAgent($lowers);
+                }
+            }
+            return $this->datas;
 
     }
 }

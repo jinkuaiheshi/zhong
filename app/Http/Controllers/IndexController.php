@@ -8,6 +8,7 @@ use App\Admin\Article;
 use App\Admin\Cash;
 use App\Admin\Column;
 use App\Admin\Kuaixun;
+use App\Admin\Order;
 use App\Admin\Product;
 use App\Admin\Realname;
 use App\Admin\Sms;
@@ -472,15 +473,22 @@ class IndexController extends CommomController
         return view('shipin');
     }
     public function weixinPay(){
-        return view('weixinPay');
+        $indexlogin = session('indexlogin');
+        $data = Order::where('uid',$indexlogin->id)->take(1)->orderBy('id','desc')->first();
+        return view('weixinPay')->with('data',$data);
     }
     //AliPay
     public function AliPay(){
-        return view('AliPay');
+        $indexlogin = session('indexlogin');
+        $data = Order::where('uid',$indexlogin->id)->take(1)->orderBy('id','desc')->first();
+        return view('AliPay')->with('data',$data);
     }
 
-    public function YinlianPay(){
-        return view('YinlianPay');
+    public function YinlianPay()
+    {
+        $indexlogin = session('indexlogin');
+        $data = Order::where('uid', $indexlogin->id)->take(1)->orderBy('id', 'desc')->first();
+        return view('YinlianPay')->with('data', $data);
     }
     public function succ(){
         return view('succ');

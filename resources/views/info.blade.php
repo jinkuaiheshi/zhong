@@ -131,6 +131,7 @@
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    @if($product->model != 5)
     <script>
         $(function () {
             $(".add").click(function(){
@@ -161,6 +162,7 @@
 
         })
     </script>
+    @endif
     <footer class="footer-fixed">
         <a href="{{url('order').'/'.$product->id}}" class="btm_wapper_btn pay">立即购买</a>
     </footer>
