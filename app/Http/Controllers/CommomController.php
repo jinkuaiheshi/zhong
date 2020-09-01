@@ -44,6 +44,7 @@ class CommomController extends Controller
                 $data['auth'] = $vv->auth;
                 $data['tel'] = $vv->tel;
                 $data['level'] = $vv->level;
+                $data['top'] = $vv->top;
 
                 $this->datas[] = $data;
                 $lowers = User::where('top',$vv->id)->get();

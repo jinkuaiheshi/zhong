@@ -762,7 +762,7 @@ margin-top: 10px;
     align-items: center;
 }
 .tab-content{ height: auto; overflow: hidden; margin-bottom: 60px;}
-.aui_item{  padding:0 10px; min-width: 25%;box-sizing: border-box; align-items: center;  justify-content: space-between;position: relative;display: flex;flex-direction: column;}
+.aui_item{  padding:0 10px; min-width: 20%;box-sizing: border-box; align-items: center;  justify-content: space-between;position: relative;display: flex;flex-direction: column;}
 .aui_item img{ width: 50px; height: 50px;vertical-align: middle;box-sizing: border-box;display: flex;justify-content: center;  }
 .aui_item p {
     font-size: 13px;

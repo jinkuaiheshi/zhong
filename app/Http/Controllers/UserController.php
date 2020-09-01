@@ -99,7 +99,19 @@ class UserController extends CommomController
 
 
     }
+    public function invite($id){
 
+            $user = User::where('id',$id)->first();
+            if($user->invite >= 1){
+                return $user;
+            }else{
+                $user->invite = rand('0000','9999');
+                if($user->update()){
+                    return $user;
+                }
+            }
+
+    }
     public function cash(Request $request){
         if ($request->isMethod('POST')) {
             $cash = Cash::where('uid',$request['uid'])->first();

@@ -21,19 +21,23 @@
         <div class="aui-tab nav_tab" id="tab">
             <div class="aui_item" data-toggle="tab" href="#tab1">
                 <img src="{{asset('resources/assets/images/qing.png')}}" />
-                <p>青铜达人</p>
+                <p>青铜会员</p>
             </div>
             <div class="aui_item" data-toggle="tab" href="#tab2">
-                <img src="{{asset('resources/assets/images/bo.png')}}" />
-                <p>华贵铂金</p>
+                <img src="{{asset('resources/assets/images/bai.png')}}" />
+                <p>白银会员</p>
             </div>
             <div class="aui_item" data-toggle="tab" href="#tab3">
-                <img src="{{asset('resources/assets/images/zuan.png')}}" />
-                <p>璀璨钻石</p>
+                <img src="{{asset('resources/assets/images/huang.png')}}" />
+                <p>黄金会员</p>
             </div>
             <div class="aui_item" data-toggle="tab" href="#tab4">
-                <img src="{{asset('resources/assets/images/wang.png')}}" />
-                <p>最强王者</p>
+                <img src="{{asset('resources/assets/images/bo.png')}}" />
+                <p>铂金会员</p>
+            </div>
+            <div class="aui_item" data-toggle="tab" href="#tab5">
+                <img src="{{asset('resources/assets/images/zuan.png')}}" />
+                <p>钻石会员</p>
             </div>
         </div>
         <div class="tab-content">
@@ -45,7 +49,7 @@
     ">
                         </div>
                         <div class="aui-col-xs-7 aui-padded-l-5">
-                            <p class="aui-font-size-18 aui-text-default f_w">lv1<span class="aui-padded-l-5">青铜达人</span></p>
+                            <p class="aui-font-size-18 aui-text-default f_w">青铜会员</p>
                             <p class="aui-font-size-14">无返佣权益</p>
                         </div>
                         <div class="aui-col-xs-3  aui-label">
@@ -53,8 +57,8 @@
                         </div>
                     </div>
                     <div class="aui-text-center">
-                        <p class="aui-text-default">当前等级【青铜达人】</p>
-                        <p class="aui-padded-5">距离升级华贵铂金不远啦，多多推广吧</p>
+                        <p class="aui-text-default">当前等级【青铜会员】</p>
+                        <p class="aui-padded-5">距离升级白银会员不远啦，多多推广吧</p>
                         <p><a href="{{url('gonglue')}}" class="aui-text-info">查看升级攻略</a></p>
                     </div>
                     <div class="progress_box">
@@ -77,7 +81,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">自购算力</p>
-                                <p class="aui-text-default">0T<span class="color_9">(目标：≥0T)</span></p>
+                                <p class="aui-text-default">0T</p>
                             </div>
                         </div>
 
@@ -99,8 +103,8 @@
                                 </div>
                             </div>
                             <div class="aui-col-xs-10 ">
-                                <p class="aui-text-default">推销算力</p>
-                                <p class="aui-text-default">0T<span class="color_9">(目标：≥0T)</span></p>
+                                <p class="aui-text-default">推荐算力</p>
+                                <p class="aui-text-default">0T</p>
                             </div>
                         </div>
 
@@ -122,33 +126,12 @@
                                 </div>
                             </div>
                             <div class="aui-col-xs-10 ">
-                                <p class="aui-text-default">推荐实名注册用户</p>
+                                <p class="aui-text-default">总算力</p>
                                 <p class="aui-text-default">0T<span class="color_9">(目标：≥0T)</span></p>
                             </div>
                         </div>
 
-                        <div class="aui-row aui-margin-b-5">
-                            <div class="aui-col-xs-2">
-                                <div class="wrap_content">
-                                    <div class="wrap">
-                                        <!--大于180，则class=clip-auto circle，否则：circle-->
-                                        <div class="clip-auto circle ">
-                                            <!--度数为：当前进度*3.6-->
-                                            <div class="percent left" style="-webkit-transform:rotate(360deg);"></div>
-                                            <!--大于180，则class=percent right，否则为percent right wth0-->
-                                            <div class=" percent right"></div>
-                                        </div>
-                                        <div class="num">
-                                            <span>100</span>%
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="aui-col-xs-10 ">
-                                <p class="aui-text-default">下级产生购买人数</p>
-                                <p class="aui-text-default">0T<span class="color_9">(目标：≥0T)</span></p>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -156,20 +139,20 @@
                 <div class="dialog_box">
                     <div class="aui-row">
                         <div class="aui-col-xs-2">
-                            <img src="{{asset('resources/assets/images/bo.png')}}" style="width: 50px
+                            <img src="{{asset('resources/assets/images/bai.png')}}" style="width: 50px
     ">
                         </div>
                         <div class="aui-col-xs-7 aui-padded-l-5">
-                            <p class="aui-font-size-18 aui-text-default f_w">lv2<span class="aui-padded-l-5">华贵铂金</span></p>
-                            <p class="aui-font-size-14">10.00元/T</p>
+                            <p class="aui-font-size-18 aui-text-default f_w">白银会员</p>
+                            <p class="aui-font-size-14">权益收益0.2%</p>
                         </div>
                         <div class="aui-col-xs-3  aui-label">
                             当前等级
                         </div>
                     </div>
                     <div class="aui-text-center">
-                        <p class="aui-text-default">当前等级【华贵铂金】</p>
-                        <p class="aui-padded-5">距离升级璀璨钻石不远啦，多多推广吧</p>
+                        <p class="aui-text-default">当前等级【白银会员】</p>
+                        <p class="aui-padded-5">距离升级黄金会员不远啦，多多推广吧</p>
                         <p><a href="{{url('gonglue')}}" class="aui-text-info">查看升级攻略</a></p>
                     </div>
                     <div class="progress_box">
@@ -192,7 +175,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">自购算力</p>
-                                <p class="aui-text-default">0T<span class="color_9">(目标：≥50T)</span></p>
+                                <p class="aui-text-default">0T</p>
                             </div>
                         </div>
 
@@ -214,8 +197,8 @@
                                 </div>
                             </div>
                             <div class="aui-col-xs-10 ">
-                                <p class="aui-text-default">推销算力</p>
-                                <p class="aui-text-default">0T<span class="color_9">(目标：≥50T)</span></p>
+                                <p class="aui-text-default">推荐算力</p>
+                                <p class="aui-text-default">0T</p>
                             </div>
                         </div>
 
@@ -237,33 +220,12 @@
                                 </div>
                             </div>
                             <div class="aui-col-xs-10 ">
-                                <p class="aui-text-default">推荐实名注册用户</p>
-                                <p class="aui-text-default">0人<span class="color_9">(目标：≥5人)</span></p>
+                                <p class="aui-text-default">总算力</p>
+                                <p class="aui-text-default">0人<span class="color_9">(目标：110T)</span></p>
                             </div>
                         </div>
 
-                        <div class="aui-row aui-margin-b-5">
-                            <div class="aui-col-xs-2">
-                                <div class="wrap_content">
-                                    <div class="wrap">
-                                        <!--大于180，则class=clip-auto circle，否则：circle-->
-                                        <div class="clip-auto circle ">
-                                            <!--度数为：当前进度*3.6-->
-                                            <div class="percent left" style="-webkit-transform:rotate(360deg);"></div>
-                                            <!--大于180，则class=percent right，否则为percent right wth0-->
-                                            <div class=" percent right"></div>
-                                        </div>
-                                        <div class="num">
-                                            <span>100</span>%
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="aui-col-xs-10 ">
-                                <p class="aui-text-default">下级产生购买人数</p>
-                                <p class="aui-text-default">0人<span class="color_9">(目标：≥2人)</span></p>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -271,20 +233,20 @@
                 <div class="dialog_box">
                     <div class="aui-row">
                         <div class="aui-col-xs-2">
-                            <img src="{{asset('resources/assets/images/zuan.png')}}" style="width: 50px
+                            <img src="{{asset('resources/assets/images/huang.png')}}" style="width: 50px
     ">
                         </div>
                         <div class="aui-col-xs-7 aui-padded-l-5">
-                            <p class="aui-font-size-18 aui-text-default f_w">lv3<span class="aui-padded-l-5">璀璨钻石</span></p>
-                            <p class="aui-font-size-14">20.00元/T</p>
+                            <p class="aui-font-size-18 aui-text-default f_w">黄金会员</p>
+                            <p class="aui-font-size-14">权益收益0.3%</p>
                         </div>
                         <div class="aui-col-xs-3  aui-label">
                             当前等级
                         </div>
                     </div>
                     <div class="aui-text-center">
-                        <p class="aui-text-default">当前等级【璀璨钻石】</p>
-                        <p class="aui-padded-5">距离升级最强王者不远啦，多多推广吧</p>
+                        <p class="aui-text-default">当前等级【黄金会员】</p>
+                        <p class="aui-padded-5">距离升级铂金会员不远啦，多多推广吧</p>
                         <p><a href="{{url('gonglue')}}" class="aui-text-info">查看升级攻略</a></p>
                     </div>
                     <div class="progress_box">
@@ -307,7 +269,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">自购算力</p>
-                                <p class="aui-text-default">0T<span class="color_9">(目标：≥100T)</span></p>
+                                <p class="aui-text-default">0T</p>
                             </div>
                         </div>
 
@@ -329,8 +291,8 @@
                                 </div>
                             </div>
                             <div class="aui-col-xs-10 ">
-                                <p class="aui-text-default">推销算力</p>
-                                <p class="aui-text-default">0T<span class="color_9">(目标：≥100T)</span></p>
+                                <p class="aui-text-default">推荐算力</p>
+                                <p class="aui-text-default">0T</p>
                             </div>
                         </div>
 
@@ -352,33 +314,12 @@
                                 </div>
                             </div>
                             <div class="aui-col-xs-10 ">
-                                <p class="aui-text-default">推荐实名注册用户</p>
-                                <p class="aui-text-default">0人<span class="color_9">(目标：≥20人)</span></p>
+                                <p class="aui-text-default">总算力</p>
+                                <p class="aui-text-default">0人<span class="color_9">(目标：550T)</span></p>
                             </div>
                         </div>
 
-                        <div class="aui-row aui-margin-b-5">
-                            <div class="aui-col-xs-2">
-                                <div class="wrap_content">
-                                    <div class="wrap">
-                                        <!--大于180，则class=clip-auto circle，否则：circle-->
-                                        <div class="clip-auto circle ">
-                                            <!--度数为：当前进度*3.6-->
-                                            <div class="percent left" style="-webkit-transform:rotate(360deg);"></div>
-                                            <!--大于180，则class=percent right，否则为percent right wth0-->
-                                            <div class=" percent right"></div>
-                                        </div>
-                                        <div class="num">
-                                            <span>100</span>%
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="aui-col-xs-10 ">
-                                <p class="aui-text-default">下级产生购买人数</p>
-                                <p class="aui-text-default">0人<span class="color_9">(目标：≥10人)</span></p>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -386,20 +327,20 @@
                 <div class="dialog_box">
                     <div class="aui-row">
                         <div class="aui-col-xs-2">
-                            <img src="{{asset('resources/assets/images/wang.png')}}" style="width: 50px
+                            <img src="{{asset('resources/assets/images/bo.png')}}" style="width: 50px
     ">
                         </div>
                         <div class="aui-col-xs-7 aui-padded-l-5">
-                            <p class="aui-font-size-18 aui-text-default f_w">lv4<span class="aui-padded-l-5">最强王者</span></p>
-                            <p class="aui-font-size-14">30.00元/T</p>
+                            <p class="aui-font-size-18 aui-text-default f_w">铂金会员</p>
+                            <p class="aui-font-size-14">权益收益0.4%</p>
                         </div>
                         <div class="aui-col-xs-3  aui-label">
                             当前等级
                         </div>
                     </div>
                     <div class="aui-text-center">
-                        <p class="aui-text-default">当前等级【最强王者】</p>
-                        <p class="aui-padded-5"></p>
+                        <p class="aui-text-default">当前等级【铂金会员】</p>
+                        <p class="aui-padded-5">距离升级钻石会员不远啦，多多推广吧</p>
                         <p><a href="{{url('gonglue')}}" class="aui-text-info">查看升级攻略</a></p>
                     </div>
                     <div class="progress_box">
@@ -422,7 +363,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">自购算力</p>
-                                <p class="aui-text-default">0T<span class="color_9">(目标：≥200T)</span></p>
+                                <p class="aui-text-default">0T</p>
                             </div>
                         </div>
 
@@ -444,8 +385,8 @@
                                 </div>
                             </div>
                             <div class="aui-col-xs-10 ">
-                                <p class="aui-text-default">推销算力</p>
-                                <p class="aui-text-default">0T<span class="color_9">(目标：≥200T)</span></p>
+                                <p class="aui-text-default">推荐算力</p>
+                                <p class="aui-text-default">0T</p>
                             </div>
                         </div>
 
@@ -467,37 +408,109 @@
                                 </div>
                             </div>
                             <div class="aui-col-xs-10 ">
-                                <p class="aui-text-default">推荐实名注册用户</p>
-                                <p class="aui-text-default">人<span class="color_9">(目标：≥50人)</span></p>
+                                <p class="aui-text-default">总算力</p>
+                                <p class="aui-text-default">0T<span class="color_9">(目标：1650T)</span></p>
                             </div>
                         </div>
 
-                        <div class="aui-row aui-margin-b-5">
-                            <div class="aui-col-xs-2">
-                                <div class="wrap_content">
-                                    <div class="wrap">
-                                        <!--大于180，则class=clip-auto circle，否则：circle-->
-                                        <div class="clip-auto circle ">
-                                            <!--度数为：当前进度*3.6-->
-                                            <div class="percent left" style="-webkit-transform:rotate(360deg);"></div>
-                                            <!--大于180，则class=percent right，否则为percent right wth0-->
-                                            <div class=" percent right"></div>
-                                        </div>
-                                        <div class="num">
-                                            <span>100</span>%
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="aui-col-xs-10 ">
-                                <p class="aui-text-default">下级产生购买人数</p>
-                                <p class="aui-text-default">人<span class="color_9">(目标：≥30人)</span></p>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
+            <div class="aui-content tab4 tab-pane" id="tab5">
+                <div class="dialog_box">
+                    <div class="aui-row">
+                        <div class="aui-col-xs-2">
+                            <img src="{{asset('resources/assets/images/zuan.png')}}" style="width: 50px
+    ">
+                        </div>
+                        <div class="aui-col-xs-7 aui-padded-l-5">
+                            <p class="aui-font-size-18 aui-text-default f_w">钻石会员</p>
+                            <p class="aui-font-size-14">权益收益0.5%</p>
+                        </div>
+                        <div class="aui-col-xs-3  aui-label">
+                            当前等级
+                        </div>
+                    </div>
+                    <div class="aui-text-center">
+                        <p class="aui-text-default">当前等级【钻石会员】</p>
+
+                        <p><a href="{{url('gonglue')}}" class="aui-text-info">查看升级攻略</a></p>
+                    </div>
+                    <div class="progress_box">
+                        <div class="aui-row aui-margin-b-5">
+                            <div class="aui-col-xs-2">
+                                <div class="wrap_content">
+                                    <div class="wrap">
+                                        <!--大于180，则class=clip-auto circle，否则：circle-->
+                                        <div class="clip-auto circle ">
+                                            <!--度数为：当前进度*3.6-->
+                                            <div class="percent left" style="-webkit-transform:rotate(360deg);"></div>
+                                            <!--大于180，则class=percent right，否则为percent right wth0-->
+                                            <div class=" percent right"></div>
+                                        </div>
+                                        <div class="num">
+                                            <span>100</span>%
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="aui-col-xs-10 ">
+                                <p class="aui-text-default">自购算力</p>
+                                <p class="aui-text-default">0T</p>
+                            </div>
+                        </div>
+
+                        <div class="aui-row aui-margin-b-5">
+                            <div class="aui-col-xs-2">
+                                <div class="wrap_content">
+                                    <div class="wrap">
+                                        <!--大于180，则class=clip-auto circle，否则：circle-->
+                                        <div class="clip-auto circle ">
+                                            <!--度数为：当前进度*3.6-->
+                                            <div class="percent left" style="-webkit-transform:rotate(360deg);"></div>
+                                            <!--大于180，则class=percent right，否则为percent right wth0-->
+                                            <div class=" percent right"></div>
+                                        </div>
+                                        <div class="num">
+                                            <span>100</span>%
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="aui-col-xs-10 ">
+                                <p class="aui-text-default">推荐算力</p>
+                                <p class="aui-text-default">0T</p>
+                            </div>
+                        </div>
+
+                        <div class="aui-row aui-margin-b-5">
+                            <div class="aui-col-xs-2">
+                                <div class="wrap_content">
+                                    <div class="wrap">
+                                        <!--大于180，则class=clip-auto circle，否则：circle-->
+                                        <div class="clip-auto circle ">
+                                            <!--度数为：当前进度*3.6-->
+                                            <div class="percent left" style="-webkit-transform:rotate(360deg);"></div>
+                                            <!--大于180，则class=percent right，否则为percent right wth0-->
+                                            <div class=" percent right"></div>
+                                        </div>
+                                        <div class="num">
+                                            <span>100</span>%
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="aui-col-xs-10 ">
+                                <p class="aui-text-default">总算力</p>
+                                <p class="aui-text-default">人<span class="color_9">(目标：≥5500T)</span></p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
     </div>
     <footer class="aui-bar aui-bar-tab"  style="position: fixed;">
         <div class="aui-card-list aui-margin-b-0">

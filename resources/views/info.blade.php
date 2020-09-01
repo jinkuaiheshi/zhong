@@ -77,14 +77,14 @@
             </div>
             <div class="col-xs-6 padding_0">
                 @if($product->attr == 1)
-                @if($product->attr == 1&&$product->model == 5)100CNY/月@elseif($product->attr == 1 &&$product->model == 2)24%=126元/份@else 24%=1260元/份@endif
+                @if($product->attr == 1&&$product->model == 5)100CNY/月@elseif($product->attr == 1 &&$product->model == 1)24%=126元/份@elseif($product->attr == 1 &&$product->model == 2)18%=94.5元/份@else 24%=1260元/份@endif
                 @endif
                     @if($product->attr == 2)
-                @if($product->attr == 2&&$product->model == 2)25.2%=264.6元/份 @else 25.2%=2646元/份@endif
+                @if($product->attr == 2&&$product->model == 1)25.2%=264.6元/份 @elseif($product->attr == 1 &&$product->model == 2)21.6%=226.8元/份@else 25.2%=2646元/份@endif
                     @endif
                     @if($product->attr == 3)
                         @if($product->model == 4 &&$product->id ==18 )12%-181% @elseif($product->model == 4 &&$product->id ==19)39%-231% @endif
-                    @if($product->attr == 3&&$product->model == 2)26.4%=554.4元/份 @elseif($product->id !=18&&$product->id !=19) 26.4%=5544元/份 @endif
+                    @if($product->attr == 3&&$product->model == 1)26.4%=554.4元/份 @elseif($product->attr == 3 &&$product->model == 2)24%=504元/份@elseif($product->id !=18&&$product->id !=19) 26.4%=5544元/份 @endif
                     @endif
 
             </div>

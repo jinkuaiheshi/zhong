@@ -34,10 +34,10 @@
             <div class="aui-media-list-item-inner">
                 <div class="aui-list-item-inner">
                     <div class="aui-list-item-text aui-padded-b-5">
-                        <div class="aui-list-item-title">LV1青铜达人:</div>
+                        <div class="aui-list-item-title">LV1青铜会员:</div>
                     </div>
                     <div class="aui-list-item-text" style="color: #A4A4A4;">
-                        未达到华贵铂金等级的即为青铜达人，无任何返佣权益
+                        未达到白银会员等级的即为青铜会员，无任何返佣权益
                     </div>
                 </div>
             </div>
@@ -46,10 +46,10 @@
             <div class="aui-media-list-item-inner">
                 <div class="aui-list-item-inner">
                     <div class="aui-list-item-text aui-padded-b-5">
-                        <div class="aui-list-item-title">LV2华贵铂金:</div>
+                        <div class="aui-list-item-title">LV2白银会员:</div>
                     </div>
                     <div class="aui-list-item-text" style="color: #A4A4A4;">
-                        升级条件:同时满足自购量≥50T、直接推荐算力总量≥50T、直接推荐实名注册用户≥5人、直接推荐下级产生购买数≥2人即可升级为华贵铂金
+                        升级条件:总算力≥110T，即可升级为白银会员
                     </div>
                 </div>
             </div>
@@ -62,10 +62,10 @@
             <div class="aui-media-list-item-inner">
                 <div class="aui-list-item-inner">
                     <div class="aui-list-item-text aui-padded-b-5">
-                        <div class="aui-list-item-title">LV3璀璨钻石:</div>
+                        <div class="aui-list-item-title">LV3黄金会员:</div>
                     </div>
                     <div class="aui-list-item-text" style="color: #A4A4A4;">
-                        升级条件:同时满足自购量≥100T、直接推荐算力总量≥100T、直接推荐实名注册用户≥20人、直接推荐下级产生购买数≥10人即可升级为璀璨钻石
+                        升级条件:总算力≥550T，即可升级为黄金会员
                     </div>
                 </div>
             </div>
@@ -77,10 +77,22 @@
             <div class="aui-media-list-item-inner">
                 <div class="aui-list-item-inner">
                     <div class="aui-list-item-text aui-padded-b-5">
-                        <div class="aui-list-item-title">LV4最强王者:</div>
+                        <div class="aui-list-item-title">LV4铂金会员:</div>
                     </div>
                     <div class="aui-list-item-text" style="color: #A4A4A4;">
-                        升级条件:同时满足自购量≥200T、直接推荐算力总量≥200T、直接推荐实名注册用户≥50人、直接推荐下级产生购买数≥30人即可升级为最强王者。
+                        升级条件:总算力≥1650T，即可升级为铂金会员
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text aui-padded-b-5">
+                        <div class="aui-list-item-title">LV5钻石会员:</div>
+                    </div>
+                    <div class="aui-list-item-text" style="color: #A4A4A4;">
+                        升级条件:总算力≥5500T，即可升级为钻石会员
                     </div>
                 </div>
             </div>
@@ -110,22 +122,8 @@
                     </div>
                 </div>
             </li>
-
-
-            <li class="aui-list-item" style="margin-bottom: 60px;">
-                <div class="aui-media-list-item-inner">
-                    <div class="aui-list-item-inner">
-
-                        <div class="aui-list-item-text" style="color: #A4A4A4;">
-                            <img src="{{asset('resources/assets/images/adb.jpg')}}" width="100%">
-
-
-                        </div>
-                    </div>
-                </div>
-            </li>
-
-
-
         </div></ul>
+    <div class="row" style="margin-bottom: 60px; height: auto;overflow:hidden;">
+        <img src="{{asset('resources/assets/images/adb.jpg')}}" width="100%">
+    </div>
 @stop
