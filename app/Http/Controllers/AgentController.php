@@ -26,15 +26,16 @@ class AgentController extends CommomController
         }else{
             $islogin = session('islogin');
             $lower = User::where('top',$islogin->id)->get();
-            if($lower){
-                $User =  $this->getAgent($lower);
 
-            }
 
             $data = array();
             $datas = array();
 
-            foreach ($User as $v) {
+            if(count($lower)>0){
+
+                $User =  $this->getAgent($lower);
+
+                foreach ($User as $v) {
 //                $data['username'] = $v['username'];
 //                $data['id'] = $v['id'];
 //                $data['auth'] = $v['auth'];
@@ -43,8 +44,12 @@ class AgentController extends CommomController
 //                $data['create_time'] = $v['create_time'];
 //                $data['tel'] = $v['tel'];
 
-                $datas[] = $v;
+                    $datas[] = $v;
+                }
+            }else{
+                $User='';
             }
+
             return view('agent_user')->with('data', $datas)->with('user',$User);
         }
     }

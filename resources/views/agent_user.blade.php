@@ -23,6 +23,7 @@
                 </tr>
                 </thead>
                 <tbody>
+                @if(!empty($data))
                 @foreach($data as $v)
                     <tr>
                         <td>{{$v['id']}}</td>
@@ -40,6 +41,7 @@
 
                     </tr>
                 @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>
@@ -129,9 +131,11 @@
 
                                 <select class="form-control" id="select2" style="width: 350px;height: 35px; line-height: 35px;">
                                     <option value="0">请选择</option>
+                                    @if(!empty($user))
                                     @foreach ($user as $v)
                                         <option value="{{$v['id']}}">{{$v['username']}}</option>
                                     @endforeach
+                                        @endif
                                 </select>
 
 
@@ -340,16 +344,19 @@
                                 $('.ajaxAuth').val('县代理');
                             }
                             if(data.level == 1){
-                                $('.ajaxLevel').val('英勇黄铜');
+                                $('.ajaxLevel').val('青铜会员');
                             }
                             if(data.level == 2){
-                                $('.ajaxLevel').val('华贵铂金');
+                                $('.ajaxLevel').val('白银会员');
                             }
                             if(data.level == 3){
-                                $('.ajaxLevel').val('璀璨钻石');
+                                $('.ajaxLevel').val('黄金会员');
                             }
                             if(data.level == 4){
-                                $('.ajaxLevel').val('最强王者');
+                                $('.ajaxLevel').val('铂金会员');
+                            }
+                            if(data.level == 4){
+                                $('.ajaxLevel').val('钻石会员');
                             }
                         });
                 });
