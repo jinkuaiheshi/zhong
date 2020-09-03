@@ -39,7 +39,9 @@
                     <input type="password"  placeholder="请确认登录密码" class="wrapper_input" name="repassword" required />
                 </div>
                 <input type="hidden" value="{{$data}}" name="top">
-
+                <div class="login_wrapper_inp border_1" >
+                    <input   placeholder="请输入邀请码" class="wrapper_input" id="input-tel" rows="1" maxlength="4" @if($invite>0) type="hidden" @endif value="{{$invite}}" name="invite" pattern="^1[3-9]\d{9}$" required  />
+                </div>
 {{--                <div class="form-group ">--}}
 {{--                    <div class="pull-xs-left">--}}
 {{--                        <label class="custom-control custom-checkbox">--}}

@@ -44,6 +44,8 @@ class UserController extends CommomController
                 }
                 $datas[] = $data;
             }
+            $islogin = session('islogin');
+
             return view('admin_user')->with('data', $datas)->with('user',$User);
         }
 
@@ -105,7 +107,9 @@ class UserController extends CommomController
             if($user->invite >= 1){
                 return $user;
             }else{
-                $user->invite = rand('0000','9999');
+
+                $user->invite =rand('1000','9999');
+
                 if($user->update()){
                     return $user;
                 }

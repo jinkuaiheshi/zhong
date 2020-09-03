@@ -68,6 +68,7 @@ Route::group(['middleware'=>['web','Index']],function() {
     Route::get('/YinlianPay', 'IndexController@YinlianPay');
     Route::any('/upload', 'IndexController@upload');
     Route::get('/succ', 'IndexController@succ');
+    Route::get('/team', 'IndexController@team');
 
 
 

@@ -164,9 +164,8 @@ class IndexController extends CommomController
                     $user->last_login_time = date('Y-m-d H:i:s', time());
                     $user->suppwd =Crypt::encrypt($password);
                     $user->auth = 3;
-
+                    $user->invite = trim($request['invite']);
                     $user->top = $request['top'];
-
                     if($user->save()){
                         session(['indexlogin' => $user]);
                         return redirect('index');
@@ -188,10 +187,13 @@ class IndexController extends CommomController
                 $uid = Crypt::decrypt($request->input('uid'));
                 $user = User::where('tel',$uid)->first();
                 $data = $user->id;
+                $invite = $user->invite;
+
             }else{
                 $data = -1;
+                $invite = '';
             }
-            return view('register')->with('data',$data);
+            return view('register')->with('data',$data)->with('invite',$invite);
         }
     }
     public function news(){
@@ -492,6 +494,34 @@ class IndexController extends CommomController
     }
     public function succ(){
         return view('succ');
+    }
+    public function team(){
+        $indexlogin = session('indexlogin');
+        $lower = User::where('top',$indexlogin->id)->get();
+
+
+        $data = array();
+        $datas = array();
+
+        if(count($lower)>0){
+
+            $User =  $this->getAgent($lower);
+
+            foreach ($User as $v) {
+//                $data['username'] = $v['username'];
+//                $data['id'] = $v['id'];
+//                $data['auth'] = $v['auth'];
+//                $data['level'] = $v['level'];
+//                $data['last_login_time'] = $v['last_login_time'];
+//                $data['create_time'] = $v['create_time'];
+//                $data['tel'] = $v['tel'];
+
+                $datas[] = $v;
+            }
+        }else{
+            $User='';
+        }
+        return view('team')->with('data', $datas);
     }
     public function upload(Request $request){
         if ($request->isMethod('POST')) {
