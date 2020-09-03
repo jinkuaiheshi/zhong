@@ -144,5 +144,7 @@ Route::group(['middleware'=>['web','Admin']],function() {
     Route::any('/admin/agent/user', 'AgentController@index');
     Route::get('/admin/agent/user/lower/{id}', 'AgentController@lower');
     Route::get('/admin/agent/order', 'AgentController@agentOrder'); //订单管理
+
+
 });
 

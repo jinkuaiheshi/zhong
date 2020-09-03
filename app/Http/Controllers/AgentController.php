@@ -13,7 +13,9 @@ class AgentController extends CommomController
     {
         if ($request->isMethod('POST')) {
             $id = $request['id'];
+
             $user = User::where('id',$id)->first();
+
             if($user){
                 $user->auth = $request['auto'];
                 if($user->update()){
@@ -78,5 +80,20 @@ class AgentController extends CommomController
         $order = Order::whereIn('uid',$ids)->orderby('id','DESC')->get();
 
         return view('agent_order')->with('data',$order);
+    }
+    public function superior(Request $request){
+        if ($request->isMethod('POST')) {
+            $id = $request['aid'];
+            $uid = $request['val'];
+            $user = User::where('id',$uid)->first();//找到上级账号
+            $local = User::where('id',$id)->first();
+            $local->top = $user->id;
+            if($local->update()){
+                return redirect(url()->previous())->with('message', '设置成功')->with('type','success')->withInput();
+            }else{
+                return redirect(url()->previous())->with('message', '设置失败')->with('type','danger')->withInput();
+            }
+
+        }
     }
 }
