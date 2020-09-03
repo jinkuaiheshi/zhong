@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Admin\Cash;
 use App\Admin\Order;
 use App\Admin\User;
 use Illuminate\Http\Request;
@@ -94,6 +95,49 @@ class AgentController extends CommomController
                 return redirect(url()->previous())->with('message', '设置失败')->with('type','danger')->withInput();
             }
 
+        }
+    }
+    public function info($id){
+        $user = User::where('id',$id)->first();
+        if($user){
+            return $user;
+        }
+    }
+    public function bank($id){
+        $cash = Cash::where('uid',$id)->first();
+
+        if($cash){
+            return $cash;
+        }
+    }
+    public function cash(Request $request){
+        if ($request->isMethod('POST')) {
+            $cash = Cash::where('uid',$request['uid'])->first();
+            if($cash){
+                $cash->username = trim($request['username']);
+                $cash->userZHIFUBAO = trim($request['userZHIFUBAO']);
+                $cash->company = trim($request['company']);
+                $cash->companyCode = trim($request['companyCode']);
+                $cash->bank = trim($request['bank']);
+                if($cash->update()){
+                    return redirect(url()->previous())->with('message', '设置成功')->with('type','success')->withInput();
+                }else{
+                    return redirect(url()->previous())->with('message', '设置失败')->with('type','danger')->withInput();
+                }
+            }else{
+                $cash = new Cash();
+                $cash->username = trim($request['username']);
+                $cash->userZHIFUBAO = trim($request['userZHIFUBAO']);
+                $cash->company = trim($request['company']);
+                $cash->companyCode = trim($request['companyCode']);
+                $cash->bank = trim($request['bank']);
+                $cash->uid = trim($request['uid']);
+                if($cash->save()){
+                    return redirect(url()->previous())->with('message', '设置成功')->with('type','success')->withInput();
+                }else{
+                    return redirect(url()->previous())->with('message', '设置失败')->with('type','danger')->withInput();
+                }
+            }
         }
     }
 }

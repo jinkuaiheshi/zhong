@@ -91,7 +91,7 @@
         <div class="modal-dialog" role="document" style="max-width: 1000px;">
             <div class="modal-content">
                 <div class="modal-body" style="background: #fff">
-                    <form class="form-horizontal " method="post" enctype="multipart/form-data" action="{{url('/admin/sys/user')}}">
+                    <form class="form-horizontal " method="post" enctype="multipart/form-data" action="{{url('/admin/agent/user')}}">
                         {{ csrf_field() }}
                         <div class="form-group h-a" style="text-align: center">
                             <label for="name" class=" col-form-label label200" >权限类型：</label>
@@ -119,40 +119,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade"  role="dialog" aria-labelledby="exampleModalLabel" id="shangji" >
-        <div class="modal-dialog" role="document" style="max-width: 1000px;">
-            <div class="modal-content">
-                <div class="modal-body" style="background: #fff">
-                    <form class="form-horizontal " method="post" enctype="multipart/form-data" action="{{url('/admin/sys/user/superior')}}" id="superior">
-                        {{ csrf_field() }}
-                        <div class="form-group h-a" style="text-align: center">
-                            <label for="name" class=" col-form-label label200" >用户名：</label>
-                            <div  style="float:left; width: 350px;">
 
-                                <select class="form-control" id="select2" style="width: 350px;height: 35px; line-height: 35px;">
-                                    <option value="0">请选择</option>
-                                    @if(!empty($user))
-                                    @foreach ($user as $v)
-                                        <option value="{{$v['id']}}">{{$v['username']}}</option>
-                                    @endforeach
-                                        @endif
-                                </select>
-
-
-                            </div>
-
-                        </div>
-                        <input type="hidden" value="" id="shangjiID" name="aid">
-                        <input type="hidden" value="" id="select" name="val">
-                        <div class="modal-footer" style="display: none;" id="sub">
-                            <button type="submit" class="btn btn-primary" id="submit">提交</button>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div>
     <div class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" id="chakan" >
         <div class="modal-dialog" role="document" style="max-width: 1000px;">
             <div class="modal-content">
@@ -274,7 +241,7 @@
             $("body").delegate('.table-striped tr', //会为符合条件的现有标签和未来标签都绑定事件
                 'click', function () {
 
-                    $.post("{{ url('/admin/sys/user/info') }}/"+ $('.table-striped tr').eq($(this).index()+1).find('.quanxian').data('action'),
+                    $.post("{{ url('/admin/agent/user/info') }}/"+ $('.table-striped tr').eq($(this).index()+1).find('.quanxian').data('action'),
                         {'_token': '{{ csrf_token() }}'}, function(data) {
                             $('#uid').val(data.id);
                         });
@@ -282,21 +249,7 @@
         })
 
     </script>
-    <script>
-        //会为符合条件的现有标签和未来标签都绑定事件（将未来标签写道on方法里）
 
-        $(function () {
-            $("body").delegate('.table-striped tr', //会为符合条件的现有标签和未来标签都绑定事件
-                'click', function () {
-
-                    $.post("{{ url('/admin/sys/user/info') }}/"+ $('.table-striped tr').eq($(this).index()+1).find('.shangji').data('action'),
-                        {'_token': '{{ csrf_token() }}'}, function(data) {
-                            $('#shangjiID').val(data.id);
-                        });
-                });
-        })
-
-    </script>
     <script>
         //会为符合条件的现有标签和未来标签都绑定事件（将未来标签写道on方法里）
 
@@ -305,7 +258,7 @@
                 'click', function () {
                     var id = $('.table-striped tr').eq($(this).index()+1).find('.bank').data('action');
 
-                    $.post("{{ url('/admin/sys/user/bank') }}/"+ $('.table-striped tr').eq($(this).index()+1).find('.bank').data('action'),
+                    $.post("{{ url('/admin/agent/user/bank') }}/"+ $('.table-striped tr').eq($(this).index()+1).find('.bank').data('action'),
                         {'_token': '{{ csrf_token() }}'}, function(data) {
                             $('.bank_Username').val(data.username);
                             $('.bank_userZHIFUBAO').val(data.userZHIFUBAO);

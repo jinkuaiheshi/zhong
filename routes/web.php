@@ -145,6 +145,9 @@ Route::group(['middleware'=>['web','Admin']],function() {
     Route::get('/admin/agent/user/lower/{id}', 'AgentController@lower');
     Route::get('/admin/agent/order', 'AgentController@agentOrder'); //订单管理
 
-
+    Route::post('/admin/agent/user/info/{id}', 'AgentController@info');
+    Route::post('/admin/agent/user/superior', 'AgentController@superior');
+    Route::post('/admin/agent/user/bank/{id}', 'AgentController@bank');
+    Route::post('/admin/agent/user/cash', 'AgentController@cash');
 });
 

@@ -93,7 +93,7 @@
         <div class="modal-dialog" role="document" style="max-width: 1000px;">
             <div class="modal-content">
                 <div class="modal-body" style="background: #fff">
-                    <form class="form-horizontal " method="post" enctype="multipart/form-data" action="{{url('/admin/sys/user')}}">
+                    <form class="form-horizontal " method="post" enctype="multipart/form-data" action="{{url('/admin/agent/user')}}">
                         {{ csrf_field() }}
                         <div class="form-group h-a" style="text-align: center">
                             <label for="name" class=" col-form-label label200" >权限类型：</label>
@@ -125,7 +125,7 @@
         <div class="modal-dialog" role="document" style="max-width: 1000px;">
             <div class="modal-content">
                 <div class="modal-body" style="background: #fff">
-                    <form class="form-horizontal " method="post" enctype="multipart/form-data" action="{{url('/admin/sys/user/cash')}}" id="superior">
+                    <form class="form-horizontal " method="post" enctype="multipart/form-data" action="{{url('/admin/agent/user/cash')}}" id="superior">
                         {{ csrf_field() }}
                         <div class="form-group h-a" style="text-align: center">
                             <label for="name" class=" col-form-label label200" >真实姓名：</label>
@@ -191,7 +191,7 @@
             $("body").delegate('.table-striped tr', //会为符合条件的现有标签和未来标签都绑定事件
                 'click', function () {
 
-                    $.post("{{ url('/admin/sys/user/info') }}/"+ $('.table-striped tr').eq($(this).index()+1).find('.quanxian').data('action'),
+                    $.post("{{ url('/admin/agent/user/info') }}/"+ $('.table-striped tr').eq($(this).index()+1).find('.quanxian').data('action'),
                         {'_token': '{{ csrf_token() }}'}, function(data) {
                             $('#uid').val(data.id);
                         });
@@ -199,28 +199,8 @@
         })
 
     </script>
-    <script>
-        //会为符合条件的现有标签和未来标签都绑定事件（将未来标签写道on方法里）
 
-        $(function () {
-            $("body").delegate('.table-striped tr', //会为符合条件的现有标签和未来标签都绑定事件
-                'click', function () {
 
-                    $.post("{{ url('/admin/sys/user/info') }}/"+ $('.table-striped tr').eq($(this).index()+1).find('.shangji').data('action'),
-                        {'_token': '{{ csrf_token() }}'}, function(data) {
-                            $('#shangjiID').val(data.id);
-                        });
-                });
-        })
-
-    </script>
-    <script>
-        $('#select2').change(function () {
-
-            $('#select').val($('#select2').val());
-            $('#sub').show();
-        })
-    </script>
     <script>
         //会为符合条件的现有标签和未来标签都绑定事件（将未来标签写道on方法里）
 
@@ -229,7 +209,7 @@
                 'click', function () {
                     var id = $('.table-striped tr').eq($(this).index()+1).find('.bank').data('action');
 
-                    $.post("{{ url('/admin/sys/user/bank') }}/"+ $('.table-striped tr').eq($(this).index()+1).find('.bank').data('action'),
+                    $.post("{{ url('/admin/agent/user/bank') }}/"+ $('.table-striped tr').eq($(this).index()+1).find('.bank').data('action'),
                         {'_token': '{{ csrf_token() }}'}, function(data) {
                             $('.bank_Username').val(data.username);
                             $('.bank_userZHIFUBAO').val(data.userZHIFUBAO);
