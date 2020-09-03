@@ -148,7 +148,11 @@ class IndexController extends CommomController
             $user = User::where('tel',$request['tel'])->first();
 
             if($user){
-                return redirect('register')->with('message', '账号已经存在')->with('type','danger')->withInput();
+                return redirect(url()->previous())->with('message', '账号已经存在')->with('type','danger')->withInput();
+            }
+            $isInvite = User::where('invite',trim($request['invite']))->first();
+            if(!$isInvite){
+                return redirect(url()->previous())->with('message', '邀请码不存在')->with('type','danger')->withInput();
             }
             $password = $request['password'];
             $repassword = $request['repassword'];
