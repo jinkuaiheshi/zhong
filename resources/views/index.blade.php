@@ -147,7 +147,7 @@
                     <img src="{{asset('resources/assets/images/suan.png')}}" />
                 </div>
                 <div class="right_info_item">
-                    <P>回报率</P>
+                    <P>年化回报率</P>
                     <P>26.4%</P>
                 </div>
             </div>
@@ -196,7 +196,7 @@
 
             <div class="title_item_info">
                 <div class="title_item_info_left">
-                    回报率
+                    年化回报率
                 </div>
                 <div class="title_item_info_right" style="font-size: 20px;font-weight: 700;color: #f96c02;">
                     @if($v->attr == 1)24%
@@ -235,7 +235,7 @@
                 </div>
 
                 <div class="float_item_title_right">
-                    <p>回报率</p>
+                    <p>年化回报率</p>
                 </div>
             </div>
             <div class="float_item_info">
@@ -273,7 +273,7 @@
                             <span >升级版</span>
                         </div>
                         <p><span class="vag" style="margin-right: 4px;">{{$v->tagOne}}</span><span class="vag" style="margin-right: 4px;">{{$v->tagTwo}}</span></p>
-                        <p>回报率</p>
+                        <p>年化回报率</p>
                         <p>@if($v->cloud == 1)23%-64%
                             @elseif($v->cloud == 2)10%-96%
                             @endif</p>
@@ -306,7 +306,7 @@
                     <p>低价电费、管理费</p>
                 </div>
                 <div class="invest_item_info_right">
-                    <p>回报率</p>
+                    <p>年化回报率</p>
                 </div>
             </div>
             <div class="invest_item_info">
