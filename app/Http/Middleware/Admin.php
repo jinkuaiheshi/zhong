@@ -20,11 +20,11 @@ class Admin
             return redirect('admin/sys/login');
         }
 
-//        if(strpos(url()->full(),'sys')){
-//            if($islogin->auth != 1){
-//                return redirect(url()->previous())->with('message', '权限不足')->with('type','danger')->withInput();
-//            }
-//        };
+        if(strpos(url()->full(),'sys')){
+            if($islogin->auth != 1){
+                return redirect(url()->previous())->with('message', '权限不足')->with('type','danger')->withInput();
+            }
+        };
         view()->share('info',$islogin);
         return $next($request);
     }

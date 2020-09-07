@@ -36,6 +36,7 @@ class UserController extends CommomController
                 $data['last_login_time'] = $v->last_login_time;
                 $data['create_time'] = $v->create_time;
                 $data['Realname'] = isset($v->Realname->name) ? $v->Realname->name : '';
+                $data['code'] = isset($v->Realname->code) ? $v->Realname->code : '';
                 $data['userZHIFUBAO'] = isset($v->cash->userZHIFUBAO) ? $v->cash->userZHIFUBAO : '';
                 $data['tel'] = $v->tel;
                 if ($v->top != -1) {

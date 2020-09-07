@@ -14,7 +14,8 @@
                     <th>ID</th>
                     <th>用户名</th>
                     <th>创建时间</th>
-                    <th>最后登录时间</th>
+                    <th>认证姓名</th>
+
                     <th>权限</th>
                     <th>绑定手机</th>
                     <th>等级</th>
@@ -28,7 +29,8 @@
                         <td>{{$v['id']}}</td>
                         <td>{{$v['username']}}</td>
                         <td>{{$v['create_time']}}</td>
-                        <td>{{$v['last_login_time']}}</td>
+                        <td>{{$v['Realname']}}</td>
+
                         <td>@if($v['auth']==3)<span class="btn btn-outline-primary w-min-sm m-b-0-25 waves-effect waves-light">个人代理</span>@elseif($v['auth']==7)<span class="btn btn-outline-success w-min-sm m-b-0-25 waves-effect waves-light">省代理</span>@elseif($v['auth']==8)<span class="btn btn-outline-info  w-min-sm m-b-0-25 waves-effect waves-light">市代理</span>@elseif($v['auth']==9)<span class="btn btn-outline-black  w-min-sm m-b-0-25 waves-effect waves-light">县代理</span>@endif</td>
                         <td>{{$v['tel']}}</td>
                         <td>@if($v['level']==1)<span class="btn btn-outline-primary w-min-sm m-b-0-25 waves-effect waves-light">青铜会员</span>@elseif($v['level']==2)<span class="btn btn-outline-success w-min-sm m-b-0-25 waves-effect waves-light">白银会员</span>@elseif($v['level']==3)<span class="btn btn-outline-info  w-min-sm m-b-0-25 waves-effect waves-light">黄金会员</span>@elseif($v['level']==4)<span class="btn btn-outline-warning  w-min-sm m-b-0-25 waves-effect waves-light">铂金会员</span>@elseif($v['level']==5)<span class="btn btn-outline-black  w-min-sm m-b-0-25 waves-effect waves-light">钻石会员</span>@endif</td>
