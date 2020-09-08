@@ -28,7 +28,7 @@ class AgentController extends CommomController
             }
         }else{
             $islogin = session('islogin');
-            $lower = User::where('top',$islogin->id)->get();
+            $lower = User::with('Realname', 'Cash')->where('top',$islogin->id)->get();
 
 
             $data = array();
@@ -39,13 +39,17 @@ class AgentController extends CommomController
                 $User =  $this->getAgent($lower);
 
                 foreach ($User as $v) {
-//                $data['username'] = $v['username'];
-//                $data['id'] = $v['id'];
-//                $data['auth'] = $v['auth'];
-//                $data['level'] = $v['level'];
-//                $data['last_login_time'] = $v['last_login_time'];
-//                $data['create_time'] = $v['create_time'];
-//                $data['tel'] = $v['tel'];
+                    $data['username'] = $v['username'];
+                    $data['top'] = $v['top'];
+                    $data['id'] = $v['id'];
+                    $data['auth'] = $v['auth'];
+                    $data['level'] = $v['level'];
+                    $data['last_login_time'] = $v['last_login_time'];
+                    $data['create_time'] = $v['create_time'];
+                    $data['Realname'] = isset($v['Realname']) ? $v['Realname'] : '';
+                    $data['code'] = isset($v['code']) ? $v['code'] : '';
+                    $data['userZHIFUBAO'] = isset($v['userZHIFUBAO']) ? $v['userZHIFUBAO'] : '';
+                    $data['tel'] = $v['tel'];
 
                     $datas[] = $v;
                 }

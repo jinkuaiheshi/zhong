@@ -35,19 +35,31 @@ class CommomController extends Controller
     private  $datas;
     public function getAgent($lower){
 
-            foreach ($lower as $vv){
+            foreach ($lower as $v){
 
-                $data['id'] = $vv->id;
-                $data['username'] = $vv->username;
-                $data['last_login_time'] = $vv->last_login_time;
-                $data['create_time'] = $vv->create_time;
-                $data['auth'] = $vv->auth;
-                $data['tel'] = $vv->tel;
-                $data['level'] = $vv->level;
-                $data['top'] = $vv->top;
+//                $data['id'] = $vv->id;
+//                $data['username'] = $vv->username;
+//                $data['last_login_time'] = $vv->last_login_time;
+//                $data['create_time'] = $vv->create_time;
+//                $data['auth'] = $vv->auth;
+//                $data['tel'] = $vv->tel;
+//                $data['level'] = $vv->level;
+//                $data['top'] = $vv->top;
+
+                $data['username'] = $v->username;
+                $data['top'] = $v->top;
+                $data['id'] = $v->id;
+                $data['auth'] = $v->auth;
+                $data['level'] = $v->level;
+                $data['last_login_time'] = $v->last_login_time;
+                $data['create_time'] = $v->create_time;
+                $data['Realname'] = isset($v->Realname->name) ? $v->Realname->name : '';
+                $data['code'] = isset($v->Realname->code) ? $v->Realname->code : '';
+                $data['userZHIFUBAO'] = isset($v->cash->userZHIFUBAO) ? $v->cash->userZHIFUBAO : '';
+                $data['tel'] = $v->tel;
 
                 $this->datas[] = $data;
-                $lowers = User::where('top',$vv->id)->get();
+                $lowers = User::with('Realname', 'Cash')->where('top',$v->id)->get();
                 if($lowers){
                     $this->getAgent($lowers);
                 }
