@@ -14,9 +14,90 @@
     </div>
 
     <div class="aui-card-list-content-padded">
+        <div class="account" style="background: #fea85d">
+            <div class="card_title">
+                <div class="card_title_left">
+                    BTC
+                </div>
+                <div class="card_title_right">
+                    <a href="javascript:void(0)" >划转</a>
+                    <a href="javascript:void(0)" >提币</a>
+                    <a href="javascript:void(0)" >明细</a>
+                </div>
+            </div>
+            <div class="card_body">
+                <div class="card_body_one" style="margin-left: 5%">
+
+                        <p class="per_p">总资产(BTC)</p>
+                    <P class="per_p" style="margin-top: 6px;">@if($btc==0) 0.00000000 @else {{number_format($btc,8,'.','')}} @endif</P>
+                </div>
+                <div class="card_body_one">
+                    <p class="per_p"> 可用(BTC)</p>
+                    <P class="per_p" style="margin-top: 6px;">@if($btc==0) 0.00000000 @else {{number_format($btc,8,'.','')}} @endif</P>
+                </div>
+                <div class="card_body_one">
+                    <p class="per_p"> 冻结(BTC)</p>
+                    <P class="per_p" style="margin-top: 6px;">@if($btc==0) 0.00000000 @else {{$hetong_btc}} @endif</P>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="aui-card-list-content-padded">
+        <div class="account aui-text-center" style="background: #96a3c3">
+            <div class="card_title">
+                <div class="card_title_left">
+                    ETH
+                </div>
+                <div class="card_title_right">
+                    <a href="javascript:void(0)" >划转</a>
+                    <a href="javascript:void(0)" >提币</a>
+                    <a href="javascript:void(0)" >明细</a>
+                </div>
+            </div>
+            <div class="card_body">
+                <div class="card_body_one" style="margin-left: 5%">
+
+                    <p class="per_p">总资产(ETH)</p>
+                    <P class="per_p" style="margin-top: 6px;">@if($eth==0) 0.00000000 @else {{$eth}} @endif</P>
+                </div>
+                <div class="card_body_one">
+                    <p class="per_p"> 可用(ETH)</p>
+                    <P class="per_p" style="margin-top: 6px;">@if($eth==0) 0.00000000 @else {{$eth}} @endif</P>
+                </div>
+                <div class="card_body_one">
+                    <p class="per_p"> 冻结(ETH)</p>
+                    <P class="per_p" style="margin-top: 6px;">@if($eth==0) 0.00000000 @else {{$hetong_eth}}  @endif</P>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="aui-card-list-content-padded">
         <div class="account aui-text-center">
-            <p class="aui-margin-b-5">账户总估值(元)</p>
-            <b class="aui-font-size-20">00.00</b>
+            <div class="card_title">
+                <div class="card_title_left">
+                    CNY
+                </div>
+                <div class="card_title_right">
+                    <a href="javascript:void(0)" >划转</a>
+                    <a href="javascript:void(0)" >提币</a>
+                    <a href="javascript:void(0)" >明细</a>
+                </div>
+            </div>
+            <div class="card_body">
+                <div class="card_body_one" style="margin-left: 5%">
+
+                    <p class="per_p">总资产(CNY)</p>
+                    <P class="per_p" style="margin-top: 6px;">@if($cny==0) 0.00000000 @else {{$cny}} @endif</P>
+                </div>
+                <div class="card_body_one">
+                    <p class="per_p"> 可用(CNY)</p>
+                    <P class="per_p" style="margin-top: 6px;">@if($cny==0) 0.00000000 @else {{$cny}} @endif</P>
+                </div>
+                <div class="card_body_one">
+                    <p class="per_p"> 冻结(CNY)</p>
+                    <P class="per_p" style="margin-top: 6px;">0.0000000</P>
+                </div>
+            </div>
         </div>
     </div>
 

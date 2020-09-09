@@ -1068,9 +1068,17 @@ ul, li {
     background: #f96c02;
     background-size: 100%;
     border-radius: 10px;
-    height: 160px;
-    padding-top: 12%;
+    height: 120px;
+
 }
+.card_body{ height: auto; overflow: hidden; margin-top: 10px;}
+.per_p{ text-align: center;color: #fff; font-size: 16px;}
+.card_title_right  a {padding: 5px; background-color:rgba(175,186,206,0.5);border-radius: 10px; color: #fff; }
+.card_title_right{ float: right;margin-top: 6px;}
+.card_body_one{ float: left; width: 30%;}
+.card_title{ padding: 10px 15px; height: auto;
+    overflow: hidden;}
+.card_title_left{ float: left; color: #fff; font-size: 16px; }
 .aui-text-center {
     text-align: center !important;
 }

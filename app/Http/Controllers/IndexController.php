@@ -393,7 +393,38 @@ class IndexController extends CommomController
     }
     public function personal(){
         $indexlogin = session('indexlogin');
-        return view('personal')->with('user',$indexlogin);
+        //$btc = Order::where('uid',$indexlogin->id)->get();
+        $btc = Order::where('uid',$indexlogin->id)->where('status',2)->where('pid',16)->get();
+        //$btc = Order::where('uid',9)->where('status',2)->where('pid',16)->get();
+        $num = 0;
+        $hetong = 0;
+        if(count($btc)>0){
+            foreach ($btc as $v){
+                $time = (time() - strtotime($v->force_time))/ 86400;
+                $num+=floor($time)*0.00000803;
+                $hetong+=$v->TotalPrice;
+            }
+        }
+        $data_btc = $num;
+        $hetong_btc = $hetong;
+
+        $eth = Order::where('uid',$indexlogin->id)->where('status',2)->where('pid',17)->get();
+       // $eth = Order::where('uid',9)->where('status',2)->where('pid',17)->get();
+        $num_eth = 0;
+        $hetong2 = 0;
+        if(count($eth)>0){
+            foreach ($eth as $v){
+                $time = (time() - strtotime($v->force_time))/ 86400;
+
+                $num_eth+=floor($time)*0.00067;
+                $hetong2+=$v->TotalPrice;
+            }
+        }
+        $data_eth = $num_eth;
+        $hetong_eth = $hetong2;
+        $cny = 0;
+
+        return view('personal')->with('user',$indexlogin)->with('btc',$data_btc)->with('eth',$data_eth)->with('cny',$cny)->with('hetong_btc',$hetong_btc)->with('hetong_eth',$hetong_eth);
     }
     public function profile(){
         $indexlogin = session('indexlogin');
