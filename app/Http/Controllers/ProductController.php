@@ -9,7 +9,9 @@ use App\Admin\Column;
 use App\Admin\Order;
 use App\Admin\Product;
 use App\Admin\ProductModel;
+use App\Admin\Upload;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Storage;
 
 
@@ -596,5 +598,9 @@ class ProductController extends CommomController
         $order = Order::with('Product')->where('uid',$user->id)->orderby('id','DESC')->where('status',2)->get();
 
         return view('income')->with('data',$order);
+    }
+    public function voucher(){
+        $data = Upload::with('User','Realname')->where('uid','!=',1)->get();
+        return view('admin_voucher')->with('data',$data);
     }
 }

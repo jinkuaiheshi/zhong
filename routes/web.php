@@ -126,6 +126,8 @@ Route::group(['middleware'=>['web','Admin']],function() {
     Route::get('/admin/sys/order', 'ProductController@sysOrder'); //订单管理
     Route::get('/order/complete/{id}', 'ProductController@complete'); //完成支付
 
+    Route::get('/admin/sys/voucher', 'ProductController@voucher'); //订单凭证
+
     Route::get('/admin/sys/test', 'AdminController@test'); //栏目管理
 
 

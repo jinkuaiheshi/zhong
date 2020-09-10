@@ -153,7 +153,7 @@
                     <ul>
 
                         <li><a href="{{url('/admin/sys/order')}}">订单管理</a></li>
-
+                        <li><a href="{{url('/admin/sys/voucher')}}">订单凭证</a></li>
 
 
 
