@@ -550,7 +550,7 @@ class ProductController extends CommomController
         return view('payNow');
     }
     public function sysOrder(){
-        $order = Order::All();
+        $order = Order::with('User')->get();
         return view('admin_order')->with('data',$order);
     }
     public function complete($id){

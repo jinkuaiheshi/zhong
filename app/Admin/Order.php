@@ -15,4 +15,8 @@ class Order extends Model
     {
         return $this->hasOne('App\Admin\Product','id','pid');
     }
+    public function User()
+    {
+        return $this->hasOne('App\Admin\User','id','uid');
+    }
 }

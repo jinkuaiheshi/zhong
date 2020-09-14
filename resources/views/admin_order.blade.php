@@ -11,6 +11,7 @@
             <table class="table table-striped table-bordered dataTable" id="tab" >
                 <thead>
                 <tr>
+                    <td>用户名</td>
                     <th>订单编号</th>
                     <th>订单产品</th>
                     <th>创建时间</th>
@@ -24,6 +25,7 @@
                 <tbody>
                 @foreach($data as $v)
                     <tr>
+                        <td>{{$v->User->username}}</td>
                         <td>{{$v->code}}</td>
                         <td>{{$v->name}}</td>
                         <td>{{$v->created_time}}</td>

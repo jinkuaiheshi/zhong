@@ -101,18 +101,7 @@
         </div>
     </div>
 
-    <div class="aui-card-list-footer">
-        <div class="aui-row aui-padded-b-15" style="width: 100%;">
-            <div class="aui-col-xs-6 aui-text-left">
-                <p class="aui-font-size-12" style="margin: 0px; line-height: 14px;" >可用余额(元)</p>
-                <b>0.00</b>
-            </div>
-            <div class="aui-col-xs-6 aui-text-right">
-                <a class="aui-btn aui-btn-outlined aui-btn-warning w_4 " href="javascript:void(0)">提现</a>
-{{--                <a class="aui-btn aui-btn-warning w_4 color_21" href="javascript:void(0)">充值</a>--}}
-            </div>
-        </div>
-    </div>
+
 </div>
     <div class="aui-content aui-margin-b-15 user_icon">
         <div class="aui-grid">

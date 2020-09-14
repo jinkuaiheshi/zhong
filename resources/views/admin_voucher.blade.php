@@ -22,7 +22,7 @@
                 @foreach($data as $v)
                     <tr>
                         <td>{{$v->User->username}}</td>
-                        <td>{{$v->Realname->name}}</td>
+                        <td>{{isset($v->Realname->name)?$v->Realname->name:''}}</td>
                         <td>{{$v->created_time}}</td>
                         <td><a href="{{url('storage/app/public/pic/').'/'.$v->pic}}" target="_blank"> <button type="button" class="btn btn-success w-min-xs  waves-effect waves-light" >查看上传凭证</button></a></td>
 
