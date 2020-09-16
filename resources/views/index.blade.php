@@ -42,8 +42,10 @@
 
         </div>
         <div class="item">
+            <a href="{{url('guanyu')}}" style="width: 100%;text-align: center">
             <img src="{{asset('resources/assets/images/index2.png')}}" alt="">
             <p>新人专享</p>
+            </a>
         </div>
         <div class="item">
             <a href="{{url('shipin')}}" style="width: 100%;text-align: center">

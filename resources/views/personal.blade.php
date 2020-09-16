@@ -20,8 +20,8 @@
                     BTC
                 </div>
                 <div class="card_title_right">
-                    <a href="javascript:void(0)" >划转</a>
-                    <a href="javascript:void(0)" >提币</a>
+                    <a href="{{url('huazhuan')}}" >划转</a>
+                    <a href="{{url('huazhuan')}}" >提币</a>
                     <a href="javascript:void(0)" >明细</a>
                 </div>
             </div>
@@ -49,8 +49,8 @@
                     ETH
                 </div>
                 <div class="card_title_right">
-                    <a href="javascript:void(0)" >划转</a>
-                    <a href="javascript:void(0)" >提币</a>
+                    <a href="{{url('huazhuanEth')}}" >划转</a>
+                    <a href="{{url('huazhuanEth')}}" >提币</a>
                     <a href="javascript:void(0)" >明细</a>
                 </div>
             </div>
@@ -78,8 +78,8 @@
                     CNY
                 </div>
                 <div class="card_title_right">
-                    <a href="javascript:void(0)" >划转</a>
-                    <a href="javascript:void(0)" >提币</a>
+                    <a href="{{url('huazhuanCny')}}" >划转</a>
+                    <a href="{{url('huazhuanCny')}}" >提币</a>
                     <a href="javascript:void(0)" >明细</a>
                 </div>
             </div>

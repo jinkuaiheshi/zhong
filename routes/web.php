@@ -36,7 +36,7 @@ Route::post('/product/order/info/{id}', 'ProductController@item'); //验证码
 Route::get('/gonglue', 'IndexController@gonglue');//升级攻略
 Route::get('/zhinan', 'IndexController@zhinan');//新人指南
 Route::get('/shipin', 'IndexController@shipin');//视频中心
-
+Route::get('/guanyu', 'IndexController@guanyu');
 //前台登录——————用户中心
 Route::any('/login', 'IndexController@login');//登录
 Route::any('/logout', 'IndexController@logout');//退出登录
@@ -61,7 +61,7 @@ Route::group(['middleware'=>['web','Index']],function() {
     Route::any('/passwordEdit', 'IndexController@passwordEdit');
     Route::any('/pingtai', 'IndexController@pingtai');
     Route::get('/contact', 'IndexController@contact');
-    Route::get('/guanyu', 'IndexController@guanyu');
+
     Route::any('/cash', 'IndexController@cash');
     Route::get('/weixinPay', 'IndexController@weixinPay');
     Route::get('/AliPay', 'IndexController@AliPay');
@@ -70,9 +70,11 @@ Route::group(['middleware'=>['web','Index']],function() {
     Route::get('/succ', 'IndexController@succ');
     Route::get('/team', 'IndexController@team');
 
+    Route::get('/huazhuan', 'IndexController@huazhuan');
+    Route::get('/huazhuanEth', 'IndexController@huazhuanEth');
+    Route::get('/huazhuanCny', 'IndexController@huazhuanCny');
 
-
-
+    Route::post('/tibi', 'IndexController@tibi');
 });
 
 //总后台系统

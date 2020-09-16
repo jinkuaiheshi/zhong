@@ -12,6 +12,7 @@ use App\Admin\Order;
 use App\Admin\Product;
 use App\Admin\Realname;
 use App\Admin\Sms;
+use App\Admin\Tibi;
 use App\Admin\Upload;
 use App\Admin\User;
 use Illuminate\Http\Request;
@@ -377,24 +378,18 @@ class IndexController extends CommomController
         //$url = 'www.baidu.com';//要转成二维码的url地址
 
         $errorLevel = "L";//容错率
-
         $size = "4";//生成图片大小
-
-       $qrcode::png($url, false, $errorLevel, $size,2);
-
+        $qrcode::png($url, false, $errorLevel, $size,2);
         $imgstr = base64_encode(ob_get_contents());
         ob_end_clean();
-
         $falg = 'data:image/png;base64,';
         return view('share')->with('png',$falg.$imgstr);
-
-
 
     }
     public function personal(){
         $indexlogin = session('indexlogin');
         //$btc = Order::where('uid',$indexlogin->id)->get();
-        $btc = Order::where('uid',$indexlogin->id)->where('status',2)->where('pid',16)->get();
+        $btc = Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(16,18))->get();
         //$btc = Order::where('uid',9)->where('status',2)->where('pid',16)->get();
         $num = 0;
         $hetong = 0;
@@ -408,7 +403,7 @@ class IndexController extends CommomController
         $data_btc = $num;
         $hetong_btc = $hetong;
 
-        $eth = Order::where('uid',$indexlogin->id)->where('status',2)->where('pid',17)->get();
+        $eth = Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(17,19))->get();
        // $eth = Order::where('uid',9)->where('status',2)->where('pid',17)->get();
         $num_eth = 0;
         $hetong2 = 0;
@@ -422,9 +417,50 @@ class IndexController extends CommomController
         }
         $data_eth = $num_eth;
         $hetong_eth = $hetong2;
-        $cny = 0;
+        //$cny = 0;
+        //$cny =  Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(17,19))->get();
+        $cny = Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(5,6,7,8,9,10,22,23))->get();
+        $num = 0;
 
-        return view('personal')->with('user',$indexlogin)->with('btc',$data_btc)->with('eth',$data_eth)->with('cny',$cny)->with('hetong_btc',$hetong_btc)->with('hetong_eth',$hetong_eth);
+        if(count($cny)>0){
+            foreach ($cny as $v){
+                if($v->pid== 22 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    $num+=floor($time)*100;
+                }
+                if($v->pid== 23 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    $num+=floor($time)*462*$v->num;
+                }
+                if($v->pid== 5 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    $num+=floor($time)*420*$v->num;
+                }
+                if($v->pid== 6 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    $num+=floor($time)*441*$v->num;
+                }
+                if($v->pid== 7 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    $num+=floor($time)*462*$v->num;
+                }
+                if($v->pid== 8 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    $num+=floor($time)*31.5*$v->num;
+                }
+                if($v->pid== 9 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    $num+=floor($time)*37.8*$v->num;
+                }
+                if($v->pid== 10 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    $num+=floor($time)*42*$v->num;
+                }
+
+            }
+        }
+        $data_cny = $num;
+        return view('personal')->with('user',$indexlogin)->with('btc',$data_btc)->with('eth',$data_eth)->with('cny',$data_cny)->with('hetong_btc',$hetong_btc)->with('hetong_eth',$hetong_eth);
     }
     public function profile(){
         $indexlogin = session('indexlogin');
@@ -557,6 +593,111 @@ class IndexController extends CommomController
             $User='';
         }
         return view('team')->with('data', $datas);
+    }
+    public function huazhuan(){
+        //计算资产
+        $indexlogin = session('indexlogin');
+        //$btc = Order::where('uid',$indexlogin->id)->get();
+        $btc = Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(16,18))->get();
+        //$btc = Order::where('uid',9)->where('status',2)->where('pid',16)->get();
+        $num = 0;
+        $hetong = 0;
+        if(count($btc)>0){
+            foreach ($btc as $v){
+                $time = (time() - strtotime($v->force_time))/ 86400;
+                $num+=floor($time)*0.00000803;
+                $hetong+=$v->TotalPrice;
+            }
+        }
+        $data_btc = $num;
+
+        return view('huazhuan')->with('btc',$data_btc);
+    }
+    public function huazhuanEth(){
+        //计算资产
+        $indexlogin = session('indexlogin');
+        //$btc = Order::where('uid',$indexlogin->id)->get();
+        $eth = Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(17,19))->get();
+        //$btc = Order::where('uid',9)->where('status',2)->where('pid',16)->get();
+        $num = 0;
+        $hetong = 0;
+        if(count($eth)>0){
+            foreach ($eth as $v){
+                $time = (time() - strtotime($v->force_time))/ 86400;
+
+                $num+=floor($time)*0.00067;
+               // $hetong2+=$v->TotalPrice;
+            }
+        }
+        $data_eth = $num;
+        return view('huazhuanEth')->with('eth',$num);
+    }
+    public function huazhuanCny(){
+        //计算资产
+        $indexlogin = session('indexlogin');
+        //$btc = Order::where('uid',$indexlogin->id)->get();
+        $cny = Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(5,6,7,8,9,10,22,23))->get();
+        //$btc = Order::where('uid',9)->where('status',2)->where('pid',16)->get();
+        $num = 0;
+
+        if(count($cny)>0){
+            foreach ($cny as $v){
+                if($v->pid== 22 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    $num+=floor($time)*100;
+                }
+                if($v->pid== 23 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    $num+=floor($time)*462*$v->num;
+                }
+                if($v->pid== 5 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    $num+=floor($time)*420*$v->num;
+                }
+                if($v->pid== 6 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    $num+=floor($time)*441*$v->num;
+                }
+                if($v->pid== 7 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    $num+=floor($time)*462*$v->num;
+                }
+                if($v->pid== 8 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    $num+=floor($time)*31.5*$v->num;
+                }
+                if($v->pid== 9 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    $num+=floor($time)*37.8*$v->num;
+                }
+                if($v->pid== 10 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    $num+=floor($time)*42*$v->num;
+                }
+
+            }
+        }
+        $data_cny = $num;
+        return view('huazhuanCny')->with('cny',$data_cny);
+    }
+    public  function tibi(Request $request){
+        if ($request->isMethod('POST')) {
+            $url = trim($request['url']);
+            $num = trim($request['num']);
+            $tibi = new Tibi();
+            $tibi->url = $url;
+            $tibi->num = $num;
+            $tibi->type = trim($request['type']);
+            $tibi->created_time = date('Y-m-d H:i:s',time());
+            $tibi->uid = trim($request['uid']);
+            $tibi->info = trim($request['info']);
+            if($tibi->save()){
+                return redirect(url()->previous())->with('message', '提币请求已经提交，等待审核')->with('type','success')->withInput();
+            }else{
+                return redirect(url()->previous())->with('message', '提币请求发起失败')->with('type','danger')->withInput();
+            }
+
+        }
     }
     public function upload(Request $request){
         if ($request->isMethod('POST')) {
