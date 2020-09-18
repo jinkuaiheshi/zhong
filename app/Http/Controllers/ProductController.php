@@ -9,6 +9,7 @@ use App\Admin\Column;
 use App\Admin\Order;
 use App\Admin\Product;
 use App\Admin\ProductModel;
+use App\Admin\Tibi;
 use App\Admin\Upload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -602,5 +603,20 @@ class ProductController extends CommomController
     public function voucher(){
         $data = Upload::with('User','Realname')->where('uid','!=',1)->get();
         return view('admin_voucher')->with('data',$data);
+    }
+    public function tibi(){
+        $data = Tibi::with('User')->where('uid','>=',1)->get();
+        return view('admin_tibi')->with('data',$data);
+    }
+    public function sysOrderDel(){
+        $end = date('Y-m-d',time()-172800);
+        $data = Order::where('status',1)->whereDate('created_time', '<=',$end)->get();
+
+        if(count($data)>0){
+            foreach ($data as $v){
+                $v->delete();
+            }
+        }
+        return redirect(url()->previous())->with('message', '清除订单成功')->with('type','success')->withInput();
     }
 }

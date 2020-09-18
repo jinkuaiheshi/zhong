@@ -10,4 +10,8 @@ class Tibi extends Model
     protected $table = 'tibi';
     public $timestamps = false;
     protected $primaryKey = 'id';
+    public function User()
+    {
+        return $this->hasOne('App\Admin\User','id','uid');
+    }
 }

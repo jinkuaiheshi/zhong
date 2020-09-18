@@ -1071,6 +1071,7 @@ ul, li {
     height: 120px;
 
 }
+.tixing{ width: 100%; line-height: 30px; font-size: 14px; float: right;}
 .tishi{ width: 100%;  line-height: 30px; font-size: 16px; color: #c5c5c5; padding-left: 20px;}
 .tibi{ width: 100%; height: 30px; line-height: 30px; font-size: 16px; color: #000; padding-left: 20px;}
 .btc_wapper{ height: 120px; background:#fea85d; overflow: hidden; border-radius: 10px;}

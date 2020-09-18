@@ -74,6 +74,8 @@ Route::group(['middleware'=>['web','Index']],function() {
     Route::get('/huazhuanEth', 'IndexController@huazhuanEth');
     Route::get('/huazhuanCny', 'IndexController@huazhuanCny');
 
+    Route::get('/getBTC', 'IndexController@getBTC');
+
     Route::post('/tibi', 'IndexController@tibi');
 });
 
@@ -127,8 +129,13 @@ Route::group(['middleware'=>['web','Admin']],function() {
 
     Route::get('/admin/sys/order', 'ProductController@sysOrder'); //订单管理
     Route::get('/order/complete/{id}', 'ProductController@complete'); //完成支付
+    Route::get('/admin/sys/order/del', 'ProductController@sysOrderDel'); //订单管理
+
 
     Route::get('/admin/sys/voucher', 'ProductController@voucher'); //订单凭证
+    Route::get('/admin/sys/tibi', 'ProductController@tibi'); //订单凭证
+
+
 
     Route::get('/admin/sys/test', 'AdminController@test'); //栏目管理
 

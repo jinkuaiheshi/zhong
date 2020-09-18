@@ -680,6 +680,9 @@ class IndexController extends CommomController
         $data_cny = $num;
         return view('huazhuanCny')->with('cny',$data_cny);
     }
+    public function getBTC(){
+        return view('getBTC');
+    }
     public  function tibi(Request $request){
         if ($request->isMethod('POST')) {
             $url = trim($request['url']);

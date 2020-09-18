@@ -6,36 +6,32 @@
 
         <div class="box box-block bg-white">
             <div class="form-group" style="height: auto; overflow: hidden;">
-                <a href="{{url('admin/sys/order/del')}}" ><button type="button" class="  btn btn-primary w-min-sm m-b-1 waves-effect waves-light" style="float: right;display:inline-block" >清除无效过期订单</button></a>
+
             </div>
             <table class="table table-striped table-bordered dataTable" id="tab" >
                 <thead>
                 <tr>
-                    <td>用户名</td>
-                    <th>订单编号</th>
-                    <th>订单产品</th>
-                    <th>创建时间</th>
-                    <th>数量</th>
-                    <th>单价</th>
-                    <th>总价</th>
-                    <th>状态</th>
-                    <th>操作</th>
+                    <th>用户名</th>
+                    <th>提币地址</th>
+                    <th>提币数量</th>
+                    <th>提币类型</th>
+                    <th>提交时间</th>
+                    <th>备注信息</th>
+
+
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($data as $v)
                     <tr>
                         <td>{{$v->User->username}}</td>
-                        <td>{{$v->code}}</td>
-                        <td>{{$v->name}}</td>
+                        <td>{{isset($v->url)?$v->url:''}}</td>
+                        <td>{{isset($v->num)?$v->num:''}}</td>
+                        <td>@if($v->type == 1) BTC @elseif ($v->type == 2) ETH @else CNY @endif</td>
                         <td>{{$v->created_time}}</td>
-                        <td>{{$v->num}}</td>
-                        <td>{{$v->UnitPrice}}</td>
-                        <td>{{$v->TotalPrice}}</td>
-                        <td>@if($v->status == 1)<button type="button" class="btn btn-primary w-min-xs  waves-effect waves-light" >未支付</button>@elseif($v->status == 2)<button type="button" class="btn btn-success w-min-xs  waves-effect waves-light" >已经支付</button>@endif</td>
-                        <td>
-                            @if($v->status == 1)<a href="{{url('order/complete').'/'.$v->id}}" ><button type="button" class="btn btn-purple w-min-xs  waves-effect waves-light zhifu"  >确定支付</button></a>@else<button type="button" class="btn btn-success w-min-xs  waves-effect waves-light "  readonly>订单完成</button>@endif
-                        </td>
+                        <td>{{$v->info}}</td>
+{{--                        <td><a href="{{url('storage/app/public/pic/').'/'.$v->pic}}" target="_blank"> <button type="button" class="btn btn-success w-min-xs  waves-effect waves-light" >查看上传凭证</button></a></td>--}}
+
                     </tr>
                 @endforeach
                 </tbody>

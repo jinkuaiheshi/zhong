@@ -20,7 +20,7 @@
                     BTC
                 </div>
                 <div class="card_title_right">
-                    <a href="{{url('huazhuan')}}" >划转</a>
+                    <a href="{{url('getBTC')}}" >划转</a>
                     <a href="{{url('huazhuan')}}" >提币</a>
                     <a href="javascript:void(0)" >明细</a>
                 </div>
@@ -78,7 +78,7 @@
                     CNY
                 </div>
                 <div class="card_title_right">
-                    <a href="{{url('huazhuanCny')}}" >划转</a>
+
                     <a href="{{url('huazhuanCny')}}" >提币</a>
                     <a href="javascript:void(0)" >明细</a>
                 </div>
