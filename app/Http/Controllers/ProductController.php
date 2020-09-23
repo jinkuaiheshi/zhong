@@ -6,6 +6,7 @@ use App\Admin\Article;
 use App\Admin\Attr;
 use App\Admin\Cloud;
 use App\Admin\Column;
+use App\Admin\Huazhuan;
 use App\Admin\Order;
 use App\Admin\Product;
 use App\Admin\ProductModel;
@@ -607,6 +608,10 @@ class ProductController extends CommomController
     public function tibi(){
         $data = Tibi::with('User')->where('uid','>=',1)->get();
         return view('admin_tibi')->with('data',$data);
+    }
+    public function huazhuan(){
+        $data = Huazhuan::with('User')->where('uid','>=',1)->get();
+        return view('admin_huazhuan')->with('data',$data);
     }
     public function sysOrderDel(){
         $end = date('Y-m-d',time()-172800);

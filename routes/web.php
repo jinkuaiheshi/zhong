@@ -75,8 +75,10 @@ Route::group(['middleware'=>['web','Index']],function() {
     Route::get('/huazhuanCny', 'IndexController@huazhuanCny');
 
     Route::get('/getBTC', 'IndexController@getBTC');
+    Route::get('/getETH', 'IndexController@getETH');
 
     Route::post('/tibi', 'IndexController@tibi');
+    Route::post('/transfer', 'IndexController@transfer');
 });
 
 //总后台系统
@@ -133,7 +135,9 @@ Route::group(['middleware'=>['web','Admin']],function() {
 
 
     Route::get('/admin/sys/voucher', 'ProductController@voucher'); //订单凭证
-    Route::get('/admin/sys/tibi', 'ProductController@tibi'); //订单凭证
+    Route::get('/admin/sys/tibi', 'ProductController@tibi'); //
+    Route::get('/admin/sys/huazhuan', 'ProductController@huazhuan'); //
+
 
 
 

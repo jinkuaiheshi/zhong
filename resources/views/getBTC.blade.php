@@ -31,26 +31,36 @@
     </div>
     <div class="container">
         <div class="login_wrapper">
-            <form action="{{url('tibi') }}" method="post" id="loginForm">
+            <form action="{{url('transfer') }}" method="post" id="Form">
                 {{ csrf_field() }}
                 <div class="tibi" style="margin-top: 20px;">转出币种</div>
                 <div class="login_wrapper_inp border_1" >
-                    <input type="text"   class="wrapper_input" name="num" value="BTC" readonly style="border: 1px solid #d6d6d6; text-indent: 1em;"/>
+                    <input type="text"   class="wrapper_input" name="type" value="BTC" readonly style="border: 1px solid #d6d6d6; text-indent: 1em;"/>
                 </div>
                 <div class="tibi" style="margin-top: 10px;">划转数量</div>
                 <div class="login_wrapper_inp">
-                    <input type="text"  placeholder="" class="wrapper_input" name="num" style="border: 1px solid #d6d6d6; text-indent: 1em;margin-bottom: 0px;"/>
+                    <input type="number"  placeholder="@if($btc==0) 0.00000000 @else {{number_format($btc,8,'.','')}} @endif" class="wrapper_input" name="num" style="border: 1px solid #d6d6d6; text-indent: 1em;margin-bottom: 0px;" id="num"/>
                 </div>
-                <div class="tixing" style="margin-top: 1px; text-align: right;margin-bottom: 1px;">可用0.00000000btc</div>
+                <div class="tixing" style="margin-top: 1px; text-align: right;margin-bottom: 1px;">可用@if($btc==0) 0.00000000 @else {{number_format($btc,8,'.','')}} @endif btc</div>
 
-
+                <input type="hidden"   class="wrapper_input" name="uid" value="{{$info->id}}"/>
                 <div class="wrapper_submit"  style="margin-bottom: 80px; margin-top: 25px;">
-                    <button type="submit" class="sub_btn">确认提币</button>
+                    <button type="button" class="sub_btn">确认划转</button>
                 </div>
             </form>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script>
+        $('#num').change(function () {
+
+            if($('#num').val()> {{$btc}}){
+                alert('账户划转数量出错');
+            }else{
+                $('#Form').submit();
+            }
+        })
+    </script>
     @if(Session::has('message'))
         <div id="toast-container" class="toast-top-right" aria-live="polite" role="alert"><div class="toast
 @if(Session::get('type')=='danger')
@@ -61,5 +71,7 @@
                     {{Session::get('message')}}
                 </div></div></div>
     @endif
+
+
 @stop
 

@@ -7,6 +7,7 @@ use Aliyun\Core\AcsResponse;
 use App\Admin\Article;
 use App\Admin\Cash;
 use App\Admin\Column;
+use App\Admin\Huazhuan;
 use App\Admin\Kuaixun;
 use App\Admin\Order;
 use App\Admin\Product;
@@ -681,12 +682,40 @@ class IndexController extends CommomController
         return view('huazhuanCny')->with('cny',$data_cny);
     }
     public function getBTC(){
-        return view('getBTC');
+        $indexlogin = session('indexlogin');
+        $cash = Cash::where('uid',$indexlogin->id)->first();
+        if($cash){
+            $btc = $this->GetMyBtc();
+
+            return view('getBTC')->with('btc',$btc);
+        }else{
+            return view('goCash');
+
+        }
+
+    }
+    public function getETH(){
+        $indexlogin = session('indexlogin');
+        $cash = Cash::where('uid',$indexlogin->id)->first();
+        if($cash){
+            $eth = $this->GetMyETH();
+
+            return view('getETH')->with('eth',$eth);
+        }else{
+            return view('goCash');
+
+        }
+
     }
     public  function tibi(Request $request){
         if ($request->isMethod('POST')) {
-            $url = trim($request['url']);
+
             $num = trim($request['num']);
+            if($request['type'] == 3){
+                $url = '';
+            }else{
+                $url = trim($request['url']);
+            }
             $tibi = new Tibi();
             $tibi->url = $url;
             $tibi->num = $num;
@@ -700,6 +729,21 @@ class IndexController extends CommomController
                 return redirect(url()->previous())->with('message', '提币请求发起失败')->with('type','danger')->withInput();
             }
 
+        }
+    }
+    public function transfer(Request $request){
+        if ($request->isMethod('POST')) {
+            $num = trim($request['num']);
+            $transfer = new Huazhuan();
+            $transfer->num = $num;
+            $transfer->type = trim($request['type']);
+            $transfer->created_time = date('Y-m-d H:i:s',time());
+            $transfer->uid = trim($request['uid']);
+            if($transfer->save()){
+                return redirect(url()->previous())->with('message', '划转请求已经提交，等待审核')->with('type','success')->withInput();
+            }else{
+                return redirect(url()->previous())->with('message', '划转请求发起失败')->with('type','danger')->withInput();
+            }
         }
     }
     public function upload(Request $request){

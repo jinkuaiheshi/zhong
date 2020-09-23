@@ -36,7 +36,7 @@
                     <P class="per_p" style="margin-top: 6px;">@if($btc==0) 0.00000000 @else {{number_format($btc,8,'.','')}} @endif</P>
                 </div>
                 <div class="card_body_one">
-                    <p class="per_p"> 冻结(BTC)</p>
+                    <p class="per_p"> 冻结(CNY)</p>
                     <P class="per_p" style="margin-top: 6px;">@if($btc==0) 0.00000000 @else {{$hetong_btc}} @endif</P>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                     ETH
                 </div>
                 <div class="card_title_right">
-                    <a href="{{url('huazhuanEth')}}" >划转</a>
+                    <a href="{{url('getETH')}}" >划转</a>
                     <a href="{{url('huazhuanEth')}}" >提币</a>
                     <a href="javascript:void(0)" >明细</a>
                 </div>
@@ -65,7 +65,7 @@
                     <P class="per_p" style="margin-top: 6px;">@if($eth==0) 0.00000000 @else {{$eth}} @endif</P>
                 </div>
                 <div class="card_body_one">
-                    <p class="per_p"> 冻结(ETH)</p>
+                    <p class="per_p"> 冻结(CNY)</p>
                     <P class="per_p" style="margin-top: 6px;">@if($eth==0) 0.00000000 @else {{$hetong_eth}}  @endif</P>
                 </div>
             </div>

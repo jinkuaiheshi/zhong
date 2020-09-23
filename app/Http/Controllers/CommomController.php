@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Admin\Order;
 use App\Admin\User;
 use Illuminate\Http\Request;
 use Geetestlib;
@@ -66,5 +67,37 @@ class CommomController extends Controller
             }
             return $this->datas;
 
+    }
+    public function GetMyBtc(){
+        $indexlogin = session('indexlogin');
+        //$btc = Order::where('uid',$indexlogin->id)->get();
+        $btc = Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(16,18))->get();
+        //$btc = Order::where('uid',9)->where('status',2)->where('pid',16)->get();
+        $num = 0;
+        $hetong = 0;
+        if(count($btc)>0){
+            foreach ($btc as $v){
+                $time = (time() - strtotime($v->force_time))/ 86400;
+                $num+=floor($time)*0.00000803;
+
+            }
+        }
+        return $num;
+    }
+    public function GetMyEth(){
+        $indexlogin = session('indexlogin');
+        //$btc = Order::where('uid',$indexlogin->id)->get();
+        $eth = Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(17,19))->get();
+        //$btc = Order::where('uid',9)->where('status',2)->where('pid',16)->get();
+        $num = 0;
+        $hetong = 0;
+        if(count($eth)>0){
+            foreach ($eth as $v){
+                $time = (time() - strtotime($v->force_time))/ 86400;
+                $num+=floor($time)*0.00067;
+
+            }
+        }
+        return $num;
     }
 }
