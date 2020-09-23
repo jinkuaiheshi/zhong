@@ -79,7 +79,7 @@
                 </div>
                 <div class="card_title_right">
 
-                    <a href="{{url('huazhuanCny')}}" >提币</a>
+                    <a href="{{url('huazhuanCny')}}" >提现</a>
                     <a href="javascript:void(0)" >明细</a>
                 </div>
             </div>

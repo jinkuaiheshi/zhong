@@ -49,7 +49,7 @@
                 </div>
                 <div class="tibi" style="margin-top: 10px;">提币数量</div>
                 <div class="login_wrapper_inp">
-                    <input type="text"  placeholder="最低转出金额为0.003" class="wrapper_input" name="num"/>
+                    <input type="text"  placeholder="最低转出为0.003" class="wrapper_input" name="num"/>
                 </div>
                 <div class="tibi" style="margin-top: 10px;">备注（选填）</div>
                 <div class="login_wrapper_inp">

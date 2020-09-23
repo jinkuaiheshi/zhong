@@ -44,7 +44,7 @@
             <form action="{{url('tibi') }}" method="post" id="loginForm">
                 {{ csrf_field() }}
 
-                <div class="tibi" style="margin-top: 10px;">提币数量</div>
+                <div class="tibi" style="margin-top: 10px;">提现金额</div>
                 <div class="login_wrapper_inp">
                     <input type="text"  placeholder="100元起提" class="wrapper_input" name="num"/>
                 </div>
@@ -57,7 +57,7 @@
                 <input type="hidden"   class="wrapper_input" name="uid" value="{{$info->id}}"/>
                 <input type="hidden"   class="wrapper_input" name="type" value="3"/>
                 <div class="wrapper_submit"  style="margin-bottom: 80px; margin-top: 15px;">
-                    <button type="submit" class="sub_btn">确认提币</button>
+                    <button type="submit" class="sub_btn">确认提现</button>
                 </div>
             </form>
         </div>
