@@ -53,7 +53,7 @@
                     <input type="text"  placeholder="仅在交易明细展示" class="wrapper_input" name="info"/>
                 </div>
                 <div class="tishi" style="margin-top: 10px;">温馨提示</div>
-                <div class="tishi" style="margin-top: 10px;">提现不需要手续费,币划转CNY<br/>免手续费（根据实时比价结算）</div>
+                <div class="tishi" style="margin-top: 10px;">提现不需要手续费<br/>币划转CNY免手续费（根据实时比价结算）</div>
                 <input type="hidden"   class="wrapper_input" name="uid" value="{{$info->id}}"/>
                 <input type="hidden"   class="wrapper_input" name="type" value="3"/>
                 <div class="wrapper_submit"  style="margin-bottom: 80px; margin-top: 15px;">

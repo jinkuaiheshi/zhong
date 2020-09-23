@@ -398,7 +398,7 @@ class IndexController extends CommomController
             foreach ($btc as $v){
                 $time = (time() - strtotime($v->force_time))/ 86400;
                 $num+=floor($time)*0.00000803;
-                $hetong+=$v->TotalPrice;
+                $hetong+=$v->UnitPrice;
             }
         }
         $data_btc = $num;
@@ -413,7 +413,7 @@ class IndexController extends CommomController
                 $time = (time() - strtotime($v->force_time))/ 86400;
 
                 $num_eth+=floor($time)*0.00067;
-                $hetong2+=$v->TotalPrice;
+                $hetong2+=$v->UnitPrice;
             }
         }
         $data_eth = $num_eth;
@@ -607,7 +607,7 @@ class IndexController extends CommomController
             foreach ($btc as $v){
                 $time = (time() - strtotime($v->force_time))/ 86400;
                 $num+=floor($time)*0.00000803;
-                $hetong+=$v->TotalPrice;
+                $hetong+=$v->UnitPrice;
             }
         }
         $data_btc = $num;
