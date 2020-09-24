@@ -42,7 +42,7 @@
                     <input type="number"  placeholder="@if($btc==0) 0.00000000 @else {{number_format($btc,8,'.','')}} @endif" class="wrapper_input" name="num" style="border: 1px solid #d6d6d6; text-indent: 1em;margin-bottom: 0px;" id="num"/>
                 </div>
                 <div class="tixing" style="margin-top: 1px; text-align: right;margin-bottom: 1px;">可用@if($btc==0) 0.00000000 @else {{number_format($btc,8,'.','')}} @endif btc</div>
-
+                <div class="tixing" style="margin-top: 1px; text-align: right;margin-bottom: 1px;">当前币价≈{{$bijia}}</div>
                 <input type="hidden"   class="wrapper_input" name="uid" value="{{$info->id}}"/>
                 <div class="wrapper_submit"  style="margin-bottom: 80px; margin-top: 25px;">
                     <button type="button" class="sub_btn">确认划转</button>

@@ -390,7 +390,7 @@ class IndexController extends CommomController
     public function personal(){
         $indexlogin = session('indexlogin');
         //$btc = Order::where('uid',$indexlogin->id)->get();
-        $btc = Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(16,18))->get();
+        $btc = Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(5,6,7,8,9,10,16,18,22,23))->get();
         //$btc = Order::where('uid',9)->where('status',2)->where('pid',16)->get();
         $num = 0;
         $hetong = 0;
@@ -398,7 +398,10 @@ class IndexController extends CommomController
             foreach ($btc as $v){
                 $time = (time() - strtotime($v->force_time))/ 86400;
                 $num+=floor($time)*0.00000803;
-                $hetong+=$v->UnitPrice;
+
+                if($v->pid != 18){
+                    $hetong+=$v->UnitPrice;
+                }
             }
         }
         $data_btc = $num;
@@ -413,7 +416,10 @@ class IndexController extends CommomController
                 $time = (time() - strtotime($v->force_time))/ 86400;
 
                 $num_eth+=floor($time)*0.00067;
-                $hetong2+=$v->UnitPrice;
+                if($v->pid != 19){
+                    $hetong2+=$v->UnitPrice;
+                }
+
             }
         }
         $data_eth = $num_eth;
@@ -461,7 +467,64 @@ class IndexController extends CommomController
             }
         }
         $data_cny = $num;
-        return view('personal')->with('user',$indexlogin)->with('btc',$data_btc)->with('eth',$data_eth)->with('cny',$data_cny)->with('hetong_btc',$hetong_btc)->with('hetong_eth',$hetong_eth);
+
+        //可用CNY
+        $end = date('Y-m-d',strtotime ( "-1 month" ));
+        $num_keyong = 0;
+        $keyong = Order::where('status',2)->whereIn('pid',array(6,7,8,9,10,5,22,23))->whereDate('force_time','<=',$end)->get();
+        if(count($keyong)>0){
+            foreach ($keyong as $v){
+                if($v->pid== 22 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    $num_keyong+=floor($time)*100;
+                }
+                if($v->pid== 23 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    $num_keyong+=floor($time)*462*$v->num;
+                }
+                if($v->pid== 5 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    $num_keyong+=floor($time)*420*$v->num;
+                }
+                if($v->pid== 6 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    $num_keyong+=floor($time)*441*$v->num;
+                }
+                if($v->pid== 7 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    $num_keyong+=floor($time)*462*$v->num;
+                }
+                if($v->pid== 8 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    $num_keyong+=floor($time)*31.5*$v->num;
+                }
+                if($v->pid== 9 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    $num_keyong+=floor($time)*37.8*$v->num;
+                }
+                if($v->pid== 10 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    $num_keyong+=floor($time)*42*$v->num;
+                }
+            }
+        }
+        //减去提取出来的钱
+        //$tiqu = Tibi::where('status',)->get();
+//        $ch = curl_init();
+//        curl_setopt($ch,CURLOPT_URL, 'https://otc-api.eiijo.cn/v1/data/config/purchase-price?coinId=1&currencyId=1&matchType=0');
+//        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+//        curl_setopt($ch,CURLOPT_HEADER,0);
+//        curl_setopt($ch, CURLOPT_TIMEOUT,60);
+//        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+//        curl_setopt ($ch, CURLOPT_HTTPHEADER, [
+//            "Content-Type: application/json",
+//        ]);
+//        $output = curl_exec($ch);
+//        $info = curl_getinfo($ch);
+//        curl_close($ch);
+//        dd($output);
+
+        return view('personal')->with('user',$indexlogin)->with('btc',$data_btc)->with('eth',$data_eth)->with('cny',$data_cny)->with('hetong_btc',$hetong_btc)->with('hetong_eth',$hetong_eth)->with('keyong',$num_keyong);
     }
     public function profile(){
         $indexlogin = session('indexlogin');
@@ -686,8 +749,20 @@ class IndexController extends CommomController
         $cash = Cash::where('uid',$indexlogin->id)->first();
         if($cash){
             $btc = $this->GetMyBtc();
+        $ch = curl_init();
+        curl_setopt($ch,CURLOPT_URL, 'https://otc-api.eiijo.cn/v1/data/config/purchase-price?coinId=1&currencyId=1&matchType=0');
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch,CURLOPT_HEADER,0);
+        curl_setopt($ch, CURLOPT_TIMEOUT,60);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+        curl_setopt ($ch, CURLOPT_HTTPHEADER, [
+            "Content-Type: application/json",
+        ]);
+        $output = curl_exec($ch);
+        $info = curl_getinfo($ch);
+        curl_close($ch);
 
-            return view('getBTC')->with('btc',$btc);
+            return view('getBTC')->with('btc',$btc)->with('bijia',json_decode($output)->data->price);
         }else{
             return view('goCash');
 
@@ -699,8 +774,19 @@ class IndexController extends CommomController
         $cash = Cash::where('uid',$indexlogin->id)->first();
         if($cash){
             $eth = $this->GetMyETH();
-
-            return view('getETH')->with('eth',$eth);
+            $ch = curl_init();
+            curl_setopt($ch,CURLOPT_URL, 'https://otc-api.eiijo.cn/v1/data/config/purchase-price?coinId=3&currencyId=1&matchType=0');
+            curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+            curl_setopt($ch,CURLOPT_HEADER,0);
+            curl_setopt($ch, CURLOPT_TIMEOUT,60);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+            curl_setopt ($ch, CURLOPT_HTTPHEADER, [
+                "Content-Type: application/json",
+            ]);
+            $output = curl_exec($ch);
+            $info = curl_getinfo($ch);
+            curl_close($ch);
+            return view('getETH')->with('eth',$eth)->with('bijia',json_decode($output)->data->price);;
         }else{
             return view('goCash');
 

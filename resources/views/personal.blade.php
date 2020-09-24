@@ -91,11 +91,11 @@
                 </div>
                 <div class="card_body_one">
                     <p class="per_p"> 可用(CNY)</p>
-                    <P class="per_p" style="margin-top: 6px;">@if($cny==0) 0.00000000 @else {{$cny}} @endif</P>
+                    <P class="per_p" style="margin-top: 6px;">@if($keyong==0) 0.00000000 @else {{$keyong}} @endif</P>
                 </div>
                 <div class="card_body_one">
                     <p class="per_p"> 冻结(CNY)</p>
-                    <P class="per_p" style="margin-top: 6px;">0.0000000</P>
+                    <P class="per_p" style="margin-top: 6px;">@if($hetong_btc==0 && $hetong_eth) 0.00000000 @else {{$hetong_btc + $hetong_eth }}  @endif</P>
                 </div>
             </div>
         </div>
