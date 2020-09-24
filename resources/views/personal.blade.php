@@ -95,7 +95,7 @@
                 </div>
                 <div class="card_body_one">
                     <p class="per_p"> 冻结(CNY)</p>
-                    <P class="per_p" style="margin-top: 6px;">@if($todel==0 && $keyong ==0 ) 0.00000000 @else {{$todel + $keyong }}  @endif</P>
+                    <P class="per_p" style="margin-top: 6px;">@if($todel==0 ) 0.00000000 @else {{$todel }}  @endif</P>
                 </div>
             </div>
         </div>
