@@ -471,7 +471,7 @@ class IndexController extends CommomController
         //可用CNY
         $end = date('Y-m-d',strtotime ( "-1 month" ));
         $num_keyong = 0;
-        $keyong = Order::where('status',2)->whereIn('pid',array(6,7,8,9,10,5,22,23))->whereDate('force_time','<=',$end)->get();
+        $keyong = Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(6,7,8,9,10,5,22,23))->whereDate('force_time','<=',$end)->get();
         if(count($keyong)>0){
             foreach ($keyong as $v){
                 if($v->pid== 22 ){
@@ -508,6 +508,18 @@ class IndexController extends CommomController
                 }
             }
         }
+        //总资产
+        $todel=0;
+        $todel_zichan = Order::where('uid',$indexlogin->id)->where('status',2)->get();
+        if(count($todel_zichan)>0){
+            foreach ($todel_zichan as $v){
+
+                if($v->pid != 19 && $v->pid != 18){
+                    $todel+=$v->UnitPrice;
+                }
+
+            }
+        }
         //减去提取出来的钱
         //$tiqu = Tibi::where('status',)->get();
 //        $ch = curl_init();
@@ -524,7 +536,7 @@ class IndexController extends CommomController
 //        curl_close($ch);
 //        dd($output);
 
-        return view('personal')->with('user',$indexlogin)->with('btc',$data_btc)->with('eth',$data_eth)->with('cny',$data_cny)->with('hetong_btc',$hetong_btc)->with('hetong_eth',$hetong_eth)->with('keyong',$num_keyong);
+        return view('personal')->with('user',$indexlogin)->with('btc',$data_btc)->with('eth',$data_eth)->with('cny',$data_cny)->with('hetong_btc',$hetong_btc)->with('hetong_eth',$hetong_eth)->with('keyong',$num_keyong)->with('todel',$todel);
     }
     public function profile(){
         $indexlogin = session('indexlogin');
