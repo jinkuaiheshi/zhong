@@ -390,7 +390,7 @@ class IndexController extends CommomController
     public function personal(){
         $indexlogin = session('indexlogin');
         //$btc = Order::where('uid',$indexlogin->id)->get();
-        $btc = Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(5,6,7,8,9,10,16,18,22,23))->get();
+        $btc = Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(16,18))->get();
         //$btc = Order::where('uid',9)->where('status',2)->where('pid',16)->get();
         $num = 0;
         $hetong = 0;
