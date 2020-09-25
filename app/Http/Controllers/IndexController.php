@@ -397,7 +397,16 @@ class IndexController extends CommomController
         if(count($btc)>0){
             foreach ($btc as $v){
                 $time = (time() - strtotime($v->force_time))/ 86400;
-                $num+=floor($time)*0.00000803;
+                if($v->pid ==16 ){
+                    if($time<=30){
+                        $num+=floor($time)*0.00000803;
+                    }else{
+                        $time = 30;
+                        $num+=floor($time)*0.00000803;
+                    }
+                }else{
+                    $num+=floor($time)*0.00000803;
+                }
 
                 if($v->pid != 18){
                     $hetong+=$v->UnitPrice;
@@ -430,7 +439,18 @@ class IndexController extends CommomController
         if(count($eth)>0){
             foreach ($eth as $v){
                 $time = (time() - strtotime($v->force_time))/ 86400;
-                $num_eth+=floor($time)*0.00067;
+                if($v->pid ==17 ){
+                    if($time<=30){
+                        $num_eth+=floor($time)*0.00067;
+                    }else{
+                        $time = 30;
+                        $num_eth+=floor($time)*0.00067;
+                    }
+                }else{
+                    $num_eth+=floor($time)*0.00067;
+                }
+
+
                 if($v->pid != 19){
                     $hetong2+=$v->UnitPrice;
                 }

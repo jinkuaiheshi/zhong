@@ -112,7 +112,17 @@ class CommomController extends Controller
         if(count($btc)>0){
             foreach ($btc as $v){
                 $time = (time() - strtotime($v->force_time))/ 86400;
-                $num+=floor($time)*0.00000803;
+                if($v->pid ==16 ){
+                    if($time<=30){
+                        $num+=floor($time)*0.00000803;
+                    }else{
+                        $time = 30;
+                        $num+=floor($time)*0.00000803;
+                    }
+                }else{
+                    $num+=floor($time)*0.00000803;
+                }
+
             }
         }
         //BTC总资产 / 可用资产 还需要减去划转 跟 提币扣掉的
@@ -142,7 +152,18 @@ class CommomController extends Controller
         if(count($eth)>0){
             foreach ($eth as $v){
                 $time = (time() - strtotime($v->force_time))/ 86400;
-                $num_eth+=floor($time)*0.00067;
+
+                if($v->pid ==17 ){
+                    if($time<=30){
+                        $num_eth+=floor($time)*0.00067;
+                    }else{
+                        $time = 30;
+                        $num_eth+=floor($time)*0.00067;
+                    }
+                }else{
+                    $num_eth+=floor($time)*0.00067;
+                }
+
             }
         }
 
