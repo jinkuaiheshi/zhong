@@ -837,6 +837,7 @@ class IndexController extends CommomController
             $transfer->type = trim($request['type']);
             $transfer->created_time = date('Y-m-d H:i:s',time());
             $transfer->uid = trim($request['uid']);
+            $transfer->bijia = trim($request['bijia']);
             if($transfer->save()){
                 return redirect(url()->previous())->with('message', '划转请求已经提交，等待审核')->with('type','success')->withInput();
             }else{

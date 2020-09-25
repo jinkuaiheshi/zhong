@@ -137,6 +137,8 @@ Route::group(['middleware'=>['web','Admin']],function() {
     Route::get('/admin/sys/voucher', 'ProductController@voucher'); //订单凭证
     Route::get('/admin/sys/tibi', 'ProductController@tibi'); //
     Route::get('/admin/sys/huazhuan', 'ProductController@huazhuan'); //
+    Route::get('/admin/sys/huazhuan/success/{id}', 'ProductController@success'); //
+    Route::get('/admin/sys/huazhuan/danger/{id}', 'ProductController@danger'); //
 
 
 

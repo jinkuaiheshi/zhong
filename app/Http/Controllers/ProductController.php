@@ -610,7 +610,7 @@ class ProductController extends CommomController
         return view('admin_tibi')->with('data',$data);
     }
     public function huazhuan(){
-        $data = Huazhuan::with('User')->where('uid','>=',1)->get();
+        $data = Huazhuan::with('User','Realname')->where('uid','>=',1)->get();
         return view('admin_huazhuan')->with('data',$data);
     }
     public function sysOrderDel(){
@@ -623,5 +623,31 @@ class ProductController extends CommomController
             }
         }
         return redirect(url()->previous())->with('message', '清除订单成功')->with('type','success')->withInput();
+    }
+    public function success($id){
+        $huazhuan = Huazhuan::where('id',$id)->first();
+        if($huazhuan){
+            $huazhuan->status = 2;
+            $huazhuan->shenhe_time = date('Y-m-d H:i:s',time());
+            if($huazhuan->update()){
+                return redirect(url()->previous())->with('message', '操作成功')->with('type','success')->withInput();
+            }else{
+                return redirect(url()->previous())->with('message', '操作失败')->with('type','danger')->withInput();
+            }
+
+        }
+    }
+    public function danger($id){
+        $huazhuan = Huazhuan::where('id',$id)->first();
+        if($huazhuan){
+            $huazhuan->status = 3;
+            $huazhuan->shenhe_time = date('Y-m-d H:i:s',time());
+            if($huazhuan->update()){
+                return redirect(url()->previous())->with('message', '操作成功')->with('type','success')->withInput();
+            }else{
+                return redirect(url()->previous())->with('message', '操作失败')->with('type','danger')->withInput();
+            }
+
+        }
     }
 }
