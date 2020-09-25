@@ -404,8 +404,24 @@ class IndexController extends CommomController
                 }
             }
         }
-        $data_btc = $num;
+
         $hetong_btc = $hetong;
+        //BTC总资产 / 可用资产 还需要减去划转 跟 提币扣掉的
+        $tibi_btc = Tibi::where('uid',$indexlogin->id)->where('status',2)->where('type',1)->get();
+        $tibi_num = 0;
+        if(count($tibi_btc)>0){
+            foreach ($tibi_btc as $v){
+                $tibi_num+=$v->num;
+            }
+        }
+        $huazhuan_btc = Huazhuan::where('uid',$indexlogin->id)->where('status',2)->where('type','BTC')->get();
+        $huazhuan_num = 0;
+        if(count($huazhuan_btc)>0){
+            foreach ($huazhuan_btc as $v){
+                $huazhuan_num+=$v->num;
+            }
+        }
+        $data_btc = $num - $tibi_num - $huazhuan_num;
 
         $eth = Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(17,19))->get();
        // $eth = Order::where('uid',9)->where('status',2)->where('pid',17)->get();
@@ -671,22 +687,7 @@ class IndexController extends CommomController
         return view('team')->with('data', $datas);
     }
     public function huazhuan(){
-        //计算资产
-        $indexlogin = session('indexlogin');
-        //$btc = Order::where('uid',$indexlogin->id)->get();
-        $btc = Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(16,18))->get();
-        //$btc = Order::where('uid',9)->where('status',2)->where('pid',16)->get();
-        $num = 0;
-        $hetong = 0;
-        if(count($btc)>0){
-            foreach ($btc as $v){
-                $time = (time() - strtotime($v->force_time))/ 86400;
-                $num+=floor($time)*0.00000803;
-                $hetong+=$v->UnitPrice;
-            }
-        }
-        $data_btc = $num;
-
+        $data_btc = $this ->GetMySuoyouBtc();
         return view('huazhuan')->with('btc',$data_btc);
     }
     public function huazhuanEth(){
@@ -760,7 +761,7 @@ class IndexController extends CommomController
         $indexlogin = session('indexlogin');
         $cash = Cash::where('uid',$indexlogin->id)->first();
         if($cash){
-            $btc = $this->GetMyBtc();
+            $btc = $this->GetMySuoyouBtc();
         $ch = curl_init();
         curl_setopt($ch,CURLOPT_URL, 'https://otc-api.eiijo.cn/v1/data/config/purchase-price?coinId=1&currencyId=1&matchType=0');
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
@@ -844,6 +845,31 @@ class IndexController extends CommomController
                 return redirect(url()->previous())->with('message', '划转请求发起失败')->with('type','danger')->withInput();
             }
         }
+    }
+    public function btc_mingxi(){
+        $indexlogin = session('indexlogin');
+        //订单收益BTC
+        $order = Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(16,18))->get();
+        $data = array();
+        $datas = array();
+        if(count($order)>0){
+            foreach ($order as $v){
+                $time = (time() - strtotime($v->force_time))/ 86400;
+                $data['shouyi'] = number_format(floor($time)*0.00000803,8,'.','');
+                $data['name'] = $v->name;
+                $data['code'] = $v->code;
+                $data['TotalPrice'] = $v->TotalPrice;
+                $data['force_time'] = $v->force_time;
+                $datas[] = $data;
+            }
+        }
+        //提币消耗
+        $tibi = Tibi::where('uid',$indexlogin->id)->where('status',2)->where('type',1)->get();
+
+        //划转消耗
+        $huazhuan = Huazhuan::where('uid',$indexlogin->id)->where('status',2)->where('type','BTC')->get();
+
+        return view('btc_mingxi')->with('data',$datas)->with('tibi',$tibi)->with('huazhuan',$huazhuan);
     }
     public function upload(Request $request){
         if ($request->isMethod('POST')) {

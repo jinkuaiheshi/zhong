@@ -22,7 +22,7 @@
                 <div class="card_title_right">
                     <a href="{{url('getBTC')}}" >划转</a>
                     <a href="{{url('huazhuan')}}" >提币</a>
-                    <a href="javascript:void(0)" >明细</a>
+                    <a href="{{url('btc_mingxi')}}" >明细</a>
                 </div>
             </div>
             <div class="card_body">

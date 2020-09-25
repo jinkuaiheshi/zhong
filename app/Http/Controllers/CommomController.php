@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Admin\Huazhuan;
 use App\Admin\Order;
+use App\Admin\Tibi;
 use App\Admin\User;
 use Illuminate\Http\Request;
 use Geetestlib;
@@ -100,4 +102,36 @@ class CommomController extends Controller
         }
         return $num;
     }
+    public function GetMySuoyouBtc(){
+        $indexlogin = session('indexlogin');
+        //$btc = Order::where('uid',$indexlogin->id)->get();
+        $btc = Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(16,18))->get();
+        //$btc = Order::where('uid',9)->where('status',2)->where('pid',16)->get();
+        $num = 0;
+        $hetong = 0;
+        if(count($btc)>0){
+            foreach ($btc as $v){
+                $time = (time() - strtotime($v->force_time))/ 86400;
+                $num+=floor($time)*0.00000803;
+            }
+        }
+        //BTC总资产 / 可用资产 还需要减去划转 跟 提币扣掉的
+        $tibi_btc = Tibi::where('uid',$indexlogin->id)->where('status',2)->where('type',1)->get();
+        $tibi_num = 0;
+        if(count($tibi_btc)>0){
+            foreach ($tibi_btc as $v){
+                $tibi_num+=$v->num;
+            }
+        }
+        $huazhuan_btc = Huazhuan::where('uid',$indexlogin->id)->where('status',2)->where('type','BTC')->get();
+        $huazhuan_num = 0;
+        if(count($huazhuan_btc)>0){
+            foreach ($huazhuan_btc as $v){
+                $huazhuan_num+=$v->num;
+            }
+        }
+        $data_btc = $num - $tibi_num - $huazhuan_num;
+        return $data_btc;
+    }
+
 }

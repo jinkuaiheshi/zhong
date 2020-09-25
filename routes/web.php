@@ -79,6 +79,8 @@ Route::group(['middleware'=>['web','Index']],function() {
 
     Route::post('/tibi', 'IndexController@tibi');
     Route::post('/transfer', 'IndexController@transfer');
+
+    Route::get('/btc_mingxi', 'IndexController@btc_mingxi');
 });
 
 //总后台系统
@@ -139,7 +141,8 @@ Route::group(['middleware'=>['web','Admin']],function() {
     Route::get('/admin/sys/huazhuan', 'ProductController@huazhuan'); //
     Route::get('/admin/sys/huazhuan/success/{id}', 'ProductController@success'); //
     Route::get('/admin/sys/huazhuan/danger/{id}', 'ProductController@danger'); //
-
+    Route::get('/admin/sys/tibi/success/{id}', 'ProductController@tibi_success'); //
+    Route::get('/admin/sys/tibi/danger/{id}', 'ProductController@tibi_danger'); //
 
 
 

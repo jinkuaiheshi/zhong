@@ -14,4 +14,8 @@ class Tibi extends Model
     {
         return $this->hasOne('App\Admin\User','id','uid');
     }
+    public function Realname()
+    {
+        return $this->hasOne('App\Admin\Realname','uid','uid');
+    }
 }

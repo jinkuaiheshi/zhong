@@ -606,7 +606,7 @@ class ProductController extends CommomController
         return view('admin_voucher')->with('data',$data);
     }
     public function tibi(){
-        $data = Tibi::with('User')->where('uid','>=',1)->get();
+        $data = Tibi::with('User','Realname')->where('uid','>=',1)->get();
         return view('admin_tibi')->with('data',$data);
     }
     public function huazhuan(){
@@ -643,6 +643,34 @@ class ProductController extends CommomController
             $huazhuan->status = 3;
             $huazhuan->shenhe_time = date('Y-m-d H:i:s',time());
             if($huazhuan->update()){
+                return redirect(url()->previous())->with('message', '操作成功')->with('type','success')->withInput();
+            }else{
+                return redirect(url()->previous())->with('message', '操作失败')->with('type','danger')->withInput();
+            }
+
+        }
+    }
+    //tibi_success
+    public function tibi_success($id){
+        $tibi = Tibi::where('id',$id)->first();
+        if($tibi){
+            $tibi->status = 2;
+            $tibi->shenhe_time = date('Y-m-d H:i:s',time());
+            if($tibi->update()){
+                return redirect(url()->previous())->with('message', '操作成功')->with('type','success')->withInput();
+            }else{
+                return redirect(url()->previous())->with('message', '操作失败')->with('type','danger')->withInput();
+            }
+
+        }
+    }
+
+    public function tibi_danger($id){
+        $tibi = Tibi::where('id',$id)->first();
+        if($tibi){
+            $tibi->status = 3;
+            $tibi->shenhe_time = date('Y-m-d H:i:s',time());
+            if($tibi->update()){
                 return redirect(url()->previous())->with('message', '操作成功')->with('type','success')->withInput();
             }else{
                 return redirect(url()->previous())->with('message', '操作失败')->with('type','danger')->withInput();
