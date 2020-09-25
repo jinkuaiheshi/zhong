@@ -430,7 +430,6 @@ class IndexController extends CommomController
         if(count($eth)>0){
             foreach ($eth as $v){
                 $time = (time() - strtotime($v->force_time))/ 86400;
-
                 $num_eth+=floor($time)*0.00067;
                 if($v->pid != 19){
                     $hetong2+=$v->UnitPrice;
@@ -438,8 +437,23 @@ class IndexController extends CommomController
 
             }
         }
-        $data_eth = $num_eth;
         $hetong_eth = $hetong2;
+
+        $tibi_eth = Tibi::where('uid',$indexlogin->id)->where('status',2)->where('type',2)->get();
+        $tibi_eth_num = 0;
+        if(count($tibi_eth)>0){
+            foreach ($tibi_eth as $v){
+                $tibi_eth_num+=$v->num;
+            }
+        }
+        $huazhuan_eth = Huazhuan::where('uid',$indexlogin->id)->where('status',2)->where('type','ETH')->get();
+        $huazhuan_eth_num = 0;
+        if(count($huazhuan_eth)>0){
+            foreach ($huazhuan_eth as $v){
+                $huazhuan_eth_num+=$v->num;
+            }
+        }
+        $data_eth = $num_eth - $tibi_eth_num - $huazhuan_eth_num;
         //$cny = 0;
         //$cny =  Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(17,19))->get();
         $cny = Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(5,6,7,8,9,10,22,23))->get();
@@ -692,21 +706,7 @@ class IndexController extends CommomController
     }
     public function huazhuanEth(){
         //计算资产
-        $indexlogin = session('indexlogin');
-        //$btc = Order::where('uid',$indexlogin->id)->get();
-        $eth = Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(17,19))->get();
-        //$btc = Order::where('uid',9)->where('status',2)->where('pid',16)->get();
-        $num = 0;
-        $hetong = 0;
-        if(count($eth)>0){
-            foreach ($eth as $v){
-                $time = (time() - strtotime($v->force_time))/ 86400;
-
-                $num+=floor($time)*0.00067;
-               // $hetong2+=$v->TotalPrice;
-            }
-        }
-        $data_eth = $num;
+        $num = $this->GetMySuoyouEth();
         return view('huazhuanEth')->with('eth',$num);
     }
     public function huazhuanCny(){
@@ -786,7 +786,7 @@ class IndexController extends CommomController
         $indexlogin = session('indexlogin');
         $cash = Cash::where('uid',$indexlogin->id)->first();
         if($cash){
-            $eth = $this->GetMyETH();
+            $eth = $this->GetMySuoyouEth();
             $ch = curl_init();
             curl_setopt($ch,CURLOPT_URL, 'https://otc-api.eiijo.cn/v1/data/config/purchase-price?coinId=3&currencyId=1&matchType=0');
             curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
@@ -835,6 +835,7 @@ class IndexController extends CommomController
             $num = trim($request['num']);
             $transfer = new Huazhuan();
             $transfer->num = $num;
+
             $transfer->type = trim($request['type']);
             $transfer->created_time = date('Y-m-d H:i:s',time());
             $transfer->uid = trim($request['uid']);
@@ -870,6 +871,31 @@ class IndexController extends CommomController
         $huazhuan = Huazhuan::where('uid',$indexlogin->id)->where('status',2)->where('type','BTC')->get();
 
         return view('btc_mingxi')->with('data',$datas)->with('tibi',$tibi)->with('huazhuan',$huazhuan);
+    }
+    public function eth_mingxi(){
+        $indexlogin = session('indexlogin');
+        //订单收益BTC
+        $order = Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(17,19))->get();
+        $data = array();
+        $datas = array();
+        if(count($order)>0){
+            foreach ($order as $v){
+                $time = (time() - strtotime($v->force_time))/ 86400;
+                $data['shouyi'] = number_format(floor($time)*0.00067,5,'.','');
+                $data['name'] = $v->name;
+                $data['code'] = $v->code;
+                $data['TotalPrice'] = $v->TotalPrice;
+                $data['force_time'] = $v->force_time;
+                $datas[] = $data;
+            }
+        }
+        //提币消耗
+        $tibi = Tibi::where('uid',$indexlogin->id)->where('status',2)->where('type',2)->get();
+
+        //划转消耗
+        $huazhuan = Huazhuan::where('uid',$indexlogin->id)->where('status',2)->where('type','ETH')->get();
+
+        return view('eth_mingxi')->with('data',$datas)->with('tibi',$tibi)->with('huazhuan',$huazhuan);
     }
     public function upload(Request $request){
         if ($request->isMethod('POST')) {

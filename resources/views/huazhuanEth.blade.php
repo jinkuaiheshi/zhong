@@ -24,7 +24,7 @@
                 总资产
             </div>
             <div class="btc_wapper_info" style="margin-top:20px;">
-                @if($eth==0) 0.00000000 @else {{number_format($eth,8,'.','')}} @endif
+                @if($eth==0) 0.00000000 @else {{number_format($eth,5,'.','')}} @endif
             </div>
 
         </div>
@@ -41,7 +41,7 @@
     {{--    </div>--}}
     <div class="container">
         <div class="login_wrapper">
-            <form action="{{url('tibi') }}" method="post" id="loginForm">
+            <form action="{{url('tibi') }}" method="post" id="Form">
                 {{ csrf_field() }}
                 <div class="tibi" style="margin-top: 20px;">提币地址</div>
                 <div class="login_wrapper_inp border_1" >
@@ -49,7 +49,7 @@
                 </div>
                 <div class="tibi" style="margin-top: 10px;">提币数量</div>
                 <div class="login_wrapper_inp">
-                    <input type="text"  placeholder="最低转出为0.2" class="wrapper_input" name="num"/>
+                    <input type="text"  placeholder="最低转出为0.2" class="wrapper_input" name="num" id="num"/>
                 </div>
                 <div class="tibi" style="margin-top: 10px;">备注（选填）</div>
                 <div class="login_wrapper_inp">
@@ -60,13 +60,26 @@
                 <input type="hidden"   class="wrapper_input" name="uid" value="{{$info->id}}"/>
                 <input type="hidden"   class="wrapper_input" name="type" value="2"/>
                 <div class="wrapper_submit"  style="margin-bottom: 80px; margin-top: 15px;">
-                    <button type="submit" class="sub_btn">确认提币</button>
+                    <button type="button" class="sub_btn">确认提币</button>
                 </div>
             </form>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+
+    <script>
+        $('#num').change(function () {
+
+            if($('#num').val()<0.2){
+                alert('最低转出为0.2');
+            }else{
+                $('.sub_btn').click(function () {
+                    $('#Form').submit();
+                })
+            }
+        })
+    </script>
     @if(Session::has('message'))
         <div id="toast-container" class="toast-top-right" aria-live="polite" role="alert"><div class="toast
 @if(Session::get('type')=='danger')

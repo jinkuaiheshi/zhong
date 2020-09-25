@@ -81,6 +81,7 @@ Route::group(['middleware'=>['web','Index']],function() {
     Route::post('/transfer', 'IndexController@transfer');
 
     Route::get('/btc_mingxi', 'IndexController@btc_mingxi');
+    Route::get('/eth_mingxi', 'IndexController@eth_mingxi');
 });
 
 //总后台系统

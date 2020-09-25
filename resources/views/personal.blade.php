@@ -51,18 +51,18 @@
                 <div class="card_title_right">
                     <a href="{{url('getETH')}}" >划转</a>
                     <a href="{{url('huazhuanEth')}}" >提币</a>
-                    <a href="javascript:void(0)" >明细</a>
+                    <a href="{{url('eth_mingxi')}}" >明细</a>
                 </div>
             </div>
             <div class="card_body">
                 <div class="card_body_one" style="margin-left: 5%">
 
                     <p class="per_p">总资产(ETH)</p>
-                    <P class="per_p" style="margin-top: 6px;">@if($eth==0) 0.00000000 @else {{$eth}} @endif</P>
+                    <P class="per_p" style="margin-top: 6px;">@if($eth==0) 0.00000000 @else {{number_format($eth,5,'.','')}} @endif</P>
                 </div>
                 <div class="card_body_one">
                     <p class="per_p"> 可用(ETH)</p>
-                    <P class="per_p" style="margin-top: 6px;">@if($eth==0) 0.00000000 @else {{$eth}} @endif</P>
+                    <P class="per_p" style="margin-top: 6px;">@if($eth==0) 0.00000000 @else {{number_format($eth,5,'.','')}} @endif</P>
                 </div>
                 <div class="card_body_one">
                     <p class="per_p"> 冻结(CNY)</p>

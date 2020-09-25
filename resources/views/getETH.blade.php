@@ -44,6 +44,7 @@
                 <div class="tixing" style="margin-top: 1px; text-align: right;margin-bottom: 1px;">可用@if($eth==0) 0.00000000 @else {{number_format($eth,5,'.','')}} @endif btc</div>
                 <div class="tixing" style="margin-top: 1px; text-align: right;margin-bottom: 1px;">当前币价≈{{$bijia}}</div>
                 <input type="hidden"   class="wrapper_input" name="uid" value="{{$info->id}}"/>
+                <input type="hidden"   class="wrapper_input" name="bijia" value="{{$bijia}}"/>
                 <div class="wrapper_submit"  style="margin-bottom: 80px; margin-top: 25px;">
                     <button type="button" class="sub_btn">确认划转</button>
                 </div>

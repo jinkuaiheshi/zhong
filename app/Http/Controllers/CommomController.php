@@ -133,5 +133,35 @@ class CommomController extends Controller
         $data_btc = $num - $tibi_num - $huazhuan_num;
         return $data_btc;
     }
+    public function GetMySuoyouEth(){
+        $indexlogin = session('indexlogin');
+        $eth = Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(17,19))->get();
+        // $eth = Order::where('uid',9)->where('status',2)->where('pid',17)->get();
+        $num_eth = 0;
+        $hetong2 = 0;
+        if(count($eth)>0){
+            foreach ($eth as $v){
+                $time = (time() - strtotime($v->force_time))/ 86400;
+                $num_eth+=floor($time)*0.00067;
+            }
+        }
+
+        $tibi_eth = Tibi::where('uid',$indexlogin->id)->where('status',2)->where('type',2)->get();
+        $tibi_eth_num = 0;
+        if(count($tibi_eth)>0){
+            foreach ($tibi_eth as $v){
+                $tibi_eth_num+=$v->num;
+            }
+        }
+        $huazhuan_eth = Huazhuan::where('uid',$indexlogin->id)->where('status',2)->where('type','ETH')->get();
+        $huazhuan_eth_num = 0;
+        if(count($huazhuan_eth)>0){
+            foreach ($huazhuan_eth as $v){
+                $huazhuan_eth_num+=$v->num;
+            }
+        }
+        $data_eth = $num_eth - $tibi_eth_num - $huazhuan_eth_num;
+        return $data_eth;
+    }
 
 }
