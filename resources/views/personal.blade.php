@@ -87,7 +87,7 @@
                 <div class="card_body_one" style="margin-left: 5%">
 
                     <p class="per_p">总资产(CNY)</p>
-                    <P class="per_p" style="margin-top: 6px;">@if($cny==0) 0.00000000 @else {{$cny}} @endif</P>
+                    <P class="per_p" style="margin-top: 6px;">{{$todel + $hetong_eth + $hetong_btc + $keyong}} </P>
                 </div>
                 <div class="card_body_one">
                     <p class="per_p"> 可用(CNY)</p>

@@ -521,51 +521,151 @@ class IndexController extends CommomController
         //可用CNY
         $end = date('Y-m-d',strtotime ( "-1 month" ));
         $num_keyong = 0;
-        $keyong = Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(6,7,8,9,10,5,22,23))->whereDate('force_time','<=',$end)->get();
+        $jiedong = 0;
+        $keyong = Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(6,7,8,9,10,5,22,23,16,17))->whereDate('force_time','<=',$end)->get();
         if(count($keyong)>0){
             foreach ($keyong as $v){
                 if($v->pid== 22 ){
                     $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>3){
+                        $time = 3;
+                        $jiedong += $v->UnitPrice*$v->num;
+                    }
                     $num_keyong+=floor($time)*100;
                 }
                 if($v->pid== 23 ){
                     $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>12){
+                        $time = 12;
+                        $jiedong += $v->UnitPrice*$v->num;
+                    }
                     $num_keyong+=floor($time)*462*$v->num;
                 }
                 if($v->pid== 5 ){
                     $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>3){
+                        $time = 3;
+                        $jiedong += $v->UnitPrice*$v->num;
+                    }
                     $num_keyong+=floor($time)*420*$v->num;
                 }
                 if($v->pid== 6 ){
                     $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>6){
+                        $time = 6;
+                        $jiedong += $v->UnitPrice*$v->num;
+                    }
                     $num_keyong+=floor($time)*441*$v->num;
                 }
                 if($v->pid== 7 ){
                     $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>12){
+                        $time = 12;
+                        $jiedong += $v->UnitPrice*$v->num;
+                    }
                     $num_keyong+=floor($time)*462*$v->num;
                 }
                 if($v->pid== 8 ){
                     $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>3){
+                        $time = 3;
+                        $jiedong += $v->UnitPrice*$v->num;
+                    }
                     $num_keyong+=floor($time)*31.5*$v->num;
                 }
                 if($v->pid== 9 ){
                     $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>6){
+                        $time = 6;
+                        $jiedong += $v->UnitPrice*$v->num;
+                    }
                     $num_keyong+=floor($time)*37.8*$v->num;
                 }
                 if($v->pid== 10 ){
+
                     $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>12){
+                        $time = 12;
+                        $jiedong += $v->UnitPrice*$v->num;
+                    }
                     $num_keyong+=floor($time)*42*$v->num;
                 }
             }
         }
+        //划转进来的钱
+        $huazhuan_cny = 0;
+        $huazhuan = Huazhuan::where('uid',$indexlogin->id)->where('status',2)->get();
+        if(count($huazhuan)>0){
+            foreach ($huazhuan as $v){
+                $huazhuan_cny+=number_format($v->num*$v->bijia,2,'.','');
+            }
+        }
+        //提取的钱
+        $tibi_cny = Tibi::where('uid',$indexlogin->id)->where('status',2)->where('type',3)->get();
+        $tiqu = 0;
+        if(count($tibi_cny)>0){
+            foreach ($tibi_cny as $v){
+                $tiqu+=number_format($v->num,2,'.','');
+            }
+        }
+        $num_keyong = $num_keyong + $jiedong + $huazhuan_cny - $tiqu;
         //总资产
         $todel=0;
         $todel_zichan = Order::where('uid',$indexlogin->id)->where('status',2)->get();
+        //dd(strtotime("+1 month",strtotime('2020-09-09')));
         if(count($todel_zichan)>0){
             foreach ($todel_zichan as $v){
 
                 if($v->pid != 19 && $v->pid != 18){
-                    $todel+=$v->UnitPrice;
+                    if($v->pid == 5 ){
+
+                        if(strtotime('+3 month',strtotime($v->force_time)) > time() ){
+
+                            $todel += $v->UnitPrice;
+                        }
+                    }
+                    if($v->pid == 6 ){
+
+                        if(strtotime('+6 month',strtotime($v->force_time)) >time() ){
+                            $todel += $v->UnitPrice;
+                        }
+                    }
+                    if($v->pid == 7 ){
+
+                        if(strtotime('+12 month',strtotime($v->force_time)) >time() ){
+                            $todel += $v->UnitPrice;
+                        }
+                    }
+                    if($v->pid == 8 ){
+
+                        if(strtotime('+3 month',strtotime($v->force_time)) >time() ){
+                            $todel += $v->UnitPrice;
+                        }
+                    }
+                    if($v->pid == 9 ){
+
+                        if(strtotime('+6 month',strtotime($v->force_time)) >time() ){
+                            $todel += $v->UnitPrice;
+                        }
+                    }
+                    if($v->pid == 10 ){
+
+                        if(strtotime('+12 month',strtotime($v->force_time)) >time() ){
+                            $todel += $v->UnitPrice;
+                        }
+                    }
+                    if($v->pid == 22 ){
+
+                        if(strtotime('+3 month',strtotime($v->force_time)) >time() ){
+                            $todel += $v->UnitPrice;
+                        }
+                    }
+                    if($v->pid == 23){
+
+                        if(strtotime('+12 month',strtotime($v->force_time)) >time() ){
+                            $todel += $v->UnitPrice;
+                        }
+                    }
                 }
 
             }
