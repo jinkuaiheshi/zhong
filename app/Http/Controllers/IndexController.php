@@ -405,7 +405,7 @@ class IndexController extends CommomController
                         $num+=floor($time)*0.00000803;
                     }
                 }else{
-                    $num+=floor($time)*0.00000803;
+                    $num+=floor($time)*0.0008833;
                 }
 
                 if($v->pid != 18){
@@ -447,7 +447,7 @@ class IndexController extends CommomController
                         $num_eth+=floor($time)*0.00067;
                     }
                 }else{
-                    $num_eth+=floor($time)*0.00067;
+                    $num_eth+=floor($time)*0.0268;
                 }
 
 
