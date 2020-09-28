@@ -976,6 +976,9 @@ class IndexController extends CommomController
         if(count($order)>0){
             foreach ($order as $v){
                 $time = (time() - strtotime($v->force_time))/ 86400;
+                if($v->pid == 18){
+                    $data['shouyi'] = number_format(floor($time)*0.00000803*110,8,'.','');
+                }
                 $data['shouyi'] = number_format(floor($time)*0.00000803,8,'.','');
                 $data['name'] = $v->name;
                 $data['code'] = $v->code;
@@ -1001,6 +1004,9 @@ class IndexController extends CommomController
         if(count($order)>0){
             foreach ($order as $v){
                 $time = (time() - strtotime($v->force_time))/ 86400;
+                if($v->pid ==19){
+                    $data['shouyi'] = number_format(floor($time)*0.0268,5,'.','');
+                }
                 $data['shouyi'] = number_format(floor($time)*0.00067,5,'.','');
                 $data['name'] = $v->name;
                 $data['code'] = $v->code;
