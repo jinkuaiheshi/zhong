@@ -977,7 +977,7 @@ class IndexController extends CommomController
             foreach ($order as $v){
                 $time = (time() - strtotime($v->force_time))/ 86400;
                 if($v->pid == 18){
-                    $data['shouyi'] = number_format(floor($time)*0.00000803*110,8,'.','');
+                    $data['shouyi'] = number_format(floor($time)*0.0008833,8,'.','');
                 }
                 $data['shouyi'] = number_format(floor($time)*0.00000803,8,'.','');
                 $data['name'] = $v->name;
