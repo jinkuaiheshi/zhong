@@ -590,6 +590,19 @@ class IndexController extends CommomController
                     }
                     $num_keyong+=floor($time)*42*$v->num;
                 }
+                if($v->pid== 16 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>1){
+                        $jiedong += $v->UnitPrice*$v->num;
+                    }
+                }
+                if($v->pid== 17 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>1){
+                        $jiedong += $v->UnitPrice*$v->num;
+                    }
+                }
+                
             }
         }
         //划转进来的钱
