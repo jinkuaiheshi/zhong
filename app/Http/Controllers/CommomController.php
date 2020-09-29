@@ -80,7 +80,7 @@ class CommomController extends Controller
         if(count($btc)>0){
             foreach ($btc as $v){
                 $time = (time() - strtotime($v->force_time))/ 86400;
-                $num+=floor($time)*0.00000803;
+                $num+=floor($time)*0.00000803*$v->num;
 
             }
         }
@@ -96,7 +96,7 @@ class CommomController extends Controller
         if(count($eth)>0){
             foreach ($eth as $v){
                 $time = (time() - strtotime($v->force_time))/ 86400;
-                $num+=floor($time)*0.00067;
+                $num+=floor($time)*0.00067*$v->num;
 
             }
         }
@@ -114,13 +114,13 @@ class CommomController extends Controller
                 $time = (time() - strtotime($v->force_time))/ 86400;
                 if($v->pid ==16 ){
                     if($time<=30){
-                        $num+=floor($time)*0.00000803;
+                        $num+=floor($time)*0.00000803*$v->num;
                     }else{
                         $time = 30;
-                        $num+=floor($time)*0.00000803;
+                        $num+=floor($time)*0.00000803*$v->num;
                     }
                 }else{
-                    $num+=floor($time)*0.0008833;
+                    $num+=floor($time)*0.0008833*$v->num;
                 }
 
             }
@@ -155,13 +155,13 @@ class CommomController extends Controller
 
                 if($v->pid ==17 ){
                     if($time<=30){
-                        $num_eth+=floor($time)*0.00067;
+                        $num_eth+=floor($time)*0.00067*$v->num;
                     }else{
                         $time = 30;
-                        $num_eth+=floor($time)*0.00067;
+                        $num_eth+=floor($time)*0.00067*$v->num;
                     }
                 }else{
-                    $num_eth+=floor($time)*0.0268;
+                    $num_eth+=floor($time)*0.0268*$v->num;
                 }
 
             }

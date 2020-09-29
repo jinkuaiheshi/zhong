@@ -399,15 +399,15 @@ class IndexController extends CommomController
                 $time = (time() - strtotime($v->force_time))/ 86400;
                 if($v->pid ==16 ){
                     if($time<=30){
-                        $num+=floor($time)*0.00000803;
-                        $hetong+=$v->UnitPrice;
+                        $num+=floor($time)*0.00000803*$v->num;
+                        $hetong+=$v->UnitPrice*$v->num;
                     }else{
                         $time = 30;
-                        $num+=floor($time)*0.00000803;
+                        $num+=floor($time)*0.00000803*$v->num;
 
                     }
                 }else{
-                    $num+=floor($time)*0.0008833;
+                    $num+=floor($time)*0.0008833*$v->num;
                 }
 
 
@@ -442,17 +442,17 @@ class IndexController extends CommomController
                 $time = (time() - strtotime($v->force_time))/ 86400;
                 if($v->pid ==17 ){
                     if($time<=30){
-                        $num_eth+=floor($time)*0.00067;
-                        $hetong2+=$v->UnitPrice;
+                        $num_eth+=floor($time)*0.00067*$v->num;
+                        $hetong2+=$v->UnitPrice*$v->num;
                     }else{
                         $time = 30;
-                        $num_eth+=floor($time)*0.00067;
+                        $num_eth+=floor($time)*0.00067*$v->num;
                     }
                 }else{
-                    $num_eth+=floor($time)*0.0268;
+                    $num_eth+=floor($time)*0.0268*$v->num;
                 }
 
-                
+
 
             }
         }

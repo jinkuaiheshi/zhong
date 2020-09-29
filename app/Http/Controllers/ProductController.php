@@ -559,7 +559,7 @@ class ProductController extends CommomController
         $order = Order::where('id',$id)->first();
         if ($order){
             $order->status = 2;
-            $order->force_time = date('Y-m-d h:i:s');
+            $order->force_time = date('Y-m-d H:i:s');
             if($order->update()){
                 $product = Product::where('id',$order->pid)->first();
                 if($product->stock - $order->num >= 0){
@@ -580,7 +580,7 @@ class ProductController extends CommomController
         $user = session('indexlogin');
         $order = Order::where('uid',$user->id)->orderby('id','DESC')->get();
 
-        return view('orderList')->with('data',$order);
+            return view('orderList')->with('data',$order);
     }
     public function userPower(){
         $user = session('indexlogin');
