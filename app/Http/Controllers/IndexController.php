@@ -991,12 +991,12 @@ class IndexController extends CommomController
 
                 if($v->pid == 18){
 
-                    $data['shouyi'] = number_format(floor($time) * 0.0008833,8,'.','');
+                    $data['shouyi'] = number_format(floor($time) * 0.0008833*$v->num,8,'.','');
                 }else{
                     if($time >= 30){
                         $time = 30;
                     }
-                    $data['shouyi'] = number_format(floor($time)*0.00000803,8,'.','');
+                    $data['shouyi'] = number_format(floor($time)*0.00000803*$v->num,8,'.','');
                 }
 
 
@@ -1026,9 +1026,9 @@ class IndexController extends CommomController
             foreach ($order as $v){
                 $time = (time() - strtotime($v->force_time))/ 86400;
                 if($v->pid ==19){
-                    $data['shouyi'] = number_format(floor($time)*0.0268,5,'.','');
+                    $data['shouyi'] = number_format(floor($time)*0.0268*$v->num,5,'.','');
                 }else{
-                    $data['shouyi'] = number_format(floor($time)*0.00067,5,'.','');
+                    $data['shouyi'] = number_format(floor($time)*0.00067*$v->num,5,'.','');
                 }
 
                 $data['name'] = $v->name;
