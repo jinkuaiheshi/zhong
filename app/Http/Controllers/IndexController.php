@@ -400,17 +400,18 @@ class IndexController extends CommomController
                 if($v->pid ==16 ){
                     if($time<=30){
                         $num+=floor($time)*0.00000803;
+                        $hetong+=$v->UnitPrice;
                     }else{
                         $time = 30;
                         $num+=floor($time)*0.00000803;
+
                     }
                 }else{
                     $num+=floor($time)*0.0008833;
                 }
 
-                if($v->pid != 18){
-                    $hetong+=$v->UnitPrice;
-                }
+
+
             }
         }
 
@@ -442,6 +443,7 @@ class IndexController extends CommomController
                 if($v->pid ==17 ){
                     if($time<=30){
                         $num_eth+=floor($time)*0.00067;
+                        $hetong2+=$v->UnitPrice;
                     }else{
                         $time = 30;
                         $num_eth+=floor($time)*0.00067;
@@ -450,10 +452,7 @@ class IndexController extends CommomController
                     $num_eth+=floor($time)*0.0268;
                 }
 
-
-                if($v->pid != 19){
-                    $hetong2+=$v->UnitPrice;
-                }
+                
 
             }
         }
@@ -602,7 +601,7 @@ class IndexController extends CommomController
                         $jiedong += $v->UnitPrice*$v->num;
                     }
                 }
-                
+
             }
         }
         //划转进来的钱
