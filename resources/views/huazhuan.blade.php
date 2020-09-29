@@ -70,6 +70,8 @@
 
             if($('#num').val()<0.005){
                 alert('最低转出为0.005');
+            }else if($('#num').val() > {{$btc}}){
+                alert('超出上限');
             }else{
                 $('.sub_btn').click(function () {
                     $('#Form').submit();

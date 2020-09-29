@@ -73,6 +73,8 @@
 
             if($('#num').val()<0.2){
                 alert('最低转出为0.2');
+            }else if($('#num').val() > {{$eth}}){
+                alert('超出上限');
             }else{
                 $('.sub_btn').click(function () {
                     $('#Form').submit();
