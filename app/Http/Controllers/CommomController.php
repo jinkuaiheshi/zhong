@@ -126,14 +126,14 @@ class CommomController extends Controller
             }
         }
         //BTC总资产 / 可用资产 还需要减去划转 跟 提币扣掉的
-        $tibi_btc = Tibi::where('uid',$indexlogin->id)->where('status',2)->where('type',1)->get();
+        $tibi_btc = Tibi::where('uid',$indexlogin->id)->where('status','<=',2)->where('type',1)->get();
         $tibi_num = 0;
         if(count($tibi_btc)>0){
             foreach ($tibi_btc as $v){
                 $tibi_num+=$v->num;
             }
         }
-        $huazhuan_btc = Huazhuan::where('uid',$indexlogin->id)->where('status',2)->where('type','BTC')->get();
+        $huazhuan_btc = Huazhuan::where('uid',$indexlogin->id)->where('status','<=',2)->where('type','BTC')->get();
         $huazhuan_num = 0;
         if(count($huazhuan_btc)>0){
             foreach ($huazhuan_btc as $v){

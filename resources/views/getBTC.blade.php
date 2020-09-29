@@ -55,7 +55,7 @@
     <script>
         $('#num').change(function () {
 
-            if($('#num').val()> {{$btc}}){
+            if($('#num').val() > {{$btc}}){
                 alert('账户划转数量出错');
             }else{
                 $('.sub_btn').click(function () {
