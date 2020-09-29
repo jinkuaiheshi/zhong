@@ -167,14 +167,14 @@ class CommomController extends Controller
             }
         }
 
-        $tibi_eth = Tibi::where('uid',$indexlogin->id)->where('status',2)->where('type',2)->get();
+        $tibi_eth = Tibi::where('uid',$indexlogin->id)->where('status','<=',2)->where('type',2)->get();
         $tibi_eth_num = 0;
         if(count($tibi_eth)>0){
             foreach ($tibi_eth as $v){
                 $tibi_eth_num+=$v->num;
             }
         }
-        $huazhuan_eth = Huazhuan::where('uid',$indexlogin->id)->where('status',2)->where('type','ETH')->get();
+        $huazhuan_eth = Huazhuan::where('uid',$indexlogin->id)->where('status','<=',2)->where('type','ETH')->get();
         $huazhuan_eth_num = 0;
         if(count($huazhuan_eth)>0){
             foreach ($huazhuan_eth as $v){
