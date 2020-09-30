@@ -633,49 +633,49 @@ class IndexController extends CommomController
 
                         if(strtotime('+3 month',strtotime($v->force_time)) > time() ){
 
-                            $todel += $v->UnitPrice;
+                            $todel += $v->UnitPrice*$v->num;
                         }
                     }
                     if($v->pid == 6 ){
 
                         if(strtotime('+6 month',strtotime($v->force_time)) >time() ){
-                            $todel += $v->UnitPrice;
+                            $todel += $v->UnitPrice*$v->num;
                         }
                     }
                     if($v->pid == 7 ){
 
                         if(strtotime('+12 month',strtotime($v->force_time)) >time() ){
-                            $todel += $v->UnitPrice;
+                            $todel += $v->UnitPrice*$v->num;
                         }
                     }
                     if($v->pid == 8 ){
 
                         if(strtotime('+3 month',strtotime($v->force_time)) >time() ){
-                            $todel += $v->UnitPrice;
+                            $todel += $v->UnitPrice*$v->num;
                         }
                     }
                     if($v->pid == 9 ){
 
                         if(strtotime('+6 month',strtotime($v->force_time)) >time() ){
-                            $todel += $v->UnitPrice;
+                            $todel += $v->UnitPrice*$v->num;
                         }
                     }
                     if($v->pid == 10 ){
 
                         if(strtotime('+12 month',strtotime($v->force_time)) >time() ){
-                            $todel += $v->UnitPrice;
+                            $todel += $v->UnitPrice*$v->num;
                         }
                     }
                     if($v->pid == 22 ){
 
                         if(strtotime('+3 month',strtotime($v->force_time)) >time() ){
-                            $todel += $v->UnitPrice;
+                            $todel += $v->UnitPrice*$v->num;
                         }
                     }
                     if($v->pid == 23){
 
                         if(strtotime('+12 month',strtotime($v->force_time)) >time() ){
-                            $todel += $v->UnitPrice;
+                            $todel += $v->UnitPrice*$v->num;
                         }
                     }
                 }
