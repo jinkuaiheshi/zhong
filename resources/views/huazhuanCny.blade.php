@@ -69,7 +69,9 @@
 
            if($('#num').val() > {{$cny}}){
                 alert('超出上限');
-            }else{
+            }else if($('#num').val()<100){
+               alert('最低提现额度为100');
+           }else{
                 $('.sub_btn').click(function () {
                     $('#Form').submit();
                 })
