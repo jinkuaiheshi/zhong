@@ -519,6 +519,7 @@ class IndexController extends CommomController
 
         //可用CNY
         $end = date('Y-m-d',strtotime ( "-1 month" ));
+
         $num_keyong = 0;
         $jiedong = 0;
         $keyong = Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(6,7,8,9,10,5,22,23,16,17))->whereDate('force_time','<=',$end)->get();
@@ -845,49 +846,9 @@ class IndexController extends CommomController
         //计算资产
         $indexlogin = session('indexlogin');
         //$btc = Order::where('uid',$indexlogin->id)->get();
-        $cny = Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(5,6,7,8,9,10,22,23))->get();
-        //$btc = Order::where('uid',9)->where('status',2)->where('pid',16)->get();
-        $num = 0;
+        $todel = $this->GetMySuoyouCny();
 
-        if(count($cny)>0){
-            foreach ($cny as $v){
-                if($v->pid== 22 ){
-                    $time = (time() - strtotime($v->force_time))/ 2592000;
-                    $num+=floor($time)*100;
-                }
-                if($v->pid== 23 ){
-                    $time = (time() - strtotime($v->force_time))/ 2592000;
-                    $num+=floor($time)*462*$v->num;
-                }
-                if($v->pid== 5 ){
-                    $time = (time() - strtotime($v->force_time))/ 2592000;
-                    $num+=floor($time)*420*$v->num;
-                }
-                if($v->pid== 6 ){
-                    $time = (time() - strtotime($v->force_time))/ 2592000;
-                    $num+=floor($time)*441*$v->num;
-                }
-                if($v->pid== 7 ){
-                    $time = (time() - strtotime($v->force_time))/ 2592000;
-                    $num+=floor($time)*462*$v->num;
-                }
-                if($v->pid== 8 ){
-                    $time = (time() - strtotime($v->force_time))/ 2592000;
-                    $num+=floor($time)*31.5*$v->num;
-                }
-                if($v->pid== 9 ){
-                    $time = (time() - strtotime($v->force_time))/ 2592000;
-                    $num+=floor($time)*37.8*$v->num;
-                }
-                if($v->pid== 10 ){
-                    $time = (time() - strtotime($v->force_time))/ 2592000;
-                    $num+=floor($time)*42*$v->num;
-                }
-
-            }
-        }
-        $data_cny = $num;
-        return view('huazhuanCny')->with('cny',$data_cny);
+        return view('huazhuanCny')->with('cny',$todel);
     }
     public function getBTC(){
         $indexlogin = session('indexlogin');
@@ -1146,8 +1107,9 @@ class IndexController extends CommomController
                 $datas[] = $data;
             }
         }
-        $tibi = Tibi::where('uid',$indexlogin->id)->where('status',2)->where('type',2)->get();
-        return view('cny_mingxi')->with('data',$datas)->with('tibi',$tibi);
+        $tibi = Tibi::where('uid',$indexlogin->id)->where('status',2)->where('type',3)->get();
+        $huazhuan = Huazhuan::where('uid',$indexlogin->id)->where('status',2)->whereIn('type',array('BTC','ETH'))->get();
+        return view('cny_mingxi')->with('data',$datas)->with('tibi',$tibi)->with('huazhuan',$huazhuan);
     }
     public function upload(Request $request){
         if ($request->isMethod('POST')) {

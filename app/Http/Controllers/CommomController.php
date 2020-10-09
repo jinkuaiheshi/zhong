@@ -184,5 +184,110 @@ class CommomController extends Controller
         $data_eth = $num_eth - $tibi_eth_num - $huazhuan_eth_num;
         return $data_eth;
     }
+    public  function GetMySuoyouCny(){
+        $indexlogin = session('indexlogin');
+        $cny = 0;
+        $jiedong = 0;
+        $order = Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(5,6,7,8,9,10,22,23,16,17))->get();
+        if(count($order)>0){
+            foreach ($order as $v){
+                if($v->pid== 22 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>=3){
+                        $time = 3;
+                        $jiedong += $v->UnitPrice*$v->num;
+                    }
+                    $cny += floor($time)*100;
 
+                }
+                if($v->pid== 23 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>=12){
+                        $time = 12;
+                        $jiedong += $v->UnitPrice*$v->num;
+                    }
+                    $cny += floor($time)*462*$v->num;
+
+                }
+                if($v->pid== 5 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>3){
+                        $time = 3;
+                        $jiedong += $v->UnitPrice*$v->num;
+                    }
+                    $cny+=floor($time)*420*$v->num;
+                }
+                if($v->pid== 6 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>6){
+                        $time = 6;
+                        $jiedong += $v->UnitPrice*$v->num;
+                    }
+                    $cny+=floor($time)*441*$v->num;
+                }
+                if($v->pid== 7 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>12){
+                        $time = 12;
+                        $jiedong += $v->UnitPrice*$v->num;
+                    }
+                    $cny+=floor($time)*462*$v->num;
+                }
+                if($v->pid== 8 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>3){
+                        $time = 3;
+                        $jiedong += $v->UnitPrice*$v->num;
+                    }
+                    $cny+=floor($time)*31.5*$v->num;
+                }
+                if($v->pid== 9 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>6){
+                        $time = 6;
+                        $jiedong += $v->UnitPrice*$v->num;
+                    }
+                    $cny+=floor($time)*37.8*$v->num;
+                }
+                if($v->pid== 10 ){
+
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>12){
+                        $time = 12;
+                        $jiedong += $v->UnitPrice*$v->num;
+                    }
+                    $cny+=floor($time)*42*$v->num;
+                }
+                if($v->pid== 16 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>1){
+                        $jiedong += $v->UnitPrice*$v->num;
+                    }
+                }
+                if($v->pid== 17 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>1){
+                        $jiedong += $v->UnitPrice*$v->num;
+                    }
+                }
+            }
+        }
+        //划转进来的钱
+        $huazhuan_cny = 0;
+        $huazhuan = Huazhuan::where('uid',$indexlogin->id)->where('status',2)->get();
+        if(count($huazhuan)>0){
+            foreach ($huazhuan as $v){
+                $huazhuan_cny+=number_format($v->num*$v->bijia,2,'.','');
+            }
+        }
+        //提取的钱
+        $tibi_cny = Tibi::where('uid',$indexlogin->id)->where('status',2)->where('type',3)->get();
+        $tiqu = 0;
+        if(count($tibi_cny)>0){
+            foreach ($tibi_cny as $v){
+                $tiqu+=number_format($v->num,2,'.','');
+            }
+        }
+        return $cny + $jiedong + $huazhuan_cny - $tiqu;
+    }
 }

@@ -76,6 +76,32 @@
             </div>
 
         @endforeach
+            @foreach( $huazhuan as $v)
+                <div class="title_item" style="height: auto; overflow: hidden; margin-top: 15px;">
+
+
+                    <div class="title_item_title">
+                        当时币价: {{$v->bijia}}
+                    </div>
+                    <div class="title_item_info">
+                        <div class="title_item_info_left">
+                            划转数量:{{$v->num}}
+                        </div>
+
+                    </div>
+
+                    <div class="title_item_info">
+                        <div class="title_item_info_left">
+                            生效时间:{{$v->shenhe_time}}
+                        </div>
+                        <div class="title_item_info_right red" style="font-size: 14px;font-weight: 700; ">
+                            总划转{{$v->num}} BTC
+                        </div>
+                    </div>
+
+                </div>
+
+            @endforeach
 
     </div>
 
