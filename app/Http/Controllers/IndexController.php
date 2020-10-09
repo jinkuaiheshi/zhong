@@ -1046,6 +1046,109 @@ class IndexController extends CommomController
 
         return view('eth_mingxi')->with('data',$datas)->with('tibi',$tibi)->with('huazhuan',$huazhuan);
     }
+    public function cny_mingxi(){
+        $indexlogin = session('indexlogin');
+        $order = Order::where('uid',$indexlogin->id)->where('status',2)->whereIn('pid',array(5,6,7,8,9,10,22,23))->get();
+        $data = array();
+        $datas = array();
+        $num = 0;
+        if(count($order)>0){
+            foreach ($order as $v){
+                if($v->pid== 22 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>=3){
+                        $time = 3;
+                    }
+                    $data['shouyi'] = floor($time)*100;
+                    $data['name'] = $v->name;
+                    $data['code'] = $v->code;
+                    $data['TotalPrice'] = $v->TotalPrice;
+                    $data['force_time'] = $v->force_time;
+                }
+                if($v->pid== 23 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>=12){
+                        $time = 12;
+                    }
+                    $data['shouyi'] = floor($time)*462*$v->num;
+                    $data['name'] = $v->name;
+                    $data['code'] = $v->code;
+                    $data['TotalPrice'] = $v->TotalPrice;
+                    $data['force_time'] = $v->force_time;
+                }
+                if($v->pid== 5 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>=3){
+                        $time = 3;
+                    }
+                    $data['shouyi'] = floor($time)*420*$v->num;
+                    $data['name'] = $v->name;
+                    $data['code'] = $v->code;
+                    $data['TotalPrice'] = $v->TotalPrice;
+                    $data['force_time'] = $v->force_time;
+                }
+                if($v->pid== 6 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>=6){
+                        $time = 6;
+                    }
+                    $data['shouyi'] = floor($time)*441*$v->num;
+                    $data['name'] = $v->name;
+                    $data['code'] = $v->code;
+                    $data['TotalPrice'] = $v->TotalPrice;
+                    $data['force_time'] = $v->force_time;
+                }
+                if($v->pid== 7 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>=12){
+                        $time = 12;
+                    }
+                    $data['shouyi'] = floor($time)*462*$v->num;
+                    $data['name'] = $v->name;
+                    $data['code'] = $v->code;
+                    $data['TotalPrice'] = $v->TotalPrice;
+                    $data['force_time'] = $v->force_time;
+                }
+                if($v->pid== 8 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>=3){
+                        $time = 3;
+                    }
+                    $data['shouyi'] = floor($time)*31.5*$v->num;
+                    $data['name'] = $v->name;
+                    $data['code'] = $v->code;
+                    $data['TotalPrice'] = $v->TotalPrice;
+                    $data['force_time'] = $v->force_time;
+                }
+                if($v->pid== 9 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>=6){
+                        $time = 6;
+                    }
+                    $data['shouyi'] = floor($time)*37.8*$v->num;
+                    $data['name'] = $v->name;
+                    $data['code'] = $v->code;
+                    $data['TotalPrice'] = $v->TotalPrice;
+                    $data['force_time'] = $v->force_time;
+                }
+                if($v->pid== 10 ){
+                    $time = (time() - strtotime($v->force_time))/ 2592000;
+                    if($time>=12){
+                        $time = 12;
+                    }
+                    $data['shouyi'] = floor($time)*42*$v->num;
+                    $data['name'] = $v->name;
+                    $data['code'] = $v->code;
+                    $data['TotalPrice'] = $v->TotalPrice;
+                    $data['force_time'] = $v->force_time;
+                }
+
+                $datas[] = $data;
+            }
+        }
+        $tibi = Tibi::where('uid',$indexlogin->id)->where('status',2)->where('type',2)->get();
+        return view('cny_mingxi')->with('data',$datas)->with('tibi',$tibi);
+    }
     public function upload(Request $request){
         if ($request->isMethod('POST')) {
             $pic = $request->file('pic');

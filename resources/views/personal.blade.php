@@ -80,7 +80,7 @@
                 <div class="card_title_right">
 
                     <a href="{{url('huazhuanCny')}}" >提现</a>
-                    <a href="javascript:void(0)" >明细</a>
+                    <a href="{{url('cny_mingxi')}}" >明细</a>
                 </div>
             </div>
             <div class="card_body">
