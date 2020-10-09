@@ -126,14 +126,14 @@ class CommomController extends Controller
             }
         }
         //BTC总资产 / 可用资产 还需要减去划转 跟 提币扣掉的
-        $tibi_btc = Tibi::where('uid',$indexlogin->id)->where('status','<=',2)->where('type',1)->get();
+        $tibi_btc = Tibi::where('uid',$indexlogin->id)->where('status','<=',2)->where('type',1)->orderBy('id','DESC')->get();
         $tibi_num = 0;
         if(count($tibi_btc)>0){
             foreach ($tibi_btc as $v){
                 $tibi_num+=$v->num;
             }
         }
-        $huazhuan_btc = Huazhuan::where('uid',$indexlogin->id)->where('status','<=',2)->where('type','BTC')->get();
+        $huazhuan_btc = Huazhuan::where('uid',$indexlogin->id)->where('status','<=',2)->where('type','BTC')->orderBy('id','DESC')->get();
         $huazhuan_num = 0;
         if(count($huazhuan_btc)>0){
             foreach ($huazhuan_btc as $v){
@@ -167,14 +167,14 @@ class CommomController extends Controller
             }
         }
 
-        $tibi_eth = Tibi::where('uid',$indexlogin->id)->where('status','<=',2)->where('type',2)->get();
+        $tibi_eth = Tibi::where('uid',$indexlogin->id)->where('status','<=',2)->where('type',2)->orderBy('id','DESC')->get();
         $tibi_eth_num = 0;
         if(count($tibi_eth)>0){
             foreach ($tibi_eth as $v){
                 $tibi_eth_num+=$v->num;
             }
         }
-        $huazhuan_eth = Huazhuan::where('uid',$indexlogin->id)->where('status','<=',2)->where('type','ETH')->get();
+        $huazhuan_eth = Huazhuan::where('uid',$indexlogin->id)->where('status','<=',2)->where('type','ETH')->orderBy('id','DESC')->get();
         $huazhuan_eth_num = 0;
         if(count($huazhuan_eth)>0){
             foreach ($huazhuan_eth as $v){
@@ -274,14 +274,14 @@ class CommomController extends Controller
         }
         //划转进来的钱
         $huazhuan_cny = 0;
-        $huazhuan = Huazhuan::where('uid',$indexlogin->id)->where('status',2)->get();
+        $huazhuan = Huazhuan::where('uid',$indexlogin->id)->where('status','<=',2)->orderBy('id','DESC')->get();
         if(count($huazhuan)>0){
             foreach ($huazhuan as $v){
                 $huazhuan_cny+=number_format($v->num*$v->bijia,2,'.','');
             }
         }
         //提取的钱
-        $tibi_cny = Tibi::where('uid',$indexlogin->id)->where('status',2)->where('type',3)->get();
+        $tibi_cny = Tibi::where('uid',$indexlogin->id)->where('status','<=',2)->where('type',3)->orderBy('id','DESC')->get();
         $tiqu = 0;
         if(count($tibi_cny)>0){
             foreach ($tibi_cny as $v){
