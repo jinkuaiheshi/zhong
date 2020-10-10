@@ -651,17 +651,26 @@ class IndexController extends CommomController
         if ($request->isMethod('POST')) {
             $username = $request['username'];
             $userZHIFUBAO= $request['userZHIFUBAO'];
+            $companyCode= $request['companyCode'];
+            $bank= $request['bank'];
+
             $indexlogin = session('indexlogin');
             $cash = Cash::where('uid',$indexlogin->id)->first();
             if($cash){
                 $cash->username = $username;
                 $cash->userZHIFUBAO = $userZHIFUBAO;
-                $cash->update();
+                $cash->companyCode = $companyCode;
+                $cash->bank = $bank;
 
+                if($cash->update()){
+                    return redirect(url()->previous())->with('message', '操作成功')->with('type','success')->withInput();
+                };
             }else{
                 $cash = new Cash();
                 $cash->username = $username;
                 $cash->userZHIFUBAO = $userZHIFUBAO;
+                $cash->companyCode = $companyCode;
+                $cash->bank = $bank;
                 $cash->uid = $indexlogin->id;
 
                 if($cash->save()){

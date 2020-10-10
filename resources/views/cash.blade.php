@@ -37,7 +37,7 @@
                     <div class="per-list-list-mid ">
 
                         <div class="per-list-list-right wid100">
-                            <input type="text" name="username" value="{{isset($data->username)?$data->username:''}}" placeholder="支付宝姓名" class="inpuText" @if(isset($data->username)) readonly @endif>
+                            <input type="text" name="username" value="{{isset($data->username)?$data->username:''}}" placeholder="支付宝姓名" class="inpuText" >
 
                         </div>
                     </div>
@@ -48,12 +48,33 @@
                     <div class="per-list-list-mid">
 
                         <div class="per-list-list-right wid100" >
-                            <input type="text" name="userZHIFUBAO" value="{{isset($data->userZHIFUBAO)?$data->userZHIFUBAO:''}}" placeholder="支付宝账户" class="inpuText" @if(isset($data->userZHIFUBAO)) readonly @endif>
+                            <input type="text" name="userZHIFUBAO" value="{{isset($data->userZHIFUBAO)?$data->userZHIFUBAO:''}}" placeholder="支付宝账户" class="inpuText" >
                         </div>
                     </div>
                 </div>
+
+                <div class="per-list-list brd1px">
+
+                    <div class="per-list-list-mid">
+
+                        <div class="per-list-list-right wid100" >
+                            <input type="text" name="companyCode" value="{{isset($data->companyCode)?$data->companyCode:''}}" placeholder="银行卡号" class="inpuText" >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="per-list-list brd1px">
+
+                    <div class="per-list-list-mid">
+
+                        <div class="per-list-list-right wid100" >
+                            <input type="text" name="bank" value="{{isset($data->bank)?$data->bank:''}}" placeholder="开户行" class="inpuText" >
+                        </div>
+                    </div>
+                </div>
+
                 <div class="btm_wapper" style="margin-top: 20px;">
-                    <input type="submit" class="btm_wapper_btn"  value="提交认证" @if(isset($data->userZHIFUBAO)) disabled @endif/>
+                    <input type="submit" class="btm_wapper_btn"  value="提交认证"/>
                 </div>
             </form>
 
