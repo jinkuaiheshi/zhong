@@ -606,11 +606,11 @@ class ProductController extends CommomController
         return view('admin_voucher')->with('data',$data);
     }
     public function tibi(){
-        $data = Tibi::with('User','Realname')->where('uid','>=',1)->get();
+        $data = Tibi::with('User','Realname','Cash')->where('uid','>=',1)->get();
         return view('admin_tibi')->with('data',$data);
     }
     public function huazhuan(){
-        $data = Huazhuan::with('User','Realname')->where('uid','>=',1)->get();
+        $data = Huazhuan::with('User','Realname','Cash')->where('uid','>=',1)->get();
         return view('admin_huazhuan')->with('data',$data);
     }
     public function sysOrderDel(){

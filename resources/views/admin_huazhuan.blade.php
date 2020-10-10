@@ -14,6 +14,10 @@
                     <th>ID</th>
                     <th>用户名</th>
                     <th>认证姓名</th>
+                    <th>支付宝账户</th>
+                    <th>账户名称</th>
+                    <th>银行卡号</th>
+                    <th>开户行</th>
                     <th>划转数量</th>
                     <th>币价</th>
                     <th>CNY</th>
@@ -35,6 +39,10 @@
                         <td>{{$v->id}}</td>
                         <td>{{$v->User->username}}</td>
                         <td>{{isset($v->Realname->name)?$v->Realname->name:''}}</td>
+                        <td>{{$v->Cash->userZHIFUBAO}}</td>
+                        <td>{{$v->Cash->company}}</td>
+                        <td>{{$v->Cash->companyCode}}</td>
+                        <td>{{$v->Cash->bank}}</td>
                         <td>{{isset($v->num)?$v->num:''}}</td>
                         <td>{{isset($v->bijia)?$v->bijia:''}}</td>
                         <td>{{$v->num*$v->bijia}}</td>

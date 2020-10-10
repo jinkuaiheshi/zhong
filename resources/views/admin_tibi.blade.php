@@ -14,6 +14,12 @@
                     <th>ID</th>
                     <th>用户名</th>
                     <th>认证姓名</th>
+                    <th>支付宝账户</th>
+                    <th>账户名称</th>
+                    <th>银行卡号</th>
+                    <th>开户行</th>
+
+
                     <th>提币地址</th>
                     <th>提币数量</th>
                     <th>提币类型</th>
@@ -29,6 +35,10 @@
                         <td>{{$v->id}}</td>
                         <td>{{$v->User->username}}</td>
                         <td>{{$v->Realname->name}}</td>
+                        <td>{{$v->Cash->userZHIFUBAO}}</td>
+                        <td>{{$v->Cash->company}}</td>
+                        <td>{{$v->Cash->companyCode}}</td>
+                        <td>{{$v->Cash->bank}}</td>
                         <td>{{isset($v->url)?$v->url:''}}</td>
                         <td>{{isset($v->num)?$v->num:''}}</td>
                         <td>@if($v->type == 1) BTC @elseif ($v->type == 2) ETH @else CNY @endif</td>

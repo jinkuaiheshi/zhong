@@ -21,7 +21,7 @@
     <div class="container">
         <div class="btc_wapper">
             <div class="btc_wapper_title">
-                总资产
+                可用资产
             </div>
             <div class="btc_wapper_info" style="margin-top:20px;">
                 @if($cny==0) 0.00000000 @else {{number_format($cny,8,'.','')}} @endif

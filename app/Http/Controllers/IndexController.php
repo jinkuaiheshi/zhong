@@ -517,7 +517,7 @@ class IndexController extends CommomController
         }
         $data_cny = $num;
 
-      
+
         //总资产
         $todel=0;
         $todel_zichan = Order::where('uid',$indexlogin->id)->where('status',2)->get();

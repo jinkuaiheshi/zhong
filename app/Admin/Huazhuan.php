@@ -18,4 +18,8 @@ class Huazhuan extends Model
     {
         return $this->hasOne('App\Admin\Realname','uid','uid');
     }
+    public function Cash()
+    {
+        return $this->hasOne('App\Admin\Cash','uid','uid');
+    }
 }
