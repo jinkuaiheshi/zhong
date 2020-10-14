@@ -41,7 +41,7 @@
             </div>
         </div>
         <div class="tab-content">
-            <div class="aui-content tab1 tab-pane active" id="tab1">
+            <div class="aui-content tab1 tab-pane  @if($flag == 1) active @endif" id="tab1">
                 <div class="dialog_box">
                     <div class="aui-row">
                         <div class="aui-col-xs-2">
@@ -52,15 +52,20 @@
                             <p class="aui-font-size-18 aui-text-default f_w">青铜会员</p>
                             <p class="aui-font-size-14">无返佣权益</p>
                         </div>
+                        @if($flag == 1)
                         <div class="aui-col-xs-3  aui-label">
                             当前等级
                         </div>
+                            @endif
                     </div>
+                    @if($flag == 1)
+
                     <div class="aui-text-center">
                         <p class="aui-text-default">当前等级【青铜会员】</p>
                         <p class="aui-padded-5">距离升级白银会员不远啦，多多推广吧</p>
                         <p><a href="{{url('gonglue')}}" class="aui-text-info">查看升级攻略</a></p>
                     </div>
+                @endif
                     <div class="progress_box">
                         <div class="aui-row aui-margin-b-5">
                             <div class="aui-col-xs-2">
@@ -81,7 +86,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">自购算力</p>
-                                <p class="aui-text-default">0T</p>
+                                <p class="aui-text-default">{{$zigou_suanli}}T</p>
                             </div>
                         </div>
 
@@ -104,7 +109,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">推荐算力</p>
-                                <p class="aui-text-default">0T</p>
+                                <p class="aui-text-default">{{$tuijian_suanli}}T</p>
                             </div>
                         </div>
 
@@ -127,7 +132,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">总算力</p>
-                                <p class="aui-text-default">0T<span class="color_9">(目标：≥0T)</span></p>
+                                <p class="aui-text-default">{{$tuijian_suanli+$zigou_suanli}}T<span class="color_9">(目标：≥0T)</span></p>
                             </div>
                         </div>
 
@@ -135,7 +140,7 @@
                     </div>
                 </div>
             </div>
-            <div class="aui-content tab2 tab-pane" id="tab2">
+            <div class="aui-content tab2 tab-pane  @if($flag == 2) active @endif" id="tab2">
                 <div class="dialog_box">
                     <div class="aui-row">
                         <div class="aui-col-xs-2">
@@ -146,15 +151,19 @@
                             <p class="aui-font-size-18 aui-text-default f_w">白银会员</p>
                             <p class="aui-font-size-14">权益收益0.2%</p>
                         </div>
+                        @if($flag == 2)
                         <div class="aui-col-xs-3  aui-label">
                             当前等级
                         </div>
+                            @endif
                     </div>
+                    @if($flag == 2)
                     <div class="aui-text-center">
                         <p class="aui-text-default">当前等级【白银会员】</p>
                         <p class="aui-padded-5">距离升级黄金会员不远啦，多多推广吧</p>
                         <p><a href="{{url('gonglue')}}" class="aui-text-info">查看升级攻略</a></p>
                     </div>
+                    @endif
                     <div class="progress_box">
                         <div class="aui-row aui-margin-b-5">
                             <div class="aui-col-xs-2">
@@ -175,7 +184,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">自购算力</p>
-                                <p class="aui-text-default">0T</p>
+                                <p class="aui-text-default">{{$zigou_suanli}}T</p>
                             </div>
                         </div>
 
@@ -198,7 +207,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">推荐算力</p>
-                                <p class="aui-text-default">0T</p>
+                                <p class="aui-text-default">{{$tuijian_suanli}}T</p>
                             </div>
                         </div>
 
@@ -221,7 +230,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">总算力</p>
-                                <p class="aui-text-default">0人<span class="color_9">(目标：110T)</span></p>
+                                <p class="aui-text-default">{{$tuijian_suanli+$zigou_suanli}}T<span class="color_9">(目标：110T)</span></p>
                             </div>
                         </div>
 
@@ -229,7 +238,7 @@
                     </div>
                 </div>
             </div>
-            <div class="aui-content tab3 tab-pane" id="tab3">
+            <div class="aui-content tab3 tab-pane  @if($flag == 3) active @endif" id="tab3">
                 <div class="dialog_box">
                     <div class="aui-row">
                         <div class="aui-col-xs-2">
@@ -240,15 +249,19 @@
                             <p class="aui-font-size-18 aui-text-default f_w">黄金会员</p>
                             <p class="aui-font-size-14">权益收益0.3%</p>
                         </div>
+                        @if($flag == 3)
                         <div class="aui-col-xs-3  aui-label">
                             当前等级
                         </div>
+                            @endif
                     </div>
+                    @if($flag == 3)
                     <div class="aui-text-center">
                         <p class="aui-text-default">当前等级【黄金会员】</p>
                         <p class="aui-padded-5">距离升级铂金会员不远啦，多多推广吧</p>
                         <p><a href="{{url('gonglue')}}" class="aui-text-info">查看升级攻略</a></p>
                     </div>
+                    @endif
                     <div class="progress_box">
                         <div class="aui-row aui-margin-b-5">
                             <div class="aui-col-xs-2">
@@ -269,7 +282,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">自购算力</p>
-                                <p class="aui-text-default">0T</p>
+                                <p class="aui-text-default">{{$zigou_suanli}}T</p>
                             </div>
                         </div>
 
@@ -292,7 +305,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">推荐算力</p>
-                                <p class="aui-text-default">0T</p>
+                                <p class="aui-text-default">{{$tuijian_suanli}}T</p>
                             </div>
                         </div>
 
@@ -315,7 +328,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">总算力</p>
-                                <p class="aui-text-default">0人<span class="color_9">(目标：550T)</span></p>
+                                <p class="aui-text-default">{{$tuijian_suanli+$zigou_suanli}}人<span class="color_9">(目标：550T)</span></p>
                             </div>
                         </div>
 
@@ -323,7 +336,7 @@
                     </div>
                 </div>
             </div>
-            <div class="aui-content tab4 tab-pane" id="tab4">
+            <div class="aui-content tab4 tab-pane  @if($flag == 4) active @endif" id="tab4">
                 <div class="dialog_box">
                     <div class="aui-row">
                         <div class="aui-col-xs-2">
@@ -334,15 +347,19 @@
                             <p class="aui-font-size-18 aui-text-default f_w">铂金会员</p>
                             <p class="aui-font-size-14">权益收益0.4%</p>
                         </div>
+                        @if($flag == 4)
                         <div class="aui-col-xs-3  aui-label">
                             当前等级
                         </div>
+                            @endif
                     </div>
+                    @if($flag == 4)
                     <div class="aui-text-center">
                         <p class="aui-text-default">当前等级【铂金会员】</p>
                         <p class="aui-padded-5">距离升级钻石会员不远啦，多多推广吧</p>
                         <p><a href="{{url('gonglue')}}" class="aui-text-info">查看升级攻略</a></p>
                     </div>
+                    @endif
                     <div class="progress_box">
                         <div class="aui-row aui-margin-b-5">
                             <div class="aui-col-xs-2">
@@ -363,7 +380,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">自购算力</p>
-                                <p class="aui-text-default">0T</p>
+                                <p class="aui-text-default">{{$zigou_suanli}}T</p>
                             </div>
                         </div>
 
@@ -386,7 +403,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">推荐算力</p>
-                                <p class="aui-text-default">0T</p>
+                                <p class="aui-text-default">{{$tuijian_suanli}}T</p>
                             </div>
                         </div>
 
@@ -409,7 +426,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">总算力</p>
-                                <p class="aui-text-default">0T<span class="color_9">(目标：1650T)</span></p>
+                                <p class="aui-text-default">{{$tuijian_suanli+$zigou_suanli}}T<span class="color_9">(目标：1650T)</span></p>
                             </div>
                         </div>
 
@@ -417,7 +434,7 @@
                 </div>
             </div>
         </div>
-            <div class="aui-content tab4 tab-pane" id="tab5">
+            <div class="aui-content tab4 tab-pane  @if($flag == 5) active @endif" id="tab5">
                 <div class="dialog_box">
                     <div class="aui-row">
                         <div class="aui-col-xs-2">
@@ -428,15 +445,19 @@
                             <p class="aui-font-size-18 aui-text-default f_w">钻石会员</p>
                             <p class="aui-font-size-14">权益收益0.5%</p>
                         </div>
+                        @if($flag == 5)
                         <div class="aui-col-xs-3  aui-label">
                             当前等级
                         </div>
+                            @endif
                     </div>
+                    @if($flag == 5)
                     <div class="aui-text-center">
                         <p class="aui-text-default">当前等级【钻石会员】</p>
 
                         <p><a href="{{url('gonglue')}}" class="aui-text-info">查看升级攻略</a></p>
                     </div>
+                    @endif
                     <div class="progress_box">
                         <div class="aui-row aui-margin-b-5">
                             <div class="aui-col-xs-2">
@@ -457,7 +478,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">自购算力</p>
-                                <p class="aui-text-default">0T</p>
+                                <p class="aui-text-default">{{$zigou_suanli}}T</p>
                             </div>
                         </div>
 
@@ -480,7 +501,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">推荐算力</p>
-                                <p class="aui-text-default">0T</p>
+                                <p class="aui-text-default">{{$tuijian_suanli}}T</p>
                             </div>
                         </div>
 
@@ -503,7 +524,7 @@
                             </div>
                             <div class="aui-col-xs-10 ">
                                 <p class="aui-text-default">总算力</p>
-                                <p class="aui-text-default">人<span class="color_9">(目标：≥5500T)</span></p>
+                                <p class="aui-text-default">{{$tuijian_suanli+$zigou_suanli}}<span class="color_9">(目标：≥5500T)</span></p>
                             </div>
                         </div>
 

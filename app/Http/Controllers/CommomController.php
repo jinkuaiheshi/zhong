@@ -61,6 +61,7 @@ class CommomController extends Controller
                 $data['userZHIFUBAO'] = isset($v->cash->userZHIFUBAO) ? $v->cash->userZHIFUBAO : '';
                 $data['tel'] = $v->tel;
 
+
                 $this->datas[] = $data;
                 $lowers = User::with('Realname', 'Cash')->where('top',$v->id)->get();
                 if($lowers){
