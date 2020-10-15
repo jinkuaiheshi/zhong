@@ -361,19 +361,21 @@ class IndexController extends CommomController
         if(count($ids)>0){
             foreach ($ids as $v){
                 $order = Order::where('status',2)->where('uid',$v['id'])->get();
+
                 if(count($order)>0){
                     foreach ($order as $vv){
-                        if($vv->pid = 5){
+                        if($vv->pid == 5){
                             if(strtotime('+3 month',strtotime($vv->force_time)) > time() ){
 
                                 if($vv->uid == $indexlogin->id){
                                     $zigou_suanli += $btc*$vv->num;
+
                                 }else{
                                     $tuijian_suanli += $btc*$vv->num;
                                 }
                             }
                         }
-                        if($vv->pid = 6){
+                        if($vv->pid == 6){
                             if(strtotime('+6 month',strtotime($vv->force_time)) > time() ){
                                 if($vv->uid == $indexlogin->id){
                                     $zigou_suanli += $btc*$vv->num;
@@ -382,7 +384,7 @@ class IndexController extends CommomController
                                 }
                             }
                         }
-                        if($vv->pid = 7){
+                        if($vv->pid == 7){
                             if(strtotime('+12 month',strtotime($vv->force_time)) > time() ){
                                 if($vv->uid == $indexlogin->id){
                                     $zigou_suanli += $btc*$vv->num;
@@ -391,7 +393,7 @@ class IndexController extends CommomController
                                 }
                             }
                         }
-                        if($vv->pid = 8){
+                        if($vv->pid == 8){
                             if(strtotime('+3 month',strtotime($vv->force_time)) > time() ){
                                 if($vv->uid == $indexlogin->id){
                                     $zigou_suanli += $btc*$vv->num;
@@ -400,7 +402,7 @@ class IndexController extends CommomController
                                 }
                             }
                         }
-                        if($vv->pid = 9){
+                        if($vv->pid == 9){
                             if(strtotime('+6 month',strtotime($vv->force_time)) > time() ){
                                 if($vv->uid == $indexlogin->id){
                                     $zigou_suanli += $btc*$vv->num;
@@ -409,7 +411,7 @@ class IndexController extends CommomController
                                 }
                             }
                         }
-                        if($vv->pid = 10){
+                        if($vv->pid == 10){
                             if(strtotime('+12 month',strtotime($vv->force_time)) > time() ){
                                 if($vv->uid == $indexlogin->id){
                                     $zigou_suanli += $btc*$vv->num;
@@ -418,7 +420,8 @@ class IndexController extends CommomController
                                 }
                             }
                         }
-                        if($vv->pid =16){
+
+                        if($vv->pid == 16){
                             if(strtotime('+1 month',strtotime($vv->force_time)) > time() ){
                                 if($vv->uid == $indexlogin->id){
                                     $zigou_suanli += $btc*$vv->num;
@@ -427,7 +430,7 @@ class IndexController extends CommomController
                                 }
                             }
                         }
-                        if($vv->pid = 18 || $vv->pid = 19){
+                        if($vv->pid == 18 || $vv->pid == 19){
 
                             if($vv->uid == $indexlogin->id){
                                 $zigou_suanli += $btc*$vv->num;
@@ -436,7 +439,7 @@ class IndexController extends CommomController
                             }
 
                         }
-                        if($vv->pid =22){
+                        if($vv->pid == 22){
                             if(strtotime('+3 month',strtotime($vv->force_time)) > time() ){
                                 if($vv->uid == $indexlogin->id){
                                     $zigou_suanli += $btc*$vv->num;
@@ -445,7 +448,7 @@ class IndexController extends CommomController
                                 }
                             }
                         }
-                        if($vv->pid =23){
+                        if($vv->pid == 23){
                             if(strtotime('+12 month',strtotime($vv->force_time)) > time() ){
                                 if($vv->uid == $indexlogin->id){
                                     $zigou_suanli += $btc*$vv->num;
@@ -455,6 +458,7 @@ class IndexController extends CommomController
                             }
                         }
 
+                        
                     }
                 }
             }
