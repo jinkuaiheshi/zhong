@@ -467,16 +467,16 @@ class IndexController extends CommomController
         if(($zigou_suanli + $tuijian_suanli)>=5500){
             $flag = 5;
         }
-        if( ($zigou_suanli + $tuijian_suanli) >=1650 && ($zigou_suanli + $tuijian_suanli) <=5500){
+        if( ($zigou_suanli + $tuijian_suanli) >=1650 && ($zigou_suanli + $tuijian_suanli) <5500){
             $flag = 4;
         }
-        if( ($zigou_suanli + $tuijian_suanli) >=550 && ($zigou_suanli + $tuijian_suanli) <=1650){
+        if( ($zigou_suanli + $tuijian_suanli) >=550 && ($zigou_suanli + $tuijian_suanli) <1650){
             $flag = 3;
         }
-        if( ($zigou_suanli + $tuijian_suanli) >=110 && ($zigou_suanli + $tuijian_suanli) <=550){
+        if( ($zigou_suanli + $tuijian_suanli) >=110 && ($zigou_suanli + $tuijian_suanli) <550){
             $flag = 2;
         }
-        if( ($zigou_suanli + $tuijian_suanli) >=0 && ($zigou_suanli + $tuijian_suanli) <=110){
+        if( ($zigou_suanli + $tuijian_suanli) >=0 && ($zigou_suanli + $tuijian_suanli) <110){
             $flag = 1;
         }
         return view('invite')->with('flag',$flag)->with('zigou_suanli',$zigou_suanli)->with('tuijian_suanli',$tuijian_suanli);
