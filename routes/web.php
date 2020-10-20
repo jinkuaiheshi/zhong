@@ -162,6 +162,8 @@ Route::group(['middleware'=>['web','Admin']],function() {
     Route::post('/admin/sys/user/bank/{id}', 'UserController@bank');
     Route::post('/admin/sys/user/cash', 'UserController@cash');
 
+    Route::get('/admin/sys/yongjin', 'UserController@yongjin');
+
     //agent
     Route::any('/admin/agent/user', 'AgentController@index');
     Route::get('/admin/agent/user/lower/{id}', 'AgentController@lower');

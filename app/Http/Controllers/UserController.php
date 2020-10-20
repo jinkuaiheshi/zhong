@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Admin\Cash;
+use App\Admin\Order;
 use App\Admin\User;
 use Illuminate\Http\Request;
 
@@ -25,32 +26,612 @@ class UserController extends CommomController
             }
         }else{
             $User = User::with('Realname', 'Cash')->where('id', '!=', 1)->get();
-            $data = array();
-            $datas = array();
-            foreach ($User as $v) {
-                $data['username'] = $v->username;
-                $data['top'] = $v->top;
-                $data['id'] = $v->id;
-                $data['auth'] = $v->auth;
-                $data['level'] = $v->level;
-                $data['last_login_time'] = $v->last_login_time;
-                $data['create_time'] = $v->create_time;
-                $data['Realname'] = isset($v->Realname->name) ? $v->Realname->name : '';
-                $data['code'] = isset($v->Realname->code) ? $v->Realname->code : '';
-                $data['userZHIFUBAO'] = isset($v->cash->userZHIFUBAO) ? $v->cash->userZHIFUBAO : '';
-                $data['tel'] = $v->tel;
-                if ($v->top != -1) {
-                    $top = User::where('id', $v->top)->first();
-                    $data['topUser'] = $top->username;
-                }
-                $datas[] = $data;
-            }
-            $islogin = session('islogin');
 
-            return view('admin_user')->with('data', $datas)->with('user',$User);
+            return view('admin_user')->with('data', $User)->with('user',$User);
         }
 
 
+    }
+    public  function yongjin(){
+        //查找所有的订单当前还生效的
+        $order  = Order::where('status',2)->get();
+
+        $data = array();
+        $datas = array();
+        if(count($order)>0){
+            foreach ($order as $vv){
+                if($vv->pid == 5){
+                    if(strtotime('+3 month',strtotime($vv->force_time)) > time() ){
+
+                        $user = User::where('id',$vv->uid)->first();
+                        if($user->top != -1){
+                            //上级用户
+                            $top =User::where('id',$user->top)->first();
+                            //查询用户等级
+                            $flag = $this->getLevle($top->id);
+                            if($flag== 2){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
+                            }
+                            if($flag== 3){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
+                            }
+                            if($flag== 4){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
+                            }
+                            if($flag== 5){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
+                            }
+                            $data['order'] = $vv->code;
+                            $data['name'] = $vv->name;
+                            $data['uid'] = $user->username;
+                            $data['top'] = $top->username;
+                            $data['topLevel'] = $flag;
+                            $datas[] = $data;
+
+                            if($top->top != -1){
+                                //上上级
+                                $toptop =User::where('id',$top->top)->first();
+
+                                //查询用户等级
+                                $flag = $this->getLevle($toptop->id);
+
+                                if($flag== 2){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
+                                }
+                                if($flag== 3){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
+                                }
+                                if($flag== 4){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
+                                }
+                                if($flag== 5){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
+                                }
+                                $data['order'] = $vv->code;
+                                $data['name'] = $vv->name;
+                                $data['uid'] = $top->username;
+                                $data['top'] = $toptop->username;
+                                $data['topLevel'] = $flag;
+                                $datas[] = $data;
+                            }
+
+                        }
+                    }
+                }
+                if($vv->pid == 6){
+                    if(strtotime('+6 month',strtotime($vv->force_time)) > time() ){
+
+                        $user = User::where('id',$vv->uid)->first();
+                        if($user->top != -1){
+                            //上级用户
+                            $top =User::where('id',$user->top)->first();
+                            //查询用户等级
+                            $flag = $this->getLevle($top->id);
+                            if($flag== 2){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
+                            }
+                            if($flag== 3){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
+                            }
+                            if($flag== 4){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
+                            }
+                            if($flag== 5){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
+                            }
+                            $data['order'] = $vv->code;
+                            $data['name'] = $vv->name;
+                            $data['uid'] = $user->username;
+                            $data['top'] = $top->username;
+                            $data['topLevel'] = $flag;
+                            $datas[] = $data;
+
+                            if($top->top != -1){
+                                //上上级
+                                $toptop =User::where('id',$top->top)->first();
+
+                                //查询用户等级
+                                $flag = $this->getLevle($toptop->id);
+
+                                if($flag== 2){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
+                                }
+                                if($flag== 3){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
+                                }
+                                if($flag== 4){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
+                                }
+                                if($flag== 5){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
+                                }
+                                $data['order'] = $vv->code;
+                                $data['name'] = $vv->name;
+                                $data['uid'] = $top->username;
+                                $data['top'] = $toptop->username;
+                                $data['topLevel'] = $flag;
+                                $datas[] = $data;
+                            }
+
+                        }
+                    }
+                }
+                if($vv->pid == 7){
+                    if(strtotime('+12 month',strtotime($vv->force_time)) > time() ){
+                        //确定购买人
+                        $user = User::where('id',$vv->uid)->first();
+                        if($user->top != -1){
+                            //上级用户
+                            $top =User::where('id',$user->top)->first();
+                            //查询用户等级
+                            $flag = $this->getLevle($top->id);
+                            if($flag== 2){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
+                            }
+                            if($flag== 3){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
+                            }
+                            if($flag== 4){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
+                            }
+                            if($flag== 5){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
+                            }
+                            $data['order'] = $vv->code;
+                            $data['name'] = $vv->name;
+                            $data['uid'] = $user->username;
+                            $data['top'] = $top->username;
+                            $data['topLevel'] = $flag;
+                            $datas[] = $data;
+
+                            if($top->top != -1){
+                                //上上级
+                                $toptop =User::where('id',$top->top)->first();
+
+                                //查询用户等级
+                                $flag = $this->getLevle($toptop->id);
+
+                                if($flag== 2){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
+                                }
+                                if($flag== 3){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
+                                }
+                                if($flag== 4){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
+                                }
+                                if($flag== 5){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
+                                }
+                                $data['order'] = $vv->code;
+                                $data['name'] = $vv->name;
+                                $data['uid'] = $top->username;
+                                $data['top'] = $toptop->username;
+                                $data['topLevel'] = $flag;
+                                $datas[] = $data;
+                            }
+
+                        }
+
+
+                    }
+                }
+                if($vv->pid == 8){
+                    if(strtotime('+3 month',strtotime($vv->force_time)) > time() ){
+
+
+                        $user = User::where('id',$vv->uid)->first();
+                        if($user->top != -1){
+                            //上级用户
+                            $top =User::where('id',$user->top)->first();
+                            //查询用户等级
+                            $flag = $this->getLevle($top->id);
+                            if($flag== 2){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
+                            }
+                            if($flag== 3){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
+                            }
+                            if($flag== 4){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
+                            }
+                            if($flag== 5){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
+                            }
+                            $data['order'] = $vv->code;
+                            $data['name'] = $vv->name;
+                            $data['uid'] = $user->username;
+                            $data['top'] = $top->username;
+                            $data['topLevel'] = $flag;
+                            $datas[] = $data;
+
+                            if($top->top != -1){
+                                //上上级
+                                $toptop =User::where('id',$top->top)->first();
+
+                                //查询用户等级
+                                $flag = $this->getLevle($toptop->id);
+
+                                if($flag== 2){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
+                                }
+                                if($flag== 3){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
+                                }
+                                if($flag== 4){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
+                                }
+                                if($flag== 5){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
+                                }
+                                $data['order'] = $vv->code;
+                                $data['name'] = $vv->name;
+                                $data['uid'] = $top->username;
+                                $data['top'] = $toptop->username;
+                                $data['topLevel'] = $flag;
+                                $datas[] = $data;
+                            }
+
+                        }
+                    }
+                }
+                if($vv->pid == 9){
+                    if(strtotime('+6 month',strtotime($vv->force_time)) > time() ){
+
+                        $user = User::where('id',$vv->uid)->first();
+                        if($user->top != -1){
+                            //上级用户
+                            $top =User::where('id',$user->top)->first();
+                            //查询用户等级
+                            $flag = $this->getLevle($top->id);
+                            if($flag== 2){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
+                            }
+                            if($flag== 3){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
+                            }
+                            if($flag== 4){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
+                            }
+                            if($flag== 5){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
+                            }
+                            $data['order'] = $vv->code;
+                            $data['name'] = $vv->name;
+                            $data['uid'] = $user->username;
+                            $data['top'] = $top->username;
+                            $data['topLevel'] = $flag;
+                            $datas[] = $data;
+
+                            if($top->top != -1){
+                                //上上级
+                                $toptop =User::where('id',$top->top)->first();
+
+                                //查询用户等级
+                                $flag = $this->getLevle($toptop->id);
+
+                                if($flag== 2){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
+                                }
+                                if($flag== 3){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
+                                }
+                                if($flag== 4){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
+                                }
+                                if($flag== 5){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
+                                }
+                                $data['order'] = $vv->code;
+                                $data['name'] = $vv->name;
+                                $data['uid'] = $top->username;
+                                $data['top'] = $toptop->username;
+                                $data['topLevel'] = $flag;
+                                $datas[] = $data;
+                            }
+
+                        }
+                    }
+                }
+                if($vv->pid == 10){
+                    if(strtotime('+12 month',strtotime($vv->force_time)) > time() ){
+
+                        $user = User::where('id',$vv->uid)->first();
+                        if($user->top != -1){
+                            //上级用户
+                            $top =User::where('id',$user->top)->first();
+                            //查询用户等级
+                            $flag = $this->getLevle($top->id);
+                            if($flag== 2){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
+                            }
+                            if($flag== 3){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
+                            }
+                            if($flag== 4){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
+                            }
+                            if($flag== 5){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
+                            }
+                            $data['order'] = $vv->code;
+                            $data['name'] = $vv->name;
+                            $data['uid'] = $user->username;
+                            $data['top'] = $top->username;
+                            $data['topLevel'] = $flag;
+                            $datas[] = $data;
+
+                            if($top->top != -1){
+                                //上上级
+                                $toptop =User::where('id',$top->top)->first();
+
+                                //查询用户等级
+                                $flag = $this->getLevle($toptop->id);
+
+                                if($flag== 2){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
+                                }
+                                if($flag== 3){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
+                                }
+                                if($flag== 4){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
+                                }
+                                if($flag== 5){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
+                                }
+                                $data['order'] = $vv->code;
+                                $data['name'] = $vv->name;
+                                $data['uid'] = $top->username;
+                                $data['top'] = $toptop->username;
+                                $data['topLevel'] = $flag;
+                                $datas[] = $data;
+                            }
+
+                        }
+                    }
+                }
+
+                if($vv->pid == 16){
+                    if(strtotime('+1 month',strtotime($vv->force_time)) > time() ){
+
+
+                        $user = User::where('id',$vv->uid)->first();
+                        if($user->top != -1){
+                            //上级用户
+                            $top =User::where('id',$user->top)->first();
+                            //查询用户等级
+                            $flag = $this->getLevle($top->id);
+                            if($flag== 2){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
+                            }
+                            if($flag== 3){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
+                            }
+                            if($flag== 4){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
+                            }
+                            if($flag== 5){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
+                            }
+                            $data['order'] = $vv->code;
+                            $data['name'] = $vv->name;
+                            $data['uid'] = $user->username;
+                            $data['top'] = $top->username;
+                            $data['topLevel'] = $flag;
+                            $datas[] = $data;
+
+                            if($top->top != -1){
+                                //上上级
+                                $toptop =User::where('id',$top->top)->first();
+
+                                //查询用户等级
+                                $flag = $this->getLevle($toptop->id);
+
+                                if($flag== 2){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
+                                }
+                                if($flag== 3){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
+                                }
+                                if($flag== 4){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
+                                }
+                                if($flag== 5){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
+                                }
+                                $data['order'] = $vv->code;
+                                $data['name'] = $vv->name;
+                                $data['uid'] = $top->username;
+                                $data['top'] = $toptop->username;
+                                $data['topLevel'] = $flag;
+                                $datas[] = $data;
+                            }
+
+                        }
+                    }
+                }
+                if($vv->pid == 18 || $vv->pid == 19){
+
+                    $user = User::where('id',$vv->uid)->first();
+                    if($user->top != -1){
+                        //上级用户
+                        $top =User::where('id',$user->top)->first();
+                        //查询用户等级
+                        $flag = $this->getLevle($top->id);
+                        if($flag== 2){
+                            $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
+                        }
+                        if($flag== 3){
+                            $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
+                        }
+                        if($flag== 4){
+                            $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
+                        }
+                        if($flag== 5){
+                            $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
+                        }
+                        $data['order'] = $vv->code;
+                        $data['name'] = $vv->name;
+                        $data['uid'] = $user->username;
+                        $data['top'] = $top->username;
+                        $data['topLevel'] = $flag;
+                        $datas[] = $data;
+
+                        if($top->top != -1){
+                            //上上级
+                            $toptop =User::where('id',$top->top)->first();
+
+                            //查询用户等级
+                            $flag = $this->getLevle($toptop->id);
+
+                            if($flag== 2){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
+                            }
+                            if($flag== 3){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
+                            }
+                            if($flag== 4){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
+                            }
+                            if($flag== 5){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
+                            }
+                            $data['order'] = $vv->code;
+                            $data['name'] = $vv->name;
+                            $data['uid'] = $top->username;
+                            $data['top'] = $toptop->username;
+                            $data['topLevel'] = $flag;
+                            $datas[] = $data;
+                        }
+
+                    }
+
+
+                }
+                if($vv->pid == 22){
+                    if(strtotime('+3 month',strtotime($vv->force_time)) > time() ){
+                        $user = User::where('id',$vv->uid)->first();
+                        if($user->top != -1){
+                            //上级用户
+                            $top =User::where('id',$user->top)->first();
+                            //查询用户等级
+                            $flag = $this->getLevle($top->id);
+                            if($flag== 2){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
+                            }
+                            if($flag== 3){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
+                            }
+                            if($flag== 4){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
+                            }
+                            if($flag== 5){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
+                            }
+                            $data['order'] = $vv->code;
+                            $data['name'] = $vv->name;
+                            $data['uid'] = $user->username;
+                            $data['top'] = $top->username;
+                            $data['topLevel'] = $flag;
+                            $datas[] = $data;
+
+                            if($top->top != -1){
+                                //上上级
+                                $toptop =User::where('id',$top->top)->first();
+
+                                //查询用户等级
+                                $flag = $this->getLevle($toptop->id);
+
+                                if($flag== 2){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
+                                }
+                                if($flag== 3){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
+                                }
+                                if($flag== 4){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
+                                }
+                                if($flag== 5){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
+                                }
+                                $data['order'] = $vv->code;
+                                $data['name'] = $vv->name;
+                                $data['uid'] = $top->username;
+                                $data['top'] = $toptop->username;
+                                $data['topLevel'] = $flag;
+                                $datas[] = $data;
+                            }
+
+                        }
+
+
+                    }
+                }
+                if($vv->pid == 23){
+                    if(strtotime('+12 month',strtotime($vv->force_time)) > time() ){
+
+                        $user = User::where('id',$vv->uid)->first();
+                        if($user->top != -1){
+                            //上级用户
+                            $top =User::where('id',$user->top)->first();
+                            //查询用户等级
+                            $flag = $this->getLevle($top->id);
+                            if($flag== 2){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
+                            }
+                            if($flag== 3){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
+                            }
+                            if($flag== 4){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
+                            }
+                            if($flag== 5){
+                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
+                            }
+                            $data['order'] = $vv->code;
+                            $data['name'] = $vv->name;
+                            $data['uid'] = $user->username;
+                            $data['top'] = $top->username;
+                            $data['topLevel'] = $flag;
+                            $datas[] = $data;
+
+                            if($top->top != -1){
+                                //上上级
+                                $toptop =User::where('id',$top->top)->first();
+
+                                //查询用户等级
+                                $flag = $this->getLevle($toptop->id);
+
+                                if($flag== 2){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
+                                }
+                                if($flag== 3){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
+                                }
+                                if($flag== 4){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
+                                }
+                                if($flag== 5){
+                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
+                                }
+                                $data['order'] = $vv->code;
+                                $data['name'] = $vv->name;
+                                $data['uid'] = $top->username;
+                                $data['top'] = $toptop->username;
+                                $data['topLevel'] = $flag;
+                                $datas[] = $data;
+                            }
+
+                        }
+
+                    }
+                }
+
+
+            }
+            return view('admin_yongjin')->with('data', $datas);
+        }
     }
     public function distribution($id){
         $user = User::with('Realname', 'Cash')->where('top',$id)->get();

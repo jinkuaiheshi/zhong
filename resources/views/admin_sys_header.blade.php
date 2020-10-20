@@ -176,6 +176,16 @@
 
                     </ul>
                 </li>
+                <li class="with-sub">
+                    <a href="#" class="waves-effect  waves-light">
+                        <span class="s-caret"><i class="fa fa-angle-down"></i></span>
+                        <span class="s-icon"><i class=" ti-loop "></i></span>
+                        <span class="s-text">佣金管理</span>
+                    </a>
+{{--                    <ul>--}}
+{{--                        <li><a href="{{url('/admin/sys/commission')}}">佣金管理</a></li>--}}
+{{--                    </ul>--}}
+                </li>
                 {{--<li class="with-sub">--}}
                 {{--<a href="#" class="waves-effect  waves-light">--}}
                 {{--<span class="s-caret"><i class="fa fa-angle-down"></i></span>--}}

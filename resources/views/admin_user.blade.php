@@ -6,7 +6,7 @@
 
         <div class="box box-block bg-white">
             <div class="form-group" style="height: auto; overflow: hidden;">
-
+                <a href="{{url('admin/sys/yongjin')}}" ><button type="button" class="btn btn-primary w-min-sm m-b-1 waves-effect waves-light" style="float: right;display:inline-block" >一键发放所有账户佣金</button></a>
             </div>
             <table class="table table-striped table-bordered dataTable" id="tab" >
                 <thead>
@@ -18,7 +18,7 @@
 
                     <th>权限</th>
                     <th>绑定手机</th>
-                    <th>等级</th>
+
                     <th>操作</th>
 
                 </tr>
@@ -26,22 +26,20 @@
                 <tbody>
                 @foreach($data as $v)
                     <tr>
-                        <td>{{$v['id']}}</td>
-                        <td>{{$v['username']}}</td>
-                        <td>{{$v['create_time']}}</td>
-                        <td>{{$v['Realname']}}</td>
+                        <td>{{$v->id}}</td>
+                        <td>{{$v->username}}</td>
+                        <td>{{$v->create_time}}</td>
+                        <td>{{isset($v->Realname->name)?$v->Realname->name:''}}</td>
 
-                        <td>@if($v['auth']==3)<span class="btn btn-outline-primary w-min-sm m-b-0-25 waves-effect waves-light">个人代理</span>@elseif($v['auth']==7)<span class="btn btn-outline-success w-min-sm m-b-0-25 waves-effect waves-light">省代理</span>@elseif($v['auth']==8)<span class="btn btn-outline-info  w-min-sm m-b-0-25 waves-effect waves-light">市代理</span>@elseif($v['auth']==9)<span class="btn btn-outline-black  w-min-sm m-b-0-25 waves-effect waves-light">县代理</span>@endif</td>
-                        <td>{{$v['tel']}}</td>
-                        <td>@if($v['level']==1)<span class="btn btn-outline-primary w-min-sm m-b-0-25 waves-effect waves-light">青铜会员</span>@elseif($v['level']==2)<span class="btn btn-outline-success w-min-sm m-b-0-25 waves-effect waves-light">白银会员</span>@elseif($v['level']==3)<span class="btn btn-outline-info  w-min-sm m-b-0-25 waves-effect waves-light">黄金会员</span>@elseif($v['level']==4)<span class="btn btn-outline-warning  w-min-sm m-b-0-25 waves-effect waves-light">铂金会员</span>@elseif($v['level']==5)<span class="btn btn-outline-black  w-min-sm m-b-0-25 waves-effect waves-light">钻石会员</span>@endif</td>
-                        <td><a href="jacascript::void(0)" ><button type="button" class="btn btn-warning w-min-xs  waves-effect waves-light quanxian"  data-toggle="modal" data-target="#quanxian" data-action="{{$v['id']}}" >权限设置</button></a>
-                           @if($v['top'] == -1)<a href="jacascript::void(0)" ><button type="button" class="btn btn-primary w-min-xs  waves-effect waves-light shangji"  data-toggle="modal" data-target="#shangji" data-action="{{$v['id']}}" >上级设置</button></a>@else<a href="jacascript::void(0)" ><button type="button" class="btn btn-purple w-min-xs  waves-effect waves-light chakan"  data-toggle="modal" data-target="#chakan" data-action="{{$v['id']}}" >查看上级</button></a>@endif
-                            <a href="jacascript::void(0)" ><button type="button" class="btn btn-danger w-min-xs  waves-effect waves-light bank"  data-toggle="modal" data-target="#bank" data-action="{{$v['id']}}" >账户信息</button></a>
-                            <a href="{{url('admin/sys/user/lower').'/'.$v['id']}}" ><button type="button" class="btn btn-info w-min-xs  waves-effect waves-light "   >下级管理</button></a>
-                            <a href="jacascript::void(0)" ><button type="button" class="btn btn-black w-min-xs  waves-effect waves-light yaoqing"  data-toggle="modal" data-target="#yaoqing" data-action="{{$v['id']}}" >邀请码</button></a>
+                        <td>@if($v->auth==3)<span class="btn btn-outline-primary w-min-sm m-b-0-25 waves-effect waves-light">个人代理</span>@elseif($v->auth==7)<span class="btn btn-outline-success w-min-sm m-b-0-25 waves-effect waves-light">省代理</span>@elseif($v->auth==8)<span class="btn btn-outline-info  w-min-sm m-b-0-25 waves-effect waves-light">市代理</span>@elseif($v->auth==9)<span class="btn btn-outline-black  w-min-sm m-b-0-25 waves-effect waves-light">县代理</span>@endif</td>
+                        <td>{{$v->tel}}</td>
+
+                        <td><a href="jacascript::void(0)" ><button type="button" class="btn btn-warning w-min-xs  waves-effect waves-light quanxian"  data-toggle="modal" data-target="#quanxian" data-action="{{$v->id}}" >权限设置</button></a>
+                           @if($v->top == -1)<a href="jacascript::void(0)" ><button type="button" class="btn btn-primary w-min-xs  waves-effect waves-light shangji"  data-toggle="modal" data-target="#shangji" data-action="{{$v->top}}" >上级设置</button></a>@else<a href="jacascript::void(0)" ><button type="button" class="btn btn-purple w-min-xs  waves-effect waves-light chakan"  data-toggle="modal" data-target="#chakan" data-action="{{$v->top}}" >查看上级</button></a>@endif
+                            <a href="jacascript::void(0)" ><button type="button" class="btn btn-danger w-min-xs  waves-effect waves-light bank"  data-toggle="modal" data-target="#bank" data-action="{{$v->id}}" >账户信息</button></a>
+                            <a href="{{url('admin/sys/user/lower').'/'.$v->id}}" ><button type="button" class="btn btn-info w-min-xs  waves-effect waves-light "   >下级管理</button></a>
+                            <a href="jacascript::void(0)" ><button type="button" class="btn btn-black w-min-xs  waves-effect waves-light yaoqing"  data-toggle="modal" data-target="#yaoqing" data-action="{{$v->id}}" >邀请码</button></a>
                         </td>
-
-
                     </tr>
                 @endforeach
                 </tbody>
@@ -189,12 +187,7 @@
                             <input class="form-control ajaxAuth" type="text" name=""  value=""  readonly>
                         </div>
                     </div>
-                    <div class="form-group h-a" style="text-align: center">
-                        <label for="name" class=" col-form-label label200" >等级：</label>
-                        <div  style="float:left; width: 250px;">
-                            <input class="form-control ajaxLevel" type="text" name=""  value=""  readonly>
-                        </div>
-                    </div>
+
 
 
 
@@ -222,15 +215,10 @@
                             <input class="form-control bank_userZHIFUBAO" type="text" name="userZHIFUBAO"  value=""  >
                         </div>
                     </div>
-                    <div class="form-group h-a" style="text-align: center">
-                        <label for="name" class=" col-form-label label200" >公司名称：</label>
-                        <div  style="float:left; width: 450px;">
-                            <input class="form-control bank_company" type="text" name="company"  value=""  >
-                        </div>
-                    </div>
+
 
                     <div class="form-group h-a" style="text-align: center">
-                        <label for="name" class=" col-form-label label200" >公司账号：</label>
+                        <label for="name" class=" col-form-label label200" >银行账号：</label>
                         <div  style="float:left; width: 450px;">
                             <input class="form-control bank_companyCode" type="text" name="companyCode"  value=""  >
                         </div>
