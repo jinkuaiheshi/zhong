@@ -16,6 +16,7 @@ use App\Admin\Sms;
 use App\Admin\Tibi;
 use App\Admin\Upload;
 use App\Admin\User;
+use App\Admin\Yongjin;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -866,6 +867,11 @@ class IndexController extends CommomController
             $User='';
         }
         return view('team')->with('data', $datas);
+    }
+    public function yongjin(){
+        $indexlogin = session('indexlogin');
+        $data = Yongjin::where('top',$indexlogin->username)->get();
+        return view('yongjin')->with('data',$data);
     }
     public function huazhuan(){
         $data_btc = $this ->GetMySuoyouBtc();

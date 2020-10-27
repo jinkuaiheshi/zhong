@@ -25,17 +25,13 @@
                 <tbody>
                 @foreach($data as $v)
                     <tr>
-
-                        <td>{{$v['order']}}</td>
-                        <td>{{$v['name']}}</td>
-                        <td>{{$v['uid']}}</td>
-                        <td>{{$v['top']}}</td>
-                        <td>{{$v['topLevel']}}</td>
-                        <td>{{$v['yongjin']}}</td>
-
+                        <td>{{$v->order}}</td>
+                        <td>{{$v->name}}</td>
+                        <td>{{$v->uid}}</td>
+                        <td>{{$v->top}}</td>
+                        <td>{{$v->topLevel}}</td>
+                        <td>{{$v->yongjin}}</td>
                         <td></td>
-
-
                     </tr>
                 @endforeach
                 </tbody>

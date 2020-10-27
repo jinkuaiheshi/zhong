@@ -69,6 +69,7 @@ Route::group(['middleware'=>['web','Index']],function() {
     Route::any('/upload', 'IndexController@upload');
     Route::get('/succ', 'IndexController@succ');
     Route::get('/team', 'IndexController@team');
+    Route::get('/yongjin', 'IndexController@yongjin');
 
     Route::get('/huazhuan', 'IndexController@huazhuan');
     Route::get('/huazhuanEth', 'IndexController@huazhuanEth');

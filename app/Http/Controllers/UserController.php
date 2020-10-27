@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Admin\Cash;
 use App\Admin\Order;
 use App\Admin\User;
+use App\Admin\Yongjin;
 use Illuminate\Http\Request;
 
 class UserController extends CommomController
@@ -35,7 +36,12 @@ class UserController extends CommomController
     public  function yongjin(){
         //查找所有的订单当前还生效的
         $order  = Order::where('status',2)->get();
-
+        $month = date('m',time());
+        $isset = Yongjin::where('month',$month)->first();
+        if($isset){
+            $datas = Yongjin::where('month',$month)->get();
+            return view('admin_yongjin')->with('data', $datas);
+        }
         $data = array();
         $datas = array();
         if(count($order)>0){
@@ -49,24 +55,15 @@ class UserController extends CommomController
                             $top =User::where('id',$user->top)->first();
                             //查询用户等级
                             $flag = $this->getLevle($top->id);
-                            if($flag== 2){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
-                            }
-                            if($flag== 3){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
-                            }
-                            if($flag== 4){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
-                            }
-                            if($flag== 5){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
-                            }
-                            $data['order'] = $vv->code;
-                            $data['name'] = $vv->name;
-                            $data['uid'] = $user->username;
-                            $data['top'] = $top->username;
-                            $data['topLevel'] = $flag;
-                            $datas[] = $data;
+                            $yongjin = new Yongjin();
+                            $yongjin->yongjin = $vv->UnitPrice*$vv->num*0.001*$flag;
+                            $yongjin->order = $vv->code;
+                            $yongjin->name = $vv->name;
+                            $yongjin->uid = $user->username;
+                            $yongjin->top = $top->username;
+                            $yongjin->topLevel = $flag;
+                            $yongjin->month = $month;
+                            $yongjin->save();
 
                             if($top->top != -1){
                                 //上上级
@@ -75,24 +72,15 @@ class UserController extends CommomController
                                 //查询用户等级
                                 $flag = $this->getLevle($toptop->id);
 
-                                if($flag== 2){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
-                                }
-                                if($flag== 3){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
-                                }
-                                if($flag== 4){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
-                                }
-                                if($flag== 5){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
-                                }
-                                $data['order'] = $vv->code;
-                                $data['name'] = $vv->name;
-                                $data['uid'] = $top->username;
-                                $data['top'] = $toptop->username;
-                                $data['topLevel'] = $flag;
-                                $datas[] = $data;
+                                $yongjin = new Yongjin();
+                                $yongjin->yongjin = $vv->UnitPrice*$vv->num*0.001*$flag;
+                                $yongjin->order = $vv->code;
+                                $yongjin->name = $vv->name;
+                                $yongjin->uid = $user->username;
+                                $yongjin->top = $toptop->username;
+                                $yongjin->topLevel = $flag;
+                                $yongjin->month = $month;
+                                $yongjin->save();
                             }
 
                         }
@@ -107,24 +95,15 @@ class UserController extends CommomController
                             $top =User::where('id',$user->top)->first();
                             //查询用户等级
                             $flag = $this->getLevle($top->id);
-                            if($flag== 2){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
-                            }
-                            if($flag== 3){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
-                            }
-                            if($flag== 4){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
-                            }
-                            if($flag== 5){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
-                            }
-                            $data['order'] = $vv->code;
-                            $data['name'] = $vv->name;
-                            $data['uid'] = $user->username;
-                            $data['top'] = $top->username;
-                            $data['topLevel'] = $flag;
-                            $datas[] = $data;
+                            $yongjin = new Yongjin();
+                            $yongjin->yongjin = $vv->UnitPrice*$vv->num*0.001*$flag;
+                            $yongjin->order = $vv->code;
+                            $yongjin->name = $vv->name;
+                            $yongjin->uid = $user->username;
+                            $yongjin->top = $top->username;
+                            $yongjin->topLevel = $flag;
+                            $yongjin->month = $month;
+                            $yongjin->save();
 
                             if($top->top != -1){
                                 //上上级
@@ -133,24 +112,15 @@ class UserController extends CommomController
                                 //查询用户等级
                                 $flag = $this->getLevle($toptop->id);
 
-                                if($flag== 2){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
-                                }
-                                if($flag== 3){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
-                                }
-                                if($flag== 4){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
-                                }
-                                if($flag== 5){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
-                                }
-                                $data['order'] = $vv->code;
-                                $data['name'] = $vv->name;
-                                $data['uid'] = $top->username;
-                                $data['top'] = $toptop->username;
-                                $data['topLevel'] = $flag;
-                                $datas[] = $data;
+                                $yongjin = new Yongjin();
+                                $yongjin->yongjin = $vv->UnitPrice*$vv->num*0.001*$flag;
+                                $yongjin->order = $vv->code;
+                                $yongjin->name = $vv->name;
+                                $yongjin->uid = $user->username;
+                                $yongjin->top = $toptop->username;
+                                $yongjin->topLevel = $flag;
+                                $yongjin->month = $month;
+                                $yongjin->save();
                             }
 
                         }
@@ -165,24 +135,16 @@ class UserController extends CommomController
                             $top =User::where('id',$user->top)->first();
                             //查询用户等级
                             $flag = $this->getLevle($top->id);
-                            if($flag== 2){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
-                            }
-                            if($flag== 3){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
-                            }
-                            if($flag== 4){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
-                            }
-                            if($flag== 5){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
-                            }
-                            $data['order'] = $vv->code;
-                            $data['name'] = $vv->name;
-                            $data['uid'] = $user->username;
-                            $data['top'] = $top->username;
-                            $data['topLevel'] = $flag;
-                            $datas[] = $data;
+
+                            $yongjin = new Yongjin();
+                            $yongjin->yongjin = $vv->UnitPrice*$vv->num*0.001*$flag;
+                            $yongjin->order = $vv->code;
+                            $yongjin->name = $vv->name;
+                            $yongjin->uid = $user->username;
+                            $yongjin->top = $top->username;
+                            $yongjin->topLevel = $flag;
+                            $yongjin->month = $month;
+                            $yongjin->save();
 
                             if($top->top != -1){
                                 //上上级
@@ -191,24 +153,15 @@ class UserController extends CommomController
                                 //查询用户等级
                                 $flag = $this->getLevle($toptop->id);
 
-                                if($flag== 2){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
-                                }
-                                if($flag== 3){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
-                                }
-                                if($flag== 4){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
-                                }
-                                if($flag== 5){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
-                                }
-                                $data['order'] = $vv->code;
-                                $data['name'] = $vv->name;
-                                $data['uid'] = $top->username;
-                                $data['top'] = $toptop->username;
-                                $data['topLevel'] = $flag;
-                                $datas[] = $data;
+                                $yongjin = new Yongjin();
+                                $yongjin->yongjin = $vv->UnitPrice*$vv->num*0.001*$flag;
+                                $yongjin->order = $vv->code;
+                                $yongjin->name = $vv->name;
+                                $yongjin->uid = $user->username;
+                                $yongjin->top = $toptop->username;
+                                $yongjin->topLevel = $flag;
+                                $yongjin->month = $month;
+                                $yongjin->save();
                             }
 
                         }
@@ -226,24 +179,15 @@ class UserController extends CommomController
                             $top =User::where('id',$user->top)->first();
                             //查询用户等级
                             $flag = $this->getLevle($top->id);
-                            if($flag== 2){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
-                            }
-                            if($flag== 3){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
-                            }
-                            if($flag== 4){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
-                            }
-                            if($flag== 5){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
-                            }
-                            $data['order'] = $vv->code;
-                            $data['name'] = $vv->name;
-                            $data['uid'] = $user->username;
-                            $data['top'] = $top->username;
-                            $data['topLevel'] = $flag;
-                            $datas[] = $data;
+                            $yongjin = new Yongjin();
+                            $yongjin->yongjin = $vv->UnitPrice*$vv->num*0.001*$flag;
+                            $yongjin->order = $vv->code;
+                            $yongjin->name = $vv->name;
+                            $yongjin->uid = $user->username;
+                            $yongjin->top = $top->username;
+                            $yongjin->topLevel = $flag;
+                            $yongjin->month = $month;
+                            $yongjin->save();
 
                             if($top->top != -1){
                                 //上上级
@@ -252,24 +196,15 @@ class UserController extends CommomController
                                 //查询用户等级
                                 $flag = $this->getLevle($toptop->id);
 
-                                if($flag== 2){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
-                                }
-                                if($flag== 3){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
-                                }
-                                if($flag== 4){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
-                                }
-                                if($flag== 5){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
-                                }
-                                $data['order'] = $vv->code;
-                                $data['name'] = $vv->name;
-                                $data['uid'] = $top->username;
-                                $data['top'] = $toptop->username;
-                                $data['topLevel'] = $flag;
-                                $datas[] = $data;
+                                $yongjin = new Yongjin();
+                                $yongjin->yongjin = $vv->UnitPrice*$vv->num*0.001*$flag;
+                                $yongjin->order = $vv->code;
+                                $yongjin->name = $vv->name;
+                                $yongjin->uid = $user->username;
+                                $yongjin->top = $toptop->username;
+                                $yongjin->topLevel = $flag;
+                                $yongjin->month = $month;
+                                $yongjin->save();
                             }
 
                         }
@@ -284,24 +219,16 @@ class UserController extends CommomController
                             $top =User::where('id',$user->top)->first();
                             //查询用户等级
                             $flag = $this->getLevle($top->id);
-                            if($flag== 2){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
-                            }
-                            if($flag== 3){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
-                            }
-                            if($flag== 4){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
-                            }
-                            if($flag== 5){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
-                            }
-                            $data['order'] = $vv->code;
-                            $data['name'] = $vv->name;
-                            $data['uid'] = $user->username;
-                            $data['top'] = $top->username;
-                            $data['topLevel'] = $flag;
-                            $datas[] = $data;
+
+                            $yongjin = new Yongjin();
+                            $yongjin->yongjin = $vv->UnitPrice*$vv->num*0.001*$flag;
+                            $yongjin->order = $vv->code;
+                            $yongjin->name = $vv->name;
+                            $yongjin->uid = $user->username;
+                            $yongjin->top = $top->username;
+                            $yongjin->topLevel = $flag;
+                            $yongjin->month = $month;
+                            $yongjin->save();
 
                             if($top->top != -1){
                                 //上上级
@@ -310,24 +237,15 @@ class UserController extends CommomController
                                 //查询用户等级
                                 $flag = $this->getLevle($toptop->id);
 
-                                if($flag== 2){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
-                                }
-                                if($flag== 3){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
-                                }
-                                if($flag== 4){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
-                                }
-                                if($flag== 5){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
-                                }
-                                $data['order'] = $vv->code;
-                                $data['name'] = $vv->name;
-                                $data['uid'] = $top->username;
-                                $data['top'] = $toptop->username;
-                                $data['topLevel'] = $flag;
-                                $datas[] = $data;
+                                $yongjin = new Yongjin();
+                                $yongjin->yongjin = $vv->UnitPrice*$vv->num*0.001*$flag;
+                                $yongjin->order = $vv->code;
+                                $yongjin->name = $vv->name;
+                                $yongjin->uid = $user->username;
+                                $yongjin->top = $toptop->username;
+                                $yongjin->topLevel = $flag;
+                                $yongjin->month = $month;
+                                $yongjin->save();
                             }
 
                         }
@@ -342,24 +260,16 @@ class UserController extends CommomController
                             $top =User::where('id',$user->top)->first();
                             //查询用户等级
                             $flag = $this->getLevle($top->id);
-                            if($flag== 2){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
-                            }
-                            if($flag== 3){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
-                            }
-                            if($flag== 4){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
-                            }
-                            if($flag== 5){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
-                            }
-                            $data['order'] = $vv->code;
-                            $data['name'] = $vv->name;
-                            $data['uid'] = $user->username;
-                            $data['top'] = $top->username;
-                            $data['topLevel'] = $flag;
-                            $datas[] = $data;
+
+                            $yongjin = new Yongjin();
+                            $yongjin->yongjin = $vv->UnitPrice*$vv->num*0.001*$flag;
+                            $yongjin->order = $vv->code;
+                            $yongjin->name = $vv->name;
+                            $yongjin->uid = $user->username;
+                            $yongjin->top = $top->username;
+                            $yongjin->topLevel = $flag;
+                            $yongjin->month = $month;
+                            $yongjin->save();
 
                             if($top->top != -1){
                                 //上上级
@@ -368,24 +278,15 @@ class UserController extends CommomController
                                 //查询用户等级
                                 $flag = $this->getLevle($toptop->id);
 
-                                if($flag== 2){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
-                                }
-                                if($flag== 3){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
-                                }
-                                if($flag== 4){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
-                                }
-                                if($flag== 5){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
-                                }
-                                $data['order'] = $vv->code;
-                                $data['name'] = $vv->name;
-                                $data['uid'] = $top->username;
-                                $data['top'] = $toptop->username;
-                                $data['topLevel'] = $flag;
-                                $datas[] = $data;
+                                $yongjin = new Yongjin();
+                                $yongjin->yongjin = $vv->UnitPrice*$vv->num*0.001*$flag;
+                                $yongjin->order = $vv->code;
+                                $yongjin->name = $vv->name;
+                                $yongjin->uid = $user->username;
+                                $yongjin->top = $toptop->username;
+                                $yongjin->topLevel = $flag;
+                                $yongjin->month = $month;
+                                $yongjin->save();
                             }
 
                         }
@@ -402,24 +303,16 @@ class UserController extends CommomController
                             $top =User::where('id',$user->top)->first();
                             //查询用户等级
                             $flag = $this->getLevle($top->id);
-                            if($flag== 2){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
-                            }
-                            if($flag== 3){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
-                            }
-                            if($flag== 4){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
-                            }
-                            if($flag== 5){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
-                            }
-                            $data['order'] = $vv->code;
-                            $data['name'] = $vv->name;
-                            $data['uid'] = $user->username;
-                            $data['top'] = $top->username;
-                            $data['topLevel'] = $flag;
-                            $datas[] = $data;
+
+                            $yongjin = new Yongjin();
+                            $yongjin->yongjin = $vv->UnitPrice*$vv->num*0.001*$flag;
+                            $yongjin->order = $vv->code;
+                            $yongjin->name = $vv->name;
+                            $yongjin->uid = $user->username;
+                            $yongjin->top = $top->username;
+                            $yongjin->topLevel = $flag;
+                            $yongjin->month = $month;
+                            $yongjin->save();
 
                             if($top->top != -1){
                                 //上上级
@@ -428,24 +321,15 @@ class UserController extends CommomController
                                 //查询用户等级
                                 $flag = $this->getLevle($toptop->id);
 
-                                if($flag== 2){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
-                                }
-                                if($flag== 3){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
-                                }
-                                if($flag== 4){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
-                                }
-                                if($flag== 5){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
-                                }
-                                $data['order'] = $vv->code;
-                                $data['name'] = $vv->name;
-                                $data['uid'] = $top->username;
-                                $data['top'] = $toptop->username;
-                                $data['topLevel'] = $flag;
-                                $datas[] = $data;
+                                $yongjin = new Yongjin();
+                                $yongjin->yongjin = $vv->UnitPrice*$vv->num*0.001*$flag;
+                                $yongjin->order = $vv->code;
+                                $yongjin->name = $vv->name;
+                                $yongjin->uid = $user->username;
+                                $yongjin->top = $toptop->username;
+                                $yongjin->topLevel = $flag;
+                                $yongjin->month = $month;
+                                $yongjin->save();
                             }
 
                         }
@@ -459,24 +343,16 @@ class UserController extends CommomController
                         $top =User::where('id',$user->top)->first();
                         //查询用户等级
                         $flag = $this->getLevle($top->id);
-                        if($flag== 2){
-                            $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
-                        }
-                        if($flag== 3){
-                            $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
-                        }
-                        if($flag== 4){
-                            $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
-                        }
-                        if($flag== 5){
-                            $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
-                        }
-                        $data['order'] = $vv->code;
-                        $data['name'] = $vv->name;
-                        $data['uid'] = $user->username;
-                        $data['top'] = $top->username;
-                        $data['topLevel'] = $flag;
-                        $datas[] = $data;
+
+                        $yongjin = new Yongjin();
+                        $yongjin->yongjin = $vv->UnitPrice*$vv->num*0.001*$flag;
+                        $yongjin->order = $vv->code;
+                        $yongjin->name = $vv->name;
+                        $yongjin->uid = $user->username;
+                        $yongjin->top = $top->username;
+                        $yongjin->topLevel = $flag;
+                        $yongjin->month = $month;
+                        $yongjin->save();
 
                         if($top->top != -1){
                             //上上级
@@ -485,24 +361,15 @@ class UserController extends CommomController
                             //查询用户等级
                             $flag = $this->getLevle($toptop->id);
 
-                            if($flag== 2){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
-                            }
-                            if($flag== 3){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
-                            }
-                            if($flag== 4){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
-                            }
-                            if($flag== 5){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
-                            }
-                            $data['order'] = $vv->code;
-                            $data['name'] = $vv->name;
-                            $data['uid'] = $top->username;
-                            $data['top'] = $toptop->username;
-                            $data['topLevel'] = $flag;
-                            $datas[] = $data;
+                            $yongjin = new Yongjin();
+                            $yongjin->yongjin = $vv->UnitPrice*$vv->num*0.001*$flag;
+                            $yongjin->order = $vv->code;
+                            $yongjin->name = $vv->name;
+                            $yongjin->uid = $user->username;
+                            $yongjin->top = $toptop->username;
+                            $yongjin->topLevel = $flag;
+                            $yongjin->month = $month;
+                            $yongjin->save();
                         }
 
                     }
@@ -517,24 +384,16 @@ class UserController extends CommomController
                             $top =User::where('id',$user->top)->first();
                             //查询用户等级
                             $flag = $this->getLevle($top->id);
-                            if($flag== 2){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
-                            }
-                            if($flag== 3){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
-                            }
-                            if($flag== 4){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
-                            }
-                            if($flag== 5){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
-                            }
-                            $data['order'] = $vv->code;
-                            $data['name'] = $vv->name;
-                            $data['uid'] = $user->username;
-                            $data['top'] = $top->username;
-                            $data['topLevel'] = $flag;
-                            $datas[] = $data;
+
+                            $yongjin = new Yongjin();
+                            $yongjin->yongjin = $vv->UnitPrice*$vv->num*0.001*$flag;
+                            $yongjin->order = $vv->code;
+                            $yongjin->name = $vv->name;
+                            $yongjin->uid = $user->username;
+                            $yongjin->top = $top->username;
+                            $yongjin->topLevel = $flag;
+                            $yongjin->month = $month;
+                            $yongjin->save();
 
                             if($top->top != -1){
                                 //上上级
@@ -543,24 +402,15 @@ class UserController extends CommomController
                                 //查询用户等级
                                 $flag = $this->getLevle($toptop->id);
 
-                                if($flag== 2){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
-                                }
-                                if($flag== 3){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
-                                }
-                                if($flag== 4){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
-                                }
-                                if($flag== 5){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
-                                }
-                                $data['order'] = $vv->code;
-                                $data['name'] = $vv->name;
-                                $data['uid'] = $top->username;
-                                $data['top'] = $toptop->username;
-                                $data['topLevel'] = $flag;
-                                $datas[] = $data;
+                                $yongjin = new Yongjin();
+                                $yongjin->yongjin = $vv->UnitPrice*$vv->num*0.001*$flag;
+                                $yongjin->order = $vv->code;
+                                $yongjin->name = $vv->name;
+                                $yongjin->uid = $user->username;
+                                $yongjin->top = $toptop->username;
+                                $yongjin->topLevel = $flag;
+                                $yongjin->month = $month;
+                                $yongjin->save();
                             }
 
                         }
@@ -577,24 +427,16 @@ class UserController extends CommomController
                             $top =User::where('id',$user->top)->first();
                             //查询用户等级
                             $flag = $this->getLevle($top->id);
-                            if($flag== 2){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
-                            }
-                            if($flag== 3){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
-                            }
-                            if($flag== 4){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
-                            }
-                            if($flag== 5){
-                                $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
-                            }
-                            $data['order'] = $vv->code;
-                            $data['name'] = $vv->name;
-                            $data['uid'] = $user->username;
-                            $data['top'] = $top->username;
-                            $data['topLevel'] = $flag;
-                            $datas[] = $data;
+
+                            $yongjin = new Yongjin();
+                            $yongjin->yongjin = $vv->UnitPrice*$vv->num*0.001*$flag;
+                            $yongjin->order = $vv->code;
+                            $yongjin->name = $vv->name;
+                            $yongjin->uid = $user->username;
+                            $yongjin->top = $top->username;
+                            $yongjin->topLevel = $flag;
+                            $yongjin->month = $month;
+                            $yongjin->save();
 
                             if($top->top != -1){
                                 //上上级
@@ -603,24 +445,15 @@ class UserController extends CommomController
                                 //查询用户等级
                                 $flag = $this->getLevle($toptop->id);
 
-                                if($flag== 2){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.002;
-                                }
-                                if($flag== 3){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.003;
-                                }
-                                if($flag== 4){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.004;
-                                }
-                                if($flag== 5){
-                                    $data['yongjin'] = $vv->UnitPrice*$vv->num*0.005;
-                                }
-                                $data['order'] = $vv->code;
-                                $data['name'] = $vv->name;
-                                $data['uid'] = $top->username;
-                                $data['top'] = $toptop->username;
-                                $data['topLevel'] = $flag;
-                                $datas[] = $data;
+                                $yongjin = new Yongjin();
+                                $yongjin->yongjin = $vv->UnitPrice*$vv->num*0.001*$flag;
+                                $yongjin->order = $vv->code;
+                                $yongjin->name = $vv->name;
+                                $yongjin->uid = $user->username;
+                                $yongjin->top = $toptop->username;
+                                $yongjin->topLevel = $flag;
+                                $yongjin->month = $month;
+                                $yongjin->save();
                             }
 
                         }
@@ -630,6 +463,7 @@ class UserController extends CommomController
 
 
             }
+
             return view('admin_yongjin')->with('data', $datas);
         }
     }
