@@ -6,6 +6,7 @@ use App\Admin\Huazhuan;
 use App\Admin\Order;
 use App\Admin\Tibi;
 use App\Admin\User;
+use App\Admin\Yongjin;
 use Illuminate\Http\Request;
 use Geetestlib;
 use App\Http\Requests;
@@ -422,7 +423,5 @@ class CommomController extends Controller
         }
         return $flag;
     }
-    public function getYongjin(){
 
-    }
 }
