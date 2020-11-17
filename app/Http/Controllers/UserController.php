@@ -46,6 +46,7 @@ class UserController extends CommomController
         $datas = array();
         if(count($order)>0){
             foreach ($order as $vv){
+
                 if($vv->pid == 5){
                     if(strtotime('+3 month',strtotime($vv->force_time)) > time() ){
 
@@ -87,7 +88,7 @@ class UserController extends CommomController
                                 $yongjin->name = $vv->name;
                                 $yongjin->uid = $user->username;
                                 $yongjin->top = $toptop->username;
-                                $yongjin->topLevel = $flag;
+                                $yongjin->topLevel = $flag2;
                                 $yongjin->month = $month;
                                 $yongjin->save();
                             }
@@ -95,7 +96,7 @@ class UserController extends CommomController
                         }
                     }
                 }
-                if($vv->pid == 6){
+                elseif($vv->pid == 6){
                     if(strtotime('+6 month',strtotime($vv->force_time)) > time() ){
 
                         $user = User::where('id',$vv->uid)->first();
@@ -135,7 +136,7 @@ class UserController extends CommomController
                                 $yongjin->name = $vv->name;
                                 $yongjin->uid = $user->username;
                                 $yongjin->top = $toptop->username;
-                                $yongjin->topLevel = $flag;
+                                $yongjin->topLevel = $flag2;
                                 $yongjin->month = $month;
                                 $yongjin->save();
                             }
@@ -143,14 +144,15 @@ class UserController extends CommomController
                         }
                     }
                 }
-                if($vv->pid == 7){
+                elseif($vv->pid == 7){
                     if(strtotime('+12 month',strtotime($vv->force_time)) > time() ){
                         //确定购买人
                         $user = User::where('id',$vv->uid)->first();
                         if($user->top != -1){
                             //上级用户
-                            $top =User::where('id',$user->top)->first();
+                            $top = User::where('id',$user->top)->first();
                             //查询用户等级
+
                             $flag = $this->getLevle($top->id);
 
                             $yongjin = new Yongjin();
@@ -165,6 +167,7 @@ class UserController extends CommomController
                             $yongjin->top = $top->username;
                             $yongjin->topLevel = $flag;
                             $yongjin->month = $month;
+
                             $yongjin->save();
 
                             if($top->top != -1){
@@ -172,6 +175,7 @@ class UserController extends CommomController
                                 $toptop =User::where('id',$top->top)->first();
 
                                 //查询用户等级
+
                                 $flag2 = $this->getLevle($toptop->id);
 
                                 $yongjin = new Yongjin();
@@ -184,17 +188,15 @@ class UserController extends CommomController
                                 $yongjin->name = $vv->name;
                                 $yongjin->uid = $user->username;
                                 $yongjin->top = $toptop->username;
-                                $yongjin->topLevel = $flag;
+                                $yongjin->topLevel = $flag2;
                                 $yongjin->month = $month;
                                 $yongjin->save();
                             }
 
                         }
-
-
                     }
                 }
-                if($vv->pid == 8){
+                elseif($vv->pid == 8){
                     if(strtotime('+3 month',strtotime($vv->force_time)) > time() ){
 
 
@@ -235,7 +237,7 @@ class UserController extends CommomController
                                 $yongjin->name = $vv->name;
                                 $yongjin->uid = $user->username;
                                 $yongjin->top = $toptop->username;
-                                $yongjin->topLevel = $flag;
+                                $yongjin->topLevel = $flag2;
                                 $yongjin->month = $month;
                                 $yongjin->save();
                             }
@@ -243,7 +245,7 @@ class UserController extends CommomController
                         }
                     }
                 }
-                if($vv->pid == 9){
+                elseif($vv->pid == 9){
                     if(strtotime('+6 month',strtotime($vv->force_time)) > time() ){
 
                         $user = User::where('id',$vv->uid)->first();
@@ -284,7 +286,7 @@ class UserController extends CommomController
                                 $yongjin->name = $vv->name;
                                 $yongjin->uid = $user->username;
                                 $yongjin->top = $toptop->username;
-                                $yongjin->topLevel = $flag;
+                                $yongjin->topLevel = $flag2;
                                 $yongjin->month = $month;
                                 $yongjin->save();
                             }
@@ -292,7 +294,7 @@ class UserController extends CommomController
                         }
                     }
                 }
-                if($vv->pid == 10){
+                elseif($vv->pid == 10){
                     if(strtotime('+12 month',strtotime($vv->force_time)) > time() ){
 
                         $user = User::where('id',$vv->uid)->first();
@@ -332,7 +334,7 @@ class UserController extends CommomController
                                 $yongjin->name = $vv->name;
                                 $yongjin->uid = $user->username;
                                 $yongjin->top = $toptop->username;
-                                $yongjin->topLevel = $flag;
+                                $yongjin->topLevel = $flag2;
                                 $yongjin->month = $month;
                                 $yongjin->save();
                             }
@@ -341,7 +343,7 @@ class UserController extends CommomController
                     }
                 }
 
-                if($vv->pid == 16){
+                elseif($vv->pid == 16){
                     if(strtotime('+1 month',strtotime($vv->force_time)) > time() ){
 
 
@@ -383,7 +385,7 @@ class UserController extends CommomController
                                 $yongjin->name = $vv->name;
                                 $yongjin->uid = $user->username;
                                 $yongjin->top = $toptop->username;
-                                $yongjin->topLevel = $flag;
+                                $yongjin->topLevel = $flag2;
                                 $yongjin->month = $month;
                                 $yongjin->save();
                             }
@@ -391,7 +393,7 @@ class UserController extends CommomController
                         }
                     }
                 }
-                if($vv->pid == 18 || $vv->pid == 19){
+                elseif($vv->pid == 18 || $vv->pid == 19){
 
                     $user = User::where('id',$vv->uid)->first();
                     if($user->top != -1){
@@ -430,7 +432,7 @@ class UserController extends CommomController
                             $yongjin->name = $vv->name;
                             $yongjin->uid = $user->username;
                             $yongjin->top = $toptop->username;
-                            $yongjin->topLevel = $flag;
+                            $yongjin->topLevel = $flag2;
                             $yongjin->month = $month;
                             $yongjin->save();
                         }
@@ -439,7 +441,7 @@ class UserController extends CommomController
 
 
                 }
-                if($vv->pid == 22){
+                elseif($vv->pid == 22){
                     if(strtotime('+3 month',strtotime($vv->force_time)) > time() ){
                         $user = User::where('id',$vv->uid)->first();
                         if($user->top != -1){
@@ -478,7 +480,7 @@ class UserController extends CommomController
                                 $yongjin->name = $vv->name;
                                 $yongjin->uid = $user->username;
                                 $yongjin->top = $toptop->username;
-                                $yongjin->topLevel = $flag;
+                                $yongjin->topLevel = $flag2;
                                 $yongjin->month = $month;
                                 $yongjin->save();
                             }
@@ -488,7 +490,7 @@ class UserController extends CommomController
 
                     }
                 }
-                if($vv->pid == 23){
+                elseif($vv->pid == 23){
                     if(strtotime('+12 month',strtotime($vv->force_time)) > time() ){
 
                         $user = User::where('id',$vv->uid)->first();
@@ -528,7 +530,7 @@ class UserController extends CommomController
                                 $yongjin->name = $vv->name;
                                 $yongjin->uid = $user->username;
                                 $yongjin->top = $toptop->username;
-                                $yongjin->topLevel = $flag;
+                                $yongjin->topLevel = $flag2;
                                 $yongjin->month = $month;
                                 $yongjin->save();
                             }
@@ -541,8 +543,9 @@ class UserController extends CommomController
 
             }
 
-            return view('admin_yongjin')->with('data', $datas);
         }
+        $datas = Yongjin::where('month',$month)->get();
+        return view('admin_yongjin')->with('data', $datas);
     }
     public function distribution($id){
         $user = User::with('Realname', 'Cash')->where('top',$id)->get();

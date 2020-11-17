@@ -150,7 +150,7 @@
                 </div>
                 <div class="right_info_item">
                     <P>年化回报率</P>
-                    <P>26.4%</P>
+                    <P>18%</P>
                 </div>
             </div>
             <div class="info_item_mid_item">
@@ -201,9 +201,9 @@
                     年化回报率
                 </div>
                 <div class="title_item_info_right" style="font-size: 20px;font-weight: 700;color: #f96c02;">
-                    @if($v->attr == 1)24%
-                    @elseif($v->attr == 2)25.2%
-                    @elseif($v->attr == 3)26.4%
+                    @if($v->attr == 1)12%
+                    @elseif($v->attr == 2)15%
+                    @elseif($v->attr == 3)18%
                     @endif
                 </div>
             </div>
@@ -245,9 +245,9 @@
                     <p>{{$v->price}}元起投</p>
                 </div>
                 <div class="float_item_info_right">
-                    <p> @if($v->attr == 1)18%
-                        @elseif($v->attr == 2)21.6%
-                        @elseif($v->attr == 3)24%
+                    <p> @if($v->attr == 1)9.6%
+                        @elseif($v->attr == 2)12%
+                        @elseif($v->attr == 3)14.4%
                         @endif</p>
                 </div>
             </div>

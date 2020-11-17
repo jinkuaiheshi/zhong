@@ -406,7 +406,7 @@ class CommomController extends Controller
             }
         }
 
-        if(($zigou_suanli + $tuijian_suanli)>=5500){
+        if(($zigou_suanli + $tuijian_suanli) >= 5500){
             $flag = 5;
         }
         if( ($zigou_suanli + $tuijian_suanli) >=1650 && ($zigou_suanli + $tuijian_suanli) <5500){
