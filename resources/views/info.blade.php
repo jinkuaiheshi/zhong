@@ -77,7 +77,7 @@
             </div>
             <div class="col-xs-6 padding_0">
                 @if($product->attr == 1)
-                @if($product->model == 5)100CNY/月@elseif($product->model == 1)年化24%=1260元/份@elseif($product->attr == 1 &&$product->model == 2)年化9.6%=50.4元/份@else 年化12%=630元/份@endif
+                @if($product->model == 5)100CNY/月@elseif($product->model == 1)年化12%=630元/份@elseif($product->attr == 1 &&$product->model == 2)年化9.6%=50.4元/份@else 年化12%=630元/份@endif
                 @endif
                     @if($product->attr == 2)
                 @if($product->model == 1)年化15%=1575元/份 @elseif($product->attr == 2 &&$product->model == 2)年化12%=126元/份@else 年化25.2%=2646元/份@endif
